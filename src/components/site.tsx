@@ -15,7 +15,7 @@ export function buttonClass(v: Variant = "primary", extra?: string) {
   return cn("inline-flex items-center justify-center gap-2 text-[16px] transition-colors", btn[v], extra);
 }
 export function ButtonLink({ to, hash, variant = "primary", children, className }: { to: string; hash?: string; variant?: Variant; children: ReactNode; className?: string }) {
-  return <Link to={to} hash={hash} className={buttonClass(variant, className)}>{children}</Link>;
+  return <Link to={to} {...(hash ? { hash } : {})} className={buttonClass(variant, className)}>{children}</Link>;
 }
 
 /* ---------- Logos ---------- */
