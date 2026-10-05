@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CtaBand, LogoMark, PeopleGrid, Section, SectionHeader, VisionMission } from "@/components/site";
+import discussion from "@/assets/discussion.jpg";
+import { ButtonLink, LogoMark, PeopleGrid, Section, SectionHeader, SiteCta, VisionMission, WhatWeDo, WorkingCopy, principles } from "@/components/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Kaushal Hub — Experience into enterprise" },
-      { name: "description", content: "Kaushal Hub is an upskilling platform under SNN Eduworld for experienced professionals." },
+      { title: "About Kaushal Hub — An initiative of SNN Eduworld" },
+      { name: "description", content: "Kaushal Hub is an upskilling platform under SNN Eduworld, built around practical learning, capability and opportunity." },
       { property: "og:title", content: "About Kaushal Hub" },
-      { property: "og:description", content: "We help experience turn into enterprise." },
+      { property: "og:description", content: "An upskilling platform built around practical learning, capability and opportunity." },
     ],
   }),
   component: About,
@@ -17,45 +18,69 @@ function About() {
   return (
     <>
       <section className="section-pad">
-        <div className="container-site max-w-4xl">
-          <p className="eyebrow">About</p>
-          <h1 className="h1 mt-4">We help experience turn into enterprise.</h1>
-          <p className="mt-6 text-slate">Kaushal Hub is an upskilling platform under SNN Eduworld, built for professionals who want more than another course.</p>
+        <div className="container-site grid items-end gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <h1 className="h1">About Kaushal Hub</h1>
+            <p className="mt-6 max-w-xl text-slate">An upskilling platform under SNN Eduworld, built around practical learning, capability and opportunity. <WorkingCopy /></p>
+          </div>
+          <img src={discussion} alt="Two professionals in discussion" width={1280} height={960} className="aspect-[4/3] w-full rounded-xl object-cover lg:col-span-5" />
         </div>
       </section>
-      <Section tint>
+
+      <Section white>
         <div className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-4"><SectionHeader eyebrow="Our story" title="Why Kaushal Hub exists." /></div>
+          <div className="lg:col-span-4"><SectionHeader eyebrow="Who we are" title="An organisation for practical learning." /></div>
           <div className="space-y-5 text-slate lg:col-span-8">
-            <p>[Placeholder: founders' note, paragraph one — the gap we saw among senior professionals with deep expertise but no structured route to build on it.]</p>
-            <p>[Placeholder: paragraph two — why existing courses and bootcamps did not fit people with careers, families and obligations.]</p>
-            <p>[Placeholder: paragraph three — what we built instead, and the partnership with FITT, IIT Delhi.]</p>
+            <p>Kaushal Hub is an initiative of SNN Eduworld Pvt. Ltd. We design programs, build partnerships and grow a community that connects people with expertise and opportunity. <WorkingCopy /></p>
+            <div className="rounded-lg border-l-2 border-saffron bg-background p-6">
+              <p className="eyebrow">Founders' note</p>
+              <p className="mt-3">[PLACEHOLDER: founders' note]</p>
+            </div>
           </div>
         </div>
       </Section>
-      <VisionMission />
+
       <Section>
-        <SectionHeader title="What we hold ourselves to." />
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-          {["Evidence over opinion", "Apply, don't just learn", "Respect for experience", "Honest promises"].map((v, i) => (
-            <div key={v} className="rounded-lg border bg-card p-6"><p className="font-serif text-saffron">0{i + 1}</p><p className="h4 mt-4 font-serif text-navy">{v}</p></div>
+        <SectionHeader eyebrow="What we believe" title="Four principles." />
+        <ol className="mt-10 border-t">
+          {principles.map((p, i) => (
+            <li key={p} className="flex items-baseline gap-6 border-b py-6">
+              <span className="font-serif text-small text-slate">0{i + 1}</span>
+              <span className="h3 font-serif text-navy">{p}</span>
+            </li>
           ))}
-        </div>
+        </ol>
       </Section>
+
       <Section tint>
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div>
-            <SectionHeader eyebrow="Our partners" title="FITT, IIT Delhi" sub="The Foundation for Innovation and Technology Transfer is IIT Delhi's innovation and technology-transfer body. It co-delivers Experience to Enterprise and supports selected ventures through incubation." />
-            <p className="mt-4 text-small text-slate">[Wording pending FITT approval]</p>
-          </div>
-          <div className="flex flex-wrap gap-4 lg:justify-end"><LogoMark label="FITT" /><LogoMark label="IIT Delhi" /></div>
+        <SectionHeader eyebrow="What we do" title="Five areas we work across." />
+        <div className="mt-12"><WhatWeDo /></div>
+      </Section>
+
+      <VisionMission />
+
+      <section className="section-pad bg-navy">
+        <div className="container-site max-w-3xl">
+          <SectionHeader light eyebrow="Community" title="A community being built with care." sub="Kaushal Hub's community brings together professionals, experts, entrepreneurs, learners and alumni." />
+          <p className="mt-6 text-primary-foreground/60">[PLACEHOLDER: planned activities such as peer learning, expert sessions, alumni sessions]</p>
         </div>
-      </Section>
+      </section>
+
       <Section>
-        <SectionHeader title="The team." />
-        <div className="mt-12"><PeopleGrid /></div>
+        <SectionHeader eyebrow="Associations" title="Associations" />
+        <div className="mt-10 flex flex-col gap-6 rounded-lg border bg-card p-6 md:flex-row md:items-center md:justify-between md:p-8">
+          <p className="text-ink"><span className="font-semibold text-navy">Experience to Enterprise:</span> in association with FITT, IIT Delhi</p>
+          <div className="flex gap-3"><LogoMark label="FITT" /><LogoMark label="IIT Delhi" /></div>
+        </div>
+        <div className="mt-6"><ButtonLink to="/experience-to-enterprise" variant="text">About the program</ButtonLink></div>
       </Section>
-      <CtaBand />
+
+      <Section white>
+        <SectionHeader title="Team" />
+        <div className="mt-10"><PeopleGrid /></div>
+      </Section>
+
+      <SiteCta />
     </>
   );
 }
