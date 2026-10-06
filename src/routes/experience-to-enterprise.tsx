@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Video, MonitorPlay, MessageSquareText, Landmark, AlertCircle } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { Accordion, ButtonLink, Card, CheckItem, CtaBand, FactTile, FittPill, LogoMark, PeopleGrid, Section, SectionHeader, buttonClass } from "@/components/site";
+import { ImpactLine, SignatureFeature, Accordion, ButtonLink, Card, CheckItem, CtaBand, FactTile, FittPill, LogoMark, PeopleGrid, Section, SectionHeader, buttonClass } from "@/components/site";
 import { ApplyForm } from "@/components/ApplyForm";
 
 export const Route = createFileRoute("/experience-to-enterprise")({
@@ -40,6 +40,8 @@ const faq: [string, string][] = [
   ["What is the FITT, IIT Delhi association?", "Experience to Enterprise is a Kaushal Hub program offered in association with FITT, IIT Delhi. Kaushal Hub is a separate organisation. [Wording pending FITT approval]"],
   ["What does the campus immersion involve?", "2-3 days at FITT, IIT Delhi. Dates to be announced. Meals included; travel and lodging not included. The physical certificate is handed over here."],
   ["What are the certificate requirements?", "Minimum 70% attendance and 40% cumulative evaluation score."],
+  ["Will I get a patent through the program?", "Eligible participants with a patentable idea are routed through FITT's IP office to file a provisional patent. Eligibility applies and a patent grant is not guaranteed."],
+  ["How does the batch pool work?", "Participants contribute a small fixed share at enrollment. At Demo Day the cohort and panel vote to award the pool to one or two ventures. Final terms to be confirmed."],
   ["Is incubation guaranteed?", "No. Incubation is for selected ventures, subject to evaluation, availability and FITT arrangements."],
   ["Is funding guaranteed?", "No. Funding and grant support are for selected ventures and based on availability. Nothing is guaranteed."],
   ["How does post-program evaluation work?", "Within a month of completion you submit a Venture Project Dossier, which is evaluated on a published rubric."],
@@ -59,6 +61,7 @@ function Program() {
             <div className="mt-5"><FittPill /></div>
             <h1 className="h1 mt-6">Experience to Enterprise</h1>
             <p className="h4 mt-4 font-serif text-navy">Certificate Program in Entrepreneurship for Experienced Professionals</p>
+            <ImpactLine className="mt-6" />
             <p className="mt-6 max-w-xl text-slate">A 12-week practical venture-building program for experienced professionals who want to explore, validate and pursue a real entrepreneurial opportunity without first leaving their job.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink to="/experience-to-enterprise" hash="apply">Apply Now</ButtonLink>
@@ -86,6 +89,15 @@ function Program() {
             <p className="mt-2 font-serif text-[24px] leading-8 text-navy md:text-[28px] md:leading-9">Evidence is what moves the venture forward.</p>
             <p className="mt-6 text-slate">Every module asks you to act on your own opportunity: talk to customers, test prices, scope a pilot. Theory is kept to what you need to make the next decision.</p>
           </div>
+        </div>
+      </Section>
+
+      {/* Signature features */}
+      <Section>
+        <p className="eyebrow">What makes this program different</p>
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          <SignatureFeature title="Your Brand, Your Idea, Your IP" body="Participants with a patentable idea are routed through FITT's Intellectual Property Management Office, including the invention disclosure process and patent-search support, to file a real provisional patent during the program, where eligible." footnote="Subject to eligibility and FITT process. Costs [PLACEHOLDER]. Filing does not guarantee a patent grant." />
+          <SignatureFeature title="The Batch Invests In Itself" body="Each participant contributes a small, fixed share of the program fee into a shared pool at enrollment. At Demo Day, the cohort and the panel vote together to award the pooled amount as a no-strings grant to the one or two ventures they find most credible." footnote="Pool share [PLACEHOLDER]. Terms subject to final arrangements." />
         </div>
       </Section>
 
@@ -171,6 +183,7 @@ function Program() {
               <CheckItem>Faculty and expert network (about 70% of teaching faculty)</CheckItem>
               <CheckItem>Campus immersion</CheckItem>
               <CheckItem>Joint curriculum design</CheckItem>
+              <CheckItem>IP guidance through FITT's Intellectual Property Management Office</CheckItem>
               <CheckItem>Post-program incubation, investor connect and grant support for selected ventures</CheckItem>
             </ul>
             <p className="mt-5 text-small text-slate">[Wording pending FITT approval]</p>

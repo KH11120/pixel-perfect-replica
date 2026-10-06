@@ -113,7 +113,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-12 space-y-4 border-t border-primary-foreground/15 pt-8 text-small text-primary-foreground/65">
-          <p className="max-w-4xl">Experience to Enterprise is a program launched by Kaushal Hub in association with FITT, IIT Delhi. Details and associated opportunities are subject to final terms. Incubation, investor connect and funding support are only for ventures selected after evaluation and subject to availability. Nothing is guaranteed.</p>
+          <p className="max-w-4xl">Experience to Enterprise is a program launched by Kaushal Hub in association with FITT, IIT Delhi. Details and associated opportunities are subject to final terms. Incubation, investor connect, funding and patent support are only for ventures or participants selected after evaluation or found eligible, and are subject to availability. Nothing is guaranteed.</p>
           <div className="flex flex-wrap gap-6">
             <a href="#" className="underline underline-offset-4">Privacy Policy</a>
             <a href="#" className="underline underline-offset-4">Terms</a>
@@ -232,7 +232,7 @@ export function VisionMission() {
         <p className="h2 mt-4 font-serif text-navy">A workforce that keeps learning, building and moving forward.</p>
         <div className="mx-auto my-12 h-px w-16 bg-saffron" />
         <p className="eyebrow !text-navy">Mission</p>
-        <p className="h3 mt-4 font-serif text-navy">To connect practical learning, expertise, technology and opportunity, so professionals and organisations can move forward with confidence.</p>
+        <p className="h3 mt-4 font-serif text-navy">To connect practical learning, expertise, technology and opportunity, so people and organisations can move forward with confidence.</p>
       </div>
       <div className="mx-auto mt-20 max-w-5xl">
         <p className="eyebrow text-center">How we work</p>
@@ -278,3 +278,65 @@ export function CtaBand({ title, text, primary, secondary }: { title: string; te
   );
 }
 export const SiteCta = () => <CtaBand title="What will you build next?" text="Explore our programs, join the community or start a conversation." primary={["Explore Programs", "/programs"]} secondary={["Contact Us", "/contact"]} />;
+
+/* ---------- Associations strip ---------- */
+export function AssociationsStrip({ label = "Programs in association with", note }: { label?: string; note?: ReactNode }) {
+  return (
+    <div className="border-y bg-card py-6">
+      <div className="container-site flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <p className="eyebrow shrink-0">{label}</p>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:flex">
+          {["FITT", "IIT Delhi"].map((l) => (
+            <span key={l} className="grid h-16 place-items-center rounded-md border bg-background font-semibold tracking-wide text-slate grayscale lg:w-40">{l}</span>
+          ))}
+          {[0, 1, 2].map((i) => (
+            <span key={i} className="grid h-16 place-items-center rounded-md border border-dashed border-slate/30 text-small text-slate/60 lg:w-40">Add logo</span>
+          ))}
+        </div>
+      </div>
+      {note && <div className="container-site mt-4"><p className="text-small text-slate">{note}</p></div>}
+    </div>
+  );
+}
+
+/* ---------- Program card ---------- */
+export function ProgramCard({ status, audience, title, text, link, footnote }: { status: "Coming soon" | "Details soon"; audience: string; title: string; text: ReactNode; link?: ReactNode; footnote?: ReactNode }) {
+  return (
+    <div className="flex flex-col rounded-lg border bg-card p-6">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="rounded-full border px-3 py-1 text-small font-medium text-slate">{status}</span>
+        <Tag>{audience}</Tag>
+      </div>
+      <h3 className="h4 mt-5 font-serif">{title}</h3>
+      <p className="mt-2 flex-1 text-[16px] leading-6 text-slate">{text}</p>
+      {footnote && <p className="mt-3 text-small text-slate">{footnote}</p>}
+      {link && <div className="mt-5">{link}</div>}
+    </div>
+  );
+}
+export function DevPrograms({ withLinks }: { withLinks?: boolean }) {
+  const notify = withLinks ? <a href="#notify" className="inline-flex items-center gap-2 text-[16px] font-semibold text-navy hover:gap-3">Email me when this opens <ArrowRight className="h-4 w-4" /></a> : undefined;
+  return (
+    <>
+      <ProgramCard status="Coming soon" audience="Class 12 students" title="Entrepreneurship program for Class 12 [NAME TBD]" text={<>An introduction to building ventures, designed for school students. <WorkingCopy /></>} link={notify} />
+      <ProgramCard status="Coming soon" audience="Undergraduates" title="Entrepreneurship program for Undergraduates [NAME TBD]" text={<>A practical route from idea to first venture for college students. <WorkingCopy /></>} link={notify} />
+      <ProgramCard status="Details soon" audience="AI training" title="AI Training [PROGRAM NAME TBD]" text="In association with Microsoft and FITT" footnote={<WorkingCopy>[WORKING COPY, pending approval]</WorkingCopy>} />
+    </>
+  );
+}
+
+export function ImpactLine({ className }: { className?: string }) {
+  return <p className={cn("font-serif text-[20px] italic leading-8 text-navy md:text-[24px] md:leading-9", className)}>In 12 weeks, go from a domain insight to a customer-tested venture, a financial model and an investor-ready pitch.</p>;
+}
+
+/* ---------- Signature feature ---------- */
+export function SignatureFeature({ title, body, footnote }: { title: string; body: string; footnote: string }) {
+  return (
+    <div className="rounded-lg border border-navy bg-card p-6 md:p-8">
+      <p className="eyebrow">Signature feature</p>
+      <h3 className="h3 mt-4">{title}</h3>
+      <p className="mt-4 text-slate">{body}</p>
+      <p className="mt-6 border-t pt-4 text-small text-slate">{footnote}</p>
+    </div>
+  );
+}
