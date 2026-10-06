@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ButtonLink, Card, FittPill, Section, SiteCta, Tag, buttonClass } from "@/components/site";
+import { ButtonLink, Card, FittPill, Section, SiteCta, Tag, buttonClass , AssociationsStrip, DevPrograms, ImpactLine } from "@/components/site";
 
 export const Route = createFileRoute("/programs")({
   head: () => ({
@@ -25,6 +25,7 @@ function Programs() {
         </div>
       </section>
       <Section tint>
+        <p className="eyebrow mb-4">Now enrolling</p>
         <Card className="md:p-12">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <FittPill />
@@ -32,11 +33,14 @@ function Programs() {
           </div>
           <h2 className="h2 mt-8">Experience to Enterprise</h2>
           <p className="mt-2 text-slate">Certificate Program in Entrepreneurship for Experienced Professionals</p>
+          <ImpactLine className="mt-6" />
           <div className="mt-6 flex flex-wrap gap-2"><Tag>12 weeks</Tag><Tag>~10 hrs per week</Tag><Tag>Online + campus immersion</Tag></div>
           <div className="mt-8"><ButtonLink to="/experience-to-enterprise">View program</ButtonLink></div>
         </Card>
-        <div className="mx-auto mt-16 max-w-xl py-12 text-center md:py-16">
-          <p className="h3 font-serif text-navy">More programs are being developed.</p>
+        <p className="eyebrow mb-4 mt-16">In development: Entrepreneurship</p>
+        <div className="grid gap-6 md:grid-cols-3"><DevPrograms withLinks /></div>
+        <div id="notify" className="mx-auto mt-16 max-w-xl py-12 text-center md:py-16">
+          <p className="h3 font-serif text-navy">Notify me about new programs</p>
           <p className="mt-3 text-slate">Leave your email and we'll write when the next one opens.</p>
           {done ? <p className="mt-8 font-medium text-navy">Thank you. We'll be in touch.</p> : (
             <form className="mt-8 flex flex-col gap-3 sm:flex-row" onSubmit={(e) => { e.preventDefault(); setDone(true); }}>
@@ -46,6 +50,7 @@ function Programs() {
           )}
         </div>
       </Section>
+      <AssociationsStrip />
       <SiteCta />
     </>
   );

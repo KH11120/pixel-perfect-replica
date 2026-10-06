@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Handshake } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { ButtonLink, Card, FittPill, LogoMark, Section, SectionHeader, SiteCta, Tag, VisionMission, WhatWeDo, WorkingCopy } from "@/components/site";
+import { AssociationsStrip, DevPrograms, ImpactLine, ButtonLink, Card, FittPill, LogoMark, Section, SectionHeader, SiteCta, Tag, VisionMission, WhatWeDo, WorkingCopy } from "@/components/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,8 +22,8 @@ function Home() {
       <section className="section-pad">
         <div className="container-site grid items-center gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <p className="eyebrow">Upskilling for professionals</p>
-            <h1 className="h1 mt-5">Practical upskilling for professionals building what's next.</h1>
+            <p className="eyebrow">Upskilling platform</p>
+            <h1 className="h1 mt-5">Practical upskilling for people building what's next.</h1>
             <p className="mt-6 max-w-xl text-slate">Kaushal Hub brings together practical learning, expertise, technology and opportunity, through programs, partnerships and a community.</p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ButtonLink to="/programs">Explore Programs</ButtonLink>
@@ -40,7 +40,7 @@ function Home() {
               <p className="mt-2 text-[16px] leading-6 text-slate">Certificate Program in Entrepreneurship for Experienced Professionals</p>
               <div className="mt-6 flex flex-wrap items-center gap-2 border-t pt-6">
                 <LogoMark label="FITT" small /><LogoMark label="IIT Delhi" small />
-                <span className="text-small text-slate">Associated with FITT, IIT Delhi</span>
+                <span className="text-small text-slate">In association with FITT, IIT Delhi</span>
               </div>
               <p className="mt-4 text-small font-medium text-navy">12 weeks · Online + campus immersion</p>
               <div className="mt-6"><ButtonLink to="/experience-to-enterprise" variant="text">View program</ButtonLink></div>
@@ -48,6 +48,7 @@ function Home() {
           </div>
         </div>
       </section>
+      <AssociationsStrip />
 
       {/* 2 About */}
       <Section white>
@@ -59,6 +60,10 @@ function Home() {
           <div className="lg:col-span-7">
             <p className="font-serif text-[22px] leading-8 text-ink md:text-[26px] md:leading-9">Kaushal means skill. Kaushal Hub is an upskilling platform for practical learning, capability building and meaningful connections between people, expertise and opportunity.</p>
             <p className="mt-6 text-slate">Through programs, partnerships and community, we create pathways to learn, apply and move forward. <WorkingCopy /></p>
+            <div className="mt-10 border-l-2 border-saffron pl-6">
+              <p className="font-serif text-[32px] leading-10 text-navy md:text-[40px] md:leading-[48px]">Kaushal se Kushal Bharat</p>
+              <p className="mt-2 text-small text-slate">Kaushal (skill) to Kushal (capable) <WorkingCopy /></p>
+            </div>
             <div className="mt-8"><ButtonLink to="/about" variant="text">About Kaushal Hub</ButtonLink></div>
           </div>
         </div>
@@ -71,26 +76,30 @@ function Home() {
         <div className="mt-12"><WhatWeDo /></div>
       </Section>
 
-      {/* 4 Featured program */}
+      {/* 4 Programs */}
       <Section tint>
+        <SectionHeader eyebrow="Programs" title="Programs from Kaushal Hub" />
+        <div className="mt-10" />
         <div className="grid overflow-hidden rounded-xl border bg-card lg:grid-cols-2">
           <img src={workshop} alt="Professionals in a working session" width={1280} height={960} loading="lazy" className="h-64 w-full object-cover lg:h-full" />
           <div className="p-6 md:p-12">
-            <p className="eyebrow">Our first program</p>
+            <Tag tone="saffron">Now enrolling</Tag>
             <h2 className="h2 mt-4">Experience to Enterprise</h2>
             <p className="mt-2 text-slate">Certificate Program in Entrepreneurship for Experienced Professionals</p>
             <div className="mt-6"><FittPill /></div>
-            <p className="mt-6 text-ink">A 12-week practical program for experienced professionals to identify an opportunity, validate it with real customers, build a pilot and decide what comes next, without leaving their job.</p>
+            <ImpactLine className="mt-6" />
             <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-md border bg-border">
               {["12 weeks", "~10 hrs a week", "Online + campus immersion", "Co-branded certificate"].map((f) => <dd key={f} className="bg-card p-4 text-small font-medium text-navy">{f}</dd>)}
             </dl>
+            <div className="mt-6 flex flex-wrap gap-2"><Tag>Provisional patent route (where eligible)</Tag><Tag>The batch invests in itself</Tag></div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink to="/experience-to-enterprise">Explore the program</ButtonLink>
               <ButtonLink to="/contact" variant="secondary">Request information</ButtonLink>
             </div>
           </div>
         </div>
-        <p className="mt-6 text-center text-small text-slate">More programs are being developed.</p>
+        <div className="mt-6 grid gap-6 md:grid-cols-3"><DevPrograms /></div>
+        <div className="mt-8"><ButtonLink to="/programs" variant="text">View all programs</ButtonLink></div>
       </Section>
 
       {/* 5 Community */}
