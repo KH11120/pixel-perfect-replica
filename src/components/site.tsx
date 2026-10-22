@@ -27,7 +27,10 @@ export function Logo({ light }: { light?: boolean }) {
   return (
     <Link to="/" className="flex items-center gap-2">
       <span className={cn("grid h-8 w-8 place-items-center rounded-md font-serif text-[18px]", light ? "bg-primary-foreground text-navy" : "bg-navy text-primary-foreground")}>K</span>
-      <span className={cn("font-serif text-[20px] font-medium", light ? "text-primary-foreground" : "text-navy")}>Kaushal Hub</span>
+      <span className="flex flex-col leading-none">
+        <span className={cn("font-serif text-[20px] font-medium", light ? "text-primary-foreground" : "text-navy")}>Kaushal Hub</span>
+        <span className={cn("mt-1 text-[11px] tracking-wide", light ? "text-primary-foreground/65" : "text-slate")}>From Knowledge to Creation</span>
+      </span>
     </Link>
   );
 }
@@ -156,8 +159,16 @@ export function Tag({ children, tone = "tint" }: { children: ReactNode; tone?: "
 export function CheckItem({ children }: { children: ReactNode }) {
   return <li className="flex gap-3"><Check className="mt-1 h-5 w-5 shrink-0 text-navy" strokeWidth={2} /><span>{children}</span></li>;
 }
-export function WorkingCopy({ children = "[WORKING COPY]" }: { children?: ReactNode }) {
-  return <span className="ml-2 align-middle text-[11px] font-semibold uppercase tracking-wider text-saffron">{children}</span>;
+/** Internal review labels are hidden from the public site. */
+export function WorkingCopy(_props: { children?: ReactNode }) {
+  return null;
+}
+
+/* ---------- Brochure (shown only when a real file URL is set) ---------- */
+export const BROCHURE_URL = "";
+export function BrochureLink({ variant = "secondary", className }: { variant?: Variant; className?: string }) {
+  if (!BROCHURE_URL) return null;
+  return <a href={BROCHURE_URL} download className={buttonClass(variant, className)}>Download Brochure</a>;
 }
 
 /* ---------- Accordion ---------- */
@@ -222,19 +233,19 @@ export function WhatWeDo() {
     </div>
   );
 }
-export const principles = ["Practical over theoretical", "Evidence over opinion", "Respect for expertise", "Honest promises"];
+export const principles = ["Practical over theoretical", "Evidence over assumption", "Expertise shared openly", "Progress measured by application"];
 export function VisionMission() {
   return (
     <Section white>
       <div className="mx-auto max-w-4xl text-center">
-        <p className="eyebrow">Vision and mission <WorkingCopy /></p>
-        <p className="mt-10 eyebrow !text-navy">Vision</p>
-        <p className="h2 mt-4 font-serif text-navy">A workforce that keeps learning, building and moving forward.</p>
-        <div className="mx-auto my-12 h-px w-16 bg-saffron" />
-        <p className="eyebrow !text-navy">Mission</p>
-        <p className="h3 mt-4 font-serif text-navy">To connect practical learning, expertise, technology and opportunity, so people and organisations can move forward with confidence.</p>
+        <p className="eyebrow">Our vision and mission</p>
+        <h2 className="h2 mt-6">A world where useful knowledge leads to meaningful action.</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-slate">A future in which people can access credible knowledge, build practical capabilities and pursue opportunities with greater clarity and confidence.</p>
+        <div className="mx-auto my-10 h-px w-16 bg-saffron" />
+        <p className="eyebrow !text-navy">Our mission</p>
+        <p className="h4 mx-auto mt-4 max-w-3xl font-serif text-navy">To make practical knowledge accessible, connect learning with real-world application, and create pathways for people to develop their capabilities and act on new opportunities.</p>
       </div>
-      <div className="mx-auto mt-20 max-w-5xl">
+      <div className="mx-auto mt-16 max-w-5xl">
         <p className="eyebrow text-center">How we work</p>
         <div className="mt-6 grid grid-cols-2 border-y md:grid-cols-4">
           {principles.map((p, i) => <p key={p} className={cn("p-5 text-center font-serif text-[18px] text-navy", i > 0 && "md:border-l", i % 2 === 1 && "border-l")}>{p}</p>)}
@@ -261,7 +272,7 @@ export function PeopleGrid({ n = 4, note }: { n?: number; note?: string }) {
     </>
   );
 }
-export function CtaBand({ title, text, primary, secondary }: { title: string; text?: string; primary: [string, string]; secondary: [string, string] }) {
+export function CtaBand({ title, text, primary, secondary, brochure }: { title: string; text?: string; primary: [string, string]; secondary?: [string, string]; brochure?: boolean }) {
   return (
     <section className="section-pad bg-navy">
       <div className="container-site flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
@@ -271,30 +282,23 @@ export function CtaBand({ title, text, primary, secondary }: { title: string; te
         </div>
         <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
           <ButtonLink to={primary[1]}>{primary[0]}</ButtonLink>
-          {secondary[1] === "#" ? <a href="#" className={buttonClass("inverse")}>{secondary[0]}</a> : <ButtonLink to={secondary[1]} variant="inverse">{secondary[0]}</ButtonLink>}
+          {brochure && <BrochureLink variant="inverse" />}
+          {secondary && <ButtonLink to={secondary[1]} variant="inverse">{secondary[0]}</ButtonLink>}
         </div>
       </div>
     </section>
   );
 }
-export const SiteCta = () => <CtaBand title="What will you build next?" text="Explore our programs, join the community or start a conversation." primary={["Explore Programs", "/programs"]} secondary={["Contact Us", "/contact"]} />;
+export const SiteCta = () => <CtaBand title="What will you build next?" text="Explore practical learning and opportunities that help you turn knowledge into action." primary={["Explore Programs", "/programs"]} secondary={["Get in Touch", "/contact"]} />;
 
 /* ---------- Associations strip ---------- */
-export function AssociationsStrip({ label = "Programs in association with", note }: { label?: string; note?: ReactNode }) {
+export function AssociationsStrip({ note = "Experience to Enterprise is a Kaushal Hub program offered in association with FITT, IIT Delhi." }: { label?: string; note?: ReactNode }) {
   return (
-    <div className="border-y bg-card py-6">
-      <div className="container-site flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <p className="eyebrow shrink-0">{label}</p>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:flex">
-          {["FITT", "IIT Delhi"].map((l) => (
-            <span key={l} className="grid h-16 place-items-center rounded-md border bg-background font-semibold tracking-wide text-slate grayscale lg:w-40">{l}</span>
-          ))}
-          {[0, 1, 2].map((i) => (
-            <span key={i} className="grid h-16 place-items-center rounded-md border border-dashed border-slate/30 text-small text-slate/60 lg:w-40">Add logo</span>
-          ))}
-        </div>
+    <div className="border-y bg-card py-5">
+      <div className="container-site flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="flex gap-2"><LogoMark label="FITT" small /><LogoMark label="IIT Delhi" small /></div>
+        <p className="text-small text-slate">{note}</p>
       </div>
-      {note && <div className="container-site mt-4"><p className="text-small text-slate">{note}</p></div>}
     </div>
   );
 }

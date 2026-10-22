@@ -7,7 +7,7 @@ function Done({ title, text }: { title: string; text: string }) {
 
 export function ApplyForm() {
   const [sent, setSent] = useState(false);
-  if (sent) return <Done title="Thank you. Application received." text="Our team will review it and contact you to schedule a counselling call." />;
+  if (sent) return <Done title="Online applications are not open yet." text="Your details have not been sent. We are setting up online submissions; please check back soon." />;
   return (
     <form className="grid gap-5 md:grid-cols-2" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
       <Field label="Name" name="name" required />
@@ -29,7 +29,7 @@ export function ApplyForm() {
 
 export function EnquiryForm() {
   const [sent, setSent] = useState(false);
-  if (sent) return <Done title="Thank you. Enquiry received." text="We'll get back to you by email." />;
+  if (sent) return <Done title="Online enquiries are not open yet." text="Your message has not been sent. We are setting up online submissions; please check back soon." />;
   return (
     <form className="grid gap-5 md:grid-cols-2" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
       <Field label="Name" name="name" required />
