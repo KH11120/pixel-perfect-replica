@@ -1,16 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Video, MonitorPlay, MessageSquareText, Landmark, AlertCircle } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { ImpactLine, SignatureFeature, Accordion, ButtonLink, Card, CheckItem, CtaBand, FactTile, FittPill, LogoMark, PeopleGrid, Section, SectionHeader, buttonClass } from "@/components/site";
+import { BrochureLink, SignatureFeature, Accordion, ButtonLink, Card, CheckItem, CtaBand, FactTile, FittPill, LogoMark, PeopleGrid, Section, SectionHeader, buttonClass } from "@/components/site";
 import { ApplyForm } from "@/components/ApplyForm";
 
 export const Route = createFileRoute("/experience-to-enterprise")({
   head: () => ({
     meta: [
-      { title: "Experience to Enterprise — A Kaushal Hub program" },
-      { name: "description", content: "A 12-week venture-building program for experienced professionals, a Kaushal Hub program in association with FITT, IIT Delhi." },
-      { property: "og:title", content: "Experience to Enterprise — A Kaushal Hub program" },
-      { property: "og:description", content: "Explore, validate and pursue a real entrepreneurial opportunity without first leaving your job." },
+      { title: "Experience to Enterprise | Kaushal Hub" },
+      { name: "description", content: "Explore a 12-week venture-building program for experienced professionals, focused on customer validation, practical experimentation and business viability." },
+      { property: "og:title", content: "Experience to Enterprise | Kaushal Hub" },
+      { property: "og:description", content: "Test the leap before you take it. A 12-week venture-building program for experienced professionals." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Program,
@@ -25,10 +27,28 @@ const modules: [string, string, string, string][] = [
   ["Capstone and Demo Day", "Week 12", "10-minute pitch and prototype or pilot demo with Q&A before a mock investor and mentor panel.", "Final pitch, project submission plan."],
 ];
 
+const stages: [string, string][] = [
+  ["Start with your experience", "Identify a problem worth solving using your industry knowledge, professional network and understanding of the market."],
+  ["Test it with real customers", "Conduct customer discovery, examine existing alternatives and investigate whether people would pay for a solution."],
+  ["Build something you can demonstrate", "Develop a pilot, prototype or service-based MVP to test the idea before committing to a larger build."],
+  ["Understand the business behind it", "Work through pricing, unit economics, customer acquisition, cash flow and operational requirements."],
+  ["Make your next decision with evidence", "Present your findings, assess commercial viability and determine whether to proceed, pivot or stop."],
+];
+
+const compare: [string, string, string][] = [
+  ["Starting point", "General entrepreneurship concepts", "Your experience, industry knowledge and potential opportunities"],
+  ["Customer discovery", "Learn the principles of validation", "Conduct customer interviews and examine real market needs"],
+  ["Building", "Study business models and MVP concepts", "Develop a pilot, prototype or testable service concept"],
+  ["Commercial thinking", "Learn business and financial frameworks", "Apply pricing, unit economics and financial planning to your opportunity"],
+  ["Progress", "Complete lessons and assignments", "Build towards a venture project supported by evidence"],
+  ["Final outcome", "Understanding of entrepreneurship concepts", "A Venture Project Dossier and a more informed decision about the opportunity"],
+  ["After the program", "Depends on the individual program", "Outstanding ventures may be considered for further support, subject to FITT's applicable selection process and available opportunities"],
+];
+
 const after: [string, string][] = [
   ["Month 1 after completion", "Submit a Venture Project Dossier: problem and evidence, prototype or pilot results, business model and financials, 10-slide pitch, 5-minute video."],
   ["Evaluation", "Assessed on a published rubric: problem evidence, traction, solution quality, team capability, scalability, feasibility."],
-  ["Selected ventures", "Ventures selected after evaluation may be considered for further support."],
+  ["Selected ventures", "Outstanding ventures may be considered for incubation or other support, subject to FITT's selection process and available opportunities. Meeting certificate requirements does not mean automatic selection."],
   ["Potential support", "Incubation; investor connect (only for ventures proposed and hosted for incubation); funding and grant support (based on availability); alumni community (run by Kaushal Hub)."],
 ];
 
@@ -56,20 +76,20 @@ function Program() {
       {/* Hero */}
       <section className="section-pad">
         <div className="container-site grid items-center gap-12 lg:grid-cols-12">
+          <img src={workshop} alt="Professionals in a working session" width={1280} height={960} className="aspect-[4/3] w-full rounded-xl object-cover lg:col-span-5" />
           <div className="lg:col-span-7">
-            <p className="eyebrow">Kaushal Hub program</p>
-            <div className="mt-5"><FittPill /></div>
-            <h1 className="h1 mt-6">Experience to Enterprise</h1>
-            <p className="h4 mt-4 font-serif text-navy">Certificate Program in Entrepreneurship for Experienced Professionals</p>
-            <ImpactLine className="mt-6" />
-            <p className="mt-6 max-w-xl text-slate">A 12-week practical venture-building program for experienced professionals who want to explore, validate and pursue a real entrepreneurial opportunity without first leaving their job.</p>
+            <p className="eyebrow">Experience to Enterprise</p>
+            <h1 className="h1 mt-5">Test the leap before you take it.</h1>
+            <p className="mt-6 max-w-xl text-slate">A 12-week venture-building program for experienced professionals who want to test a business opportunity, engage real customers and build a credible plan before making their next move.</p>
+            <div className="mt-6"><FittPill /></div>
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-small font-medium text-navy">
+              {["12 weeks", "~10 hours per week", "Online + campus immersion", "Co-branded certificate"].map((f) => <li key={f}>{f}</li>)}
+            </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink to="/experience-to-enterprise" hash="apply">Apply Now</ButtonLink>
-              <ButtonLink to="/contact" variant="secondary">Request information</ButtonLink>
+              <ButtonLink to="/experience-to-enterprise" hash="approach">Explore the Program</ButtonLink>
+              <BrochureLink />
             </div>
-            <p className="mt-4 text-small text-slate">Program name subject to final confirmation.</p>
           </div>
-          <img src={workshop} alt="Participants in a working session" width={1280} height={960} className="aspect-[4/3] w-full rounded-xl object-cover lg:col-span-5" />
         </div>
         <div className="container-site mt-12 grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-5">
           <FactTile label="Duration" value="12 weeks" />
@@ -80,16 +100,56 @@ function Program() {
         </div>
       </section>
 
-      {/* Why */}
-      <Section white>
-        <div className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-5"><SectionHeader eyebrow="Why this program" title="A practical route from idea to evidence." /></div>
-          <div className="lg:col-span-7">
-            <p className="font-serif text-[24px] leading-8 text-navy md:text-[28px] md:leading-9">Your venture becomes the classroom.</p>
-            <p className="mt-2 font-serif text-[24px] leading-8 text-navy md:text-[28px] md:leading-9">Evidence is what moves the venture forward.</p>
-            <p className="mt-6 text-slate">Every module asks you to act on your own opportunity: talk to customers, test prices, scope a pilot. Theory is kept to what you need to make the next decision.</p>
-          </div>
+      {/* Approach */}
+      <Section white id="approach">
+        <SectionHeader eyebrow="The Experience to Enterprise approach" title="Don't just study entrepreneurship. Put an opportunity to the test." sub="The goal isn't to finish with notes about starting a business. It's to finish with a clearer, evidence-backed decision about an opportunity you could pursue." />
+        <ol className="mt-12 border-t">
+          {stages.map(([t, d], i) => (
+            <li key={t} className="grid gap-2 border-b py-6 md:grid-cols-12 md:gap-6">
+              <span className="font-serif text-small text-slate md:col-span-1">0{i + 1}</span>
+              <p className="h4 font-serif text-navy md:col-span-4">{t}</p>
+              <p className="text-slate md:col-span-7">{d}</p>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-8 border-l-2 border-saffron pl-5 font-serif text-[20px] leading-8 text-navy"><span className="font-semibold">The outcome:</span> A more informed entrepreneurial decision, supported by tangible work, not just course completion.</p>
+      </Section>
+
+      {/* Comparison */}
+      <Section>
+        <SectionHeader eyebrow="What makes this approach different" title="Built around your venture, not just the syllabus." />
+        <div className="mt-10 hidden overflow-hidden rounded-lg border bg-card md:block">
+          <table className="w-full text-left">
+            <thead className="bg-tint">
+              <tr>
+                <th scope="col" className="w-1/5 p-4 text-small font-semibold uppercase tracking-wider text-slate">What matters</th>
+                <th scope="col" className="p-4 text-small font-semibold uppercase tracking-wider text-slate">Course-led learning approach</th>
+                <th scope="col" className="p-4 text-small font-semibold uppercase tracking-wider text-navy">Experience to Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              {compare.map(([k, a, b]) => (
+                <tr key={k} className="border-t align-top">
+                  <th scope="row" className="p-4 font-semibold text-navy">{k}</th>
+                  <td className="p-4 text-slate">{a}</td>
+                  <td className="p-4 text-ink">{b}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+        <div className="mt-10 space-y-4 md:hidden">
+          {compare.map(([k, a, b]) => (
+            <div key={k} className="rounded-lg border bg-card p-5">
+              <p className="font-semibold text-navy">{k}</p>
+              <p className="mt-3 text-small uppercase tracking-wider text-slate">Course-led</p>
+              <p className="mt-1 text-slate">{a}</p>
+              <p className="mt-3 text-small uppercase tracking-wider text-navy">Experience to Enterprise</p>
+              <p className="mt-1 text-ink">{b}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-6 text-small text-slate">The comparison describes the intended learning design of Experience to Enterprise, not a claim that every other program follows the same approach.</p>
       </Section>
 
       {/* Signature features */}
@@ -129,7 +189,7 @@ function Program() {
 
       {/* Curriculum */}
       <Section white>
-        <SectionHeader eyebrow="Curriculum" title="Six modules, twelve weeks." />
+        <SectionHeader eyebrow="Curriculum" title="Six modules, twelve weeks." sub="From opportunity discovery to validation, building, commercial planning and a final presentation, working on your own venture opportunity throughout." />
         <div className="relative mt-10 pl-8 md:pl-12">
           <div className="absolute bottom-6 left-3 top-6 w-px bg-border md:left-5" />
           <div className="space-y-3">
@@ -267,7 +327,7 @@ function Program() {
         </div>
       </Section>
 
-      <CtaBand title="Ready to apply?" primary={["Apply Now", "/contact"]} secondary={["Download brochure", "#"]} />
+      <CtaBand title="Ready to explore your next move?" text="Review the program details and decide whether Experience to Enterprise is the right next step for you." primary={["Apply Now", "/contact"]} brochure />
 
       <Section id="apply" white>
         <SectionHeader title="Take the next step." sub="Apply to Experience to Enterprise. We'll follow up with a counselling call." />

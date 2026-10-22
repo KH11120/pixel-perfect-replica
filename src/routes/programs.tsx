@@ -32,8 +32,8 @@ function Programs() {
             <Tag tone="saffron">Now enrolling</Tag>
           </div>
           <h2 className="h2 mt-8">Experience to Enterprise</h2>
-          <p className="mt-2 text-slate">Certificate Program in Entrepreneurship for Experienced Professionals</p>
-          <ImpactLine className="mt-6" />
+          <p className="h4 mt-2 font-serif text-navy">Test the leap before you take it.</p>
+          <p className="mt-4 text-slate">A 12-week venture-building program for experienced professionals exploring entrepreneurship.</p>
           <div className="mt-6 flex flex-wrap gap-2"><Tag>12 weeks</Tag><Tag>~10 hrs per week</Tag><Tag>Online + campus immersion</Tag></div>
           <div className="mt-8"><ButtonLink to="/experience-to-enterprise">View program</ButtonLink></div>
         </Card>
@@ -42,7 +42,7 @@ function Programs() {
         <div id="notify" className="mx-auto mt-16 max-w-xl py-12 text-center md:py-16">
           <p className="h3 font-serif text-navy">Notify me about new programs</p>
           <p className="mt-3 text-slate">Leave your email and we'll write when the next one opens.</p>
-          {done ? <p className="mt-8 font-medium text-navy">Thank you. We'll be in touch.</p> : (
+          {done ? <p className="mt-8 font-medium text-navy">Email sign-up is not open yet. Your email has not been saved.</p> : (
             <form className="mt-8 flex flex-col gap-3 sm:flex-row" onSubmit={(e) => { e.preventDefault(); setDone(true); }}>
               <input type="email" required placeholder="you@company.com" aria-label="Email" className="h-12 flex-1 rounded-md border bg-card px-4 outline-none focus:border-navy" />
               <button className={buttonClass("secondary")}>Notify me</button>
