@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode, type ComponentProps } from "react";
 import { ChevronDown, Menu, X, Check, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,9 @@ const btn: Record<Variant, string> = {
 };
 export function buttonClass(v: Variant = "primary", extra?: string) {
   return cn("inline-flex items-center justify-center gap-2 text-[16px] transition-all", btn[v], extra);
+}
+export function SiteButton({ className, variant = "primary", ...props }: ComponentProps<"button"> & { variant?: Variant }) {
+  return <button {...props} className={buttonClass(variant, className)} />;
 }
 export function ButtonLink({ to, hash, variant = "primary", children, className }: { to: string; hash?: string; variant?: Variant; children: ReactNode; className?: string }) {
   return (
@@ -36,7 +39,7 @@ export function Logo({ light }: { light?: boolean }) {
 }
 export function LogoMark({ label, small }: { label: string; small?: boolean }) {
   return (
-    <span className={cn("inline-flex items-center justify-center rounded-md border border-dashed border-slate/40 bg-card font-semibold tracking-wide text-slate", small ? "h-6 px-2 text-[11px]" : "h-14 px-6 text-small")}>
+    <span className={cn("inline-flex items-center font-medium text-slate", small ? "text-[11px]" : "text-small")}>
       {label}
     </span>
   );
@@ -53,6 +56,7 @@ export function FittPill({ label = "In association with FITT, IIT Delhi" }: { la
 /* ---------- Navbar ---------- */
 const links = [
   { to: "/programs", label: "Programs" },
+  { to: "/resources", label: "Knowledge Library" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
@@ -68,7 +72,7 @@ export function Navbar() {
           ))}
         </nav>
         <div className="hidden md:block"><ButtonLink to="/contact">Apply Now</ButtonLink></div>
-        <button className="p-2 text-navy md:hidden" aria-label="Menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+        <SiteButton variant="text" className="h-10 w-10 p-2 md:hidden" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</SiteButton>
       </div>
       {open && (
         <nav className="border-t bg-background md:hidden">
@@ -111,15 +115,13 @@ export function Footer() {
           </div>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7">
             {col("Programs", [["Experience to Enterprise", "/experience-to-enterprise"]])}
-            {col("About", [["About Kaushal Hub", "/about"]])}
+            {col("About", [["About Kaushal Hub", "/about"], ["Knowledge Library", "/resources"]])}
             {col("Contact", [["Contact", "/contact"], ["Partner With Us", "/contact"]])}
           </div>
         </div>
         <div className="mt-12 space-y-4 border-t border-primary-foreground/15 pt-8 text-small text-primary-foreground/65">
           <p className="max-w-4xl">Experience to Enterprise is a program launched by Kaushal Hub in association with FITT, IIT Delhi. Details and associated opportunities are subject to final terms. Incubation, investor connect, funding and patent support are only for ventures or participants selected after evaluation or found eligible, and are subject to availability. Nothing is guaranteed.</p>
           <div className="flex flex-wrap gap-6">
-            <a href="#" className="underline underline-offset-4">Privacy Policy</a>
-            <a href="#" className="underline underline-offset-4">Terms</a>
             <span>© {new Date().getFullYear()} SNN Eduworld Pvt. Ltd.</span>
           </div>
         </div>
@@ -304,7 +306,7 @@ export function AssociationsStrip({ note = "Experience to Enterprise is a Kausha
 }
 
 /* ---------- Program card ---------- */
-export function ProgramCard({ status, audience, title, text, link, footnote }: { status: "Coming soon" | "Details soon"; audience: string; title: string; text: ReactNode; link?: ReactNode; footnote?: ReactNode }) {
+export function ProgramCard({ status, audience, title, text, link, footnote }: { status: "Coming soon" | "Details soon" | "Planned Program"; audience: string; title: string; text: ReactNode; link?: ReactNode; footnote?: ReactNode }) {
   return (
     <div className="flex flex-col rounded-lg border bg-card p-6">
       <div className="flex flex-wrap items-center gap-2">
@@ -319,12 +321,11 @@ export function ProgramCard({ status, audience, title, text, link, footnote }: {
   );
 }
 export function DevPrograms({ withLinks }: { withLinks?: boolean }) {
-  const notify = withLinks ? <a href="#notify" className="inline-flex items-center gap-2 text-[16px] font-semibold text-navy hover:gap-3">Email me when this opens <ArrowRight className="h-4 w-4" /></a> : undefined;
   return (
     <>
-      <ProgramCard status="Coming soon" audience="Class 12 students" title="Entrepreneurship program for Class 12 [NAME TBD]" text={<>An introduction to building ventures, designed for school students. <WorkingCopy /></>} link={notify} />
-      <ProgramCard status="Coming soon" audience="Undergraduates" title="Entrepreneurship program for Undergraduates [NAME TBD]" text={<>A practical route from idea to first venture for college students. <WorkingCopy /></>} link={notify} />
-      <ProgramCard status="Details soon" audience="AI training" title="AI Training [PROGRAM NAME TBD]" text="In association with Microsoft and FITT" footnote={<WorkingCopy>[WORKING COPY, pending approval]</WorkingCopy>} />
+      <ProgramCard status="Planned Program" audience="Class 12 students" title="Entrepreneurship for School Students" text="An introduction to identifying problems, developing ideas and understanding how ventures are built." />
+      <ProgramCard status="Planned Program" audience="Undergraduates" title="Entrepreneurship for Undergraduate Students" text="A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture." />
+      <ProgramCard status="Planned Program" audience="AI learning" title="AI & Future Skills" text="Practical learning initiatives focused on applying AI and emerging technologies to real-world tasks and challenges." />
     </>
   );
 }
