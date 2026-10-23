@@ -1,0 +1,30 @@
+import { describe, expect, it } from "vitest";
+import { getPublishedResources, isPublishedResource, publishedPagePaths, type Resource } from "@/lib/resources";
+
+const completeResource: Resource = {
+  slug: "approved-guide", title: "Guide", summary: "Summary", category: "ideas", type: "Practical guide",
+  status: "published", editorialApproved: true, introduction: "The question and context.",
+  sections: [{ heading: "Evidence", paragraphs: ["An editor-reviewed explanation."] }],
+  nextSteps: ["Review the evidence."], relatedSlugs: [],
+};
+
+describe("Knowledge publishing safeguards", () => {
+  it("does not publish the six unwritten editorial concepts", () => {
+    expect(getPublishedResources()).toEqual([]);
+    expect(publishedPagePaths().some(path => path.startsWith("/resources/"))).toBe(false);
+  });
+  it("does not expose drafts even when they have content", () => {
+    expect(isPublishedResource({ ...completeResource, status: "draft" })).toBe(false);
+  });
+  it("requires editorial approval before publishing", () => {
+    expect(isPublishedResource({ ...completeResource, editorialApproved: false })).toBe(false);
+    expect(isPublishedResource(completeResource)).toBe(true);
+  });
+  it("does not publish an empty article template", () => {
+    expect(isPublishedResource({ ...completeResource, sections: [] })).toBe(false);
+  });
+  it("does not publish a downloadable resource without a real asset", () => {
+    expect(isPublishedResource({ ...completeResource, type: "Worksheet" })).toBe(false);
+    expect(isPublishedResource({ ...completeResource, type: "Worksheet", assetUrl: "/approved-worksheet.pdf" })).toBe(true);
+  });
+});
