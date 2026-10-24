@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Video, MonitorPlay, MessageSquareText, Landmark, AlertCircle } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { BrochureLink, SignatureFeature, Accordion, ButtonLink, Card, CheckItem, CtaBand, FactTile, FittPill, LogoMark, PeopleGrid, Section, SectionHeader, buttonClass } from "@/components/site";
+import { BrochureLink, SignatureFeature, Accordion, ButtonLink, Card, CheckItem, CtaBand, FactTile, FittPill, LogoMark, Section, SectionHeader } from "@/components/site";
 import { ApplyForm } from "@/components/ApplyForm";
+import { SampleDossier } from "@/components/sample-dossier";
+import { canonicalLinks } from "@/lib/resources";
 
 export const Route = createFileRoute("/experience-to-enterprise")({
   head: () => ({
@@ -14,6 +16,7 @@ export const Route = createFileRoute("/experience-to-enterprise")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: canonicalLinks("/experience-to-enterprise"),
   }),
   component: Program,
 });
@@ -42,7 +45,7 @@ const compare: [string, string, string][] = [
   ["Commercial thinking", "Learn business and financial frameworks", "Apply pricing, unit economics and financial planning to your opportunity"],
   ["Progress", "Complete lessons and assignments", "Build towards a venture project supported by evidence"],
   ["Final outcome", "Understanding of entrepreneurship concepts", "A Venture Project Dossier and a more informed decision about the opportunity"],
-  ["After the program", "Depends on the individual program", "Outstanding ventures may be considered for further support, subject to FITT's applicable selection process and available opportunities"],
+  ["Next steps", "Depend on the individual program", "Outstanding ventures may be considered for further support, subject to FITT's applicable selection process and available opportunities"],
 ];
 
 const after: [string, string][] = [
@@ -57,7 +60,7 @@ const faq: [string, string][] = [
   ["Do I need a technical background?", "No. You will use AI and no-code tools. Complex technology may still need developers or vendors."],
   ["Do I need to quit my job?", "No. The program is designed to run alongside a job."],
   ["How many hours per week?", "About 10 hours: about 6 live and about 4 self-paced and venture work."],
-  ["What is the FITT, IIT Delhi association?", "Experience to Enterprise is a Kaushal Hub program offered in association with FITT, IIT Delhi. Kaushal Hub is a separate organisation. [Wording pending FITT approval]"],
+  ["What is the FITT, IIT Delhi association?", "Experience to Enterprise is a Kaushal Hub program offered in association with FITT, IIT Delhi. Kaushal Hub is a separate organisation."],
   ["What does the campus immersion involve?", "2-3 days at FITT, IIT Delhi. Dates to be announced. Meals included; travel and lodging not included. The physical certificate is handed over here."],
   ["What are the certificate requirements?", "Minimum 70% attendance and 40% cumulative evaluation score."],
   ["Will I get a patent through the program?", "Eligible participants with a patentable idea are routed through FITT's IP office to file a provisional patent. Eligibility applies and a patent grant is not guaranteed."],
@@ -67,7 +70,7 @@ const faq: [string, string][] = [
   ["How does post-program evaluation work?", "Within a month of completion you submit a Venture Project Dossier, which is evaluated on a published rubric."],
   ["What does it cost?", "Indicative fee Rs 75,000 to 1,50,000. Final fee to be confirmed. Registration fee is 5% of the program fee."],
   ["Can I pay by EMI?", "Cards and card EMI, subject to final arrangements."],
-  ["What if I miss a session?", "Certificate requires minimum 70% attendance. [PLACEHOLDER: make-up and refund policy]"],
+  ["What if I miss a session?", "Certificate requires minimum 70% attendance."],
 ];
 
 function Program() {
@@ -78,8 +81,9 @@ function Program() {
         <div className="container-site grid items-center gap-12 lg:grid-cols-12">
           <img src={workshop} alt="Professionals in a working session" width={1280} height={960} className="aspect-[4/3] w-full rounded-xl object-cover lg:col-span-5" />
           <div className="lg:col-span-7">
-            <p className="eyebrow">Experience to Enterprise</p>
-            <h1 className="h1 mt-5">Test the leap before you take it.</h1>
+            <p className="eyebrow">A Kaushal Hub program</p>
+            <h1 className="h1 mt-5">Experience to Enterprise</h1>
+            <p className="h3 mt-3 font-serif text-navy">Test the leap before you take it.</p>
             <p className="mt-6 max-w-xl text-slate">A 12-week venture-building program for experienced professionals who want to test a business opportunity, engage real customers and build a credible plan before making their next move.</p>
             <div className="mt-6"><FittPill /></div>
             <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-small font-medium text-navy">
@@ -117,7 +121,7 @@ function Program() {
 
       {/* Comparison */}
       <Section>
-        <SectionHeader eyebrow="What makes this approach different" title="Built around your venture, not just the syllabus." />
+        <SectionHeader eyebrow="What makes this approach different" title="Built around your venture, not just the syllabus." sub="Experience to Enterprise is designed to help you apply what you learn to an opportunity of your own, using customer evidence and commercial reasoning to guide the next step." />
         <div className="mt-10 hidden overflow-hidden rounded-lg border bg-card md:block">
           <table className="w-full text-left">
             <thead className="bg-tint">
@@ -156,8 +160,8 @@ function Program() {
       <Section>
         <p className="eyebrow">What makes this program different</p>
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <SignatureFeature title="Your Brand, Your Idea, Your IP" body="Participants with a patentable idea are routed through FITT's Intellectual Property Management Office, including the invention disclosure process and patent-search support, to file a real provisional patent during the program, where eligible." footnote="Subject to eligibility and FITT process. Costs [PLACEHOLDER]. Filing does not guarantee a patent grant." />
-          <SignatureFeature title="The Batch Invests In Itself" body="Each participant contributes a small, fixed share of the program fee into a shared pool at enrollment. At Demo Day, the cohort and the panel vote together to award the pooled amount as a no-strings grant to the one or two ventures they find most credible." footnote="Pool share [PLACEHOLDER]. Terms subject to final arrangements." />
+          <SignatureFeature title="Your Brand, Your Idea, Your IP" body="Participants with a patentable idea are routed through FITT's Intellectual Property Management Office, including the invention disclosure process and patent-search support, to file a real provisional patent during the program, where eligible." footnote="Subject to eligibility and FITT process. Filing does not guarantee a patent grant." />
+          <SignatureFeature title="The Batch Invests In Itself" body="Each participant contributes a small, fixed share of the program fee into a shared pool at enrollment. At Demo Day, the cohort and the panel vote together to award the pooled amount as a no-strings grant to the one or two ventures they find most credible." footnote="Terms subject to final arrangements." />
         </div>
       </Section>
 
@@ -203,6 +207,8 @@ function Program() {
         </div>
       </Section>
 
+      <SampleDossier />
+
       {/* Build while you work + AI */}
       <Section>
         <div className="grid gap-6 lg:grid-cols-2">
@@ -246,7 +252,6 @@ function Program() {
               <CheckItem>IP guidance through FITT's Intellectual Property Management Office</CheckItem>
               <CheckItem>Post-program incubation, investor connect and grant support for selected ventures</CheckItem>
             </ul>
-            <p className="mt-5 text-small text-slate">[Wording pending FITT approval]</p>
           </div>
           <div className="rounded-lg border p-6 md:p-8">
             <p className="eyebrow !text-navy">Kaushal Hub's role</p>
@@ -313,11 +318,6 @@ function Program() {
             </div>
           ))}
         </dl>
-      </Section>
-
-      <Section>
-        <SectionHeader title="Faculty." />
-        <div className="mt-10"><PeopleGrid /></div>
       </Section>
 
       <Section tint>

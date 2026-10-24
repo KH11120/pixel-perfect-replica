@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import discussion from "@/assets/discussion.jpg";
-import { AssociationsStrip, DevPrograms, Tag, ButtonLink, PeopleGrid, Section, SectionHeader, SiteCta, VisionMission, WhatWeDo, WorkingCopy, principles } from "@/components/site";
+import { AssociationsStrip, DevPrograms, Tag, ButtonLink, Section, SectionHeader, SiteCta, VisionMission, WhatWeDo, WorkingCopy, principles } from "@/components/site";
+import { canonicalLinks } from "@/lib/resources";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -9,7 +10,10 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "Kaushal Hub is an upskilling platform under SNN Eduworld, built around practical learning, capability and opportunity." },
       { property: "og:title", content: "About Kaushal Hub" },
       { property: "og:description", content: "An upskilling platform built around practical learning, capability and opportunity." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: canonicalLinks("/about"),
   }),
   component: About,
 });
@@ -39,10 +43,6 @@ function About() {
           </div>
           <div className="space-y-5 text-slate lg:col-span-8">
             <p>Kaushal Hub is an initiative of SNN Eduworld Pvt. Ltd. We design programs, build partnerships and grow a community that connects people with expertise and opportunity. <WorkingCopy /></p>
-            <div className="rounded-lg border-l-2 border-saffron bg-background p-6">
-              <p className="eyebrow">Founders' note</p>
-              <p className="mt-3">[PLACEHOLDER: founders' note]</p>
-            </div>
           </div>
         </div>
       </Section>
@@ -68,7 +68,7 @@ function About() {
         <SectionHeader eyebrow="Programs" title="Programs from Kaushal Hub" />
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col rounded-lg border border-navy bg-card p-6">
-            <Tag tone="saffron">Now enrolling</Tag>
+            <Tag>Featured program</Tag>
             <h3 className="h4 mt-5 font-serif">Experience to Enterprise</h3>
             <p className="mt-2 flex-1 text-[16px] leading-6 text-slate">A Kaushal Hub program, in association with FITT, IIT Delhi.</p>
             <div className="mt-5"><ButtonLink to="/experience-to-enterprise" variant="text">View program</ButtonLink></div>
@@ -82,14 +82,8 @@ function About() {
       <section className="section-pad bg-navy">
         <div className="container-site max-w-3xl">
           <SectionHeader light eyebrow="Community" title="A community being built with care." sub="Kaushal Hub's community brings together professionals, experts, entrepreneurs, learners and alumni." />
-          <p className="mt-6 text-primary-foreground/60">[PLACEHOLDER: planned activities such as peer learning, expert sessions, alumni sessions]</p>
         </div>
       </section>
-
-      <Section white>
-        <SectionHeader title="Team" />
-        <div className="mt-10"><PeopleGrid /></div>
-      </Section>
 
       <SiteCta />
     </>

@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
 import { ApplyForm, EnquiryForm } from "@/components/ApplyForm";
-import { Card, Step, buttonClass } from "@/components/site";
+import { Card, Step, SiteButton } from "@/components/site";
+import { canonicalLinks } from "@/lib/resources";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/contact")({
@@ -12,7 +12,10 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Apply to Experience to Enterprise, or send Kaushal Hub an enquiry or partnership request." },
       { property: "og:title", content: "Contact and apply — Kaushal Hub" },
       { property: "og:description", content: "Apply, enquire or partner with Kaushal Hub." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: canonicalLinks("/contact"),
   }),
   component: Contact,
 });
@@ -27,7 +30,7 @@ function Contact() {
           <div className="lg:col-span-7">
             <div role="tablist" className="grid grid-cols-2 rounded-md border bg-card p-1">
               {([["apply", "Apply to Experience to Enterprise"], ["enquiry", "Enquiry or partnership"]] as const).map(([k, l]) => (
-                <button key={k} role="tab" aria-selected={tab === k} onClick={() => setTab(k)} className={cn("rounded-[6px] px-3 py-3 text-small font-semibold transition-colors", tab === k ? "bg-navy text-primary-foreground" : "text-navy hover:bg-tint")}>{l}</button>
+                <SiteButton variant="text" key={k} role="tab" aria-selected={tab === k} onClick={() => setTab(k)} className={cn("h-auto min-h-12 rounded-md px-3 py-3 text-small font-semibold transition-colors", tab === k ? "bg-navy text-primary-foreground" : "text-navy hover:bg-tint")}>{l}</SiteButton>
               ))}
             </div>
             <div className="mt-6 rounded-lg border bg-card p-6 md:p-8">
@@ -35,15 +38,6 @@ function Contact() {
             </div>
           </div>
           <div className="space-y-6 lg:col-span-5">
-            <Card>
-              <h3 className="h4">Contact</h3>
-              <ul className="mt-4 space-y-3 text-slate">
-                <li className="flex gap-3"><Mail className="mt-1 h-5 w-5 shrink-0 text-navy" strokeWidth={1.5} />[PLACEHOLDER email]</li>
-                <li className="flex gap-3"><Phone className="mt-1 h-5 w-5 shrink-0 text-navy" strokeWidth={1.5} />[PLACEHOLDER phone]</li>
-                <li className="flex gap-3"><MapPin className="mt-1 h-5 w-5 shrink-0 text-navy" strokeWidth={1.5} />[PLACEHOLDER address]</li>
-              </ul>
-              <a href="#" className={buttonClass("secondary", "mt-6 w-full")}>Book a counselling call</a>
-            </Card>
             <Card>
               <h3 className="h4">What happens next</h3>
               <div className="mt-6 space-y-6">

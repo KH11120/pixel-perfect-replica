@@ -320,7 +320,7 @@ export function ProgramCard({ status, audience, title, text, link, footnote }: {
     </div>
   );
 }
-export function DevPrograms({ withLinks }: { withLinks?: boolean }) {
+export function DevPrograms() {
   return (
     <>
       <ProgramCard status="Planned Program" audience="Class 12 students" title="Entrepreneurship for School Students" text="An introduction to identifying problems, developing ideas and understanding how ventures are built." />
