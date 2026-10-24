@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Video, MonitorPlay, MessageSquareText, Landmark, AlertCircle } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { BrochureLink, SignatureFeature, Accordion, ButtonLink, Card, CheckItem, CtaBand, FactTile, FittPill, LogoMark, PeopleGrid, Section, SectionHeader, buttonClass } from "@/components/site";
+import { BrochureLink, SignatureFeature, Accordion, ButtonLink, Card, CheckItem, CtaBand, FactTile, FittPill, LogoMark, Section, SectionHeader } from "@/components/site";
 import { ApplyForm } from "@/components/ApplyForm";
 import { SampleDossier } from "@/components/sample-dossier";
 import { canonicalLinks } from "@/lib/resources";

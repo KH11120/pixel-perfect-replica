@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import discussion from "@/assets/discussion.jpg";
-import { AssociationsStrip, DevPrograms, Tag, ButtonLink, PeopleGrid, Section, SectionHeader, SiteCta, VisionMission, WhatWeDo, WorkingCopy, principles } from "@/components/site";
+import { AssociationsStrip, DevPrograms, Tag, ButtonLink, Section, SectionHeader, SiteCta, VisionMission, WhatWeDo, WorkingCopy, principles } from "@/components/site";
 import { canonicalLinks } from "@/lib/resources";
 
 export const Route = createFileRoute("/about")({

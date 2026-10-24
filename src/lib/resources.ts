@@ -61,7 +61,7 @@ export function findPublishedResource(slug: string) {
 // Set only to the verified published/custom origin, never the draft preview origin.
 export const PUBLIC_SITE_ORIGIN = "";
 export function canonicalLinks(path: string) {
-  return PUBLIC_SITE_ORIGIN ? [{ rel: "canonical", href: `${PUBLIC_SITE_ORIGIN}${path}` }] : [];
+  return [{ rel: "canonical", href: PUBLIC_SITE_ORIGIN ? `${PUBLIC_SITE_ORIGIN}${path}` : path }];
 }
 export function publishedPagePaths() {
   return ["/", "/about", "/programs", "/experience-to-enterprise", "/contact", "/resources", ...getPublishedResources().map(resource => `/resources/${resource.slug}`)];
