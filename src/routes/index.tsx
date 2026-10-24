@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Handshake } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { AssociationsStrip, BrochureLink, ButtonLink, Card, LogoMark, Section, SectionHeader, SiteCta, Tag, VisionMission } from "@/components/site";
+import { BrochureLink, ButtonLink, Card, DevPrograms, Section, SectionHeader, SiteCta, Tag, VisionMission } from "@/components/site";
+import { KnowledgePreview } from "@/components/knowledge";
+import { canonicalLinks } from "@/lib/resources";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -13,6 +15,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: canonicalLinks("/"),
   }),
   component: Home,
 });
@@ -37,13 +40,12 @@ function Home() {
             <Card>
               <div className="flex items-center justify-between gap-4">
                 <p className="eyebrow">Featured program</p>
-                <Tag tone="saffron">Now enrolling</Tag>
+                <Tag>Featured program</Tag>
               </div>
-              <p className="eyebrow mt-6 !text-navy">Experience to Enterprise</p>
-              <h2 className="h3 mt-2">Test the leap before you take it.</h2>
+              <h2 className="h3 mt-6">Experience to Enterprise</h2>
+              <p className="h4 mt-2 font-serif text-navy">Test the leap before you take it.</p>
               <p className="mt-3 text-[16px] leading-6 text-slate">A 12-week venture-building program for experienced professionals exploring entrepreneurship.</p>
               <div className="mt-6 flex flex-wrap items-center gap-2 border-t pt-6">
-                <LogoMark label="FITT" small /><LogoMark label="IIT Delhi" small />
                 <span className="text-small text-slate">In association with FITT, IIT Delhi</span>
               </div>
               <p className="mt-4 text-small font-medium text-navy">12 weeks · Online + campus immersion</p>
@@ -91,6 +93,12 @@ function Home() {
       </Section>
 
       <Section>
+        <SectionHeader title="Programs & Learning Initiatives" sub="Explore practical learning programs and initiatives designed for different stages of learning, capability-building and professional growth." />
+        <div className="mt-10 grid gap-6 md:grid-cols-3"><DevPrograms /></div>
+        <div className="mt-8"><ButtonLink to="/programs" variant="text">Explore All Programs</ButtonLink></div>
+      </Section>
+
+      <Section>
         <SectionHeader eyebrow="From learning to application" title="Knowledge should help you take the next step." sub="We bring practical learning and relevant expertise closer to the decisions, challenges and opportunities people face in the real world." />
         <ol className="mt-12 grid gap-8 border-t pt-10 md:grid-cols-3">
           {[["Learn", "Access useful knowledge and practical learning."], ["Apply", "Use what you learn to work through real questions and challenges."], ["Move Forward", "Make more informed decisions and pursue meaningful opportunities."]].map(([t, d], i) => (
@@ -102,6 +110,8 @@ function Home() {
           ))}
         </ol>
       </Section>
+
+      <KnowledgePreview />
 
       <section className="section-pad bg-navy">
         <div className="container-site max-w-3xl">
