@@ -80,7 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Kaushal Hub" },
-      { name: "description", content: "Upskilling for experienced professionals." },
+      { name: "description", content: "Practical learning, knowledge and opportunity from Kaushal Hub." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
