@@ -5,9 +5,20 @@ function Done({ title, text }: { title: string; text: string }) {
   return <div className="rounded-lg border bg-card p-8"><h3 className="h3">{title}</h3><p className="mt-3 text-slate">{text}</p></div>;
 }
 
+const NOT_CONNECTED = "Online submissions are not connected yet, so your details have not been sent or stored. The form is ready; it still needs a configured destination before launch. Please check back soon.";
+
+function Consent({ label }: { label: string }) {
+  return (
+    <label className="flex items-start gap-3 md:col-span-2">
+      <input type="checkbox" name="consent" required className="mt-1.5 h-4 w-4 shrink-0 accent-navy" />
+      <span className="text-small text-slate">{label} *</span>
+    </label>
+  );
+}
+
 export function ApplyForm() {
   const [sent, setSent] = useState(false);
-  if (sent) return <Done title="Online applications are not open yet." text="Your details have not been sent. We are setting up online submissions; please check back soon." />;
+  if (sent) return <Done title="Online applications are not open yet." text={NOT_CONNECTED} />;
   return (
     <form className="grid gap-5 md:grid-cols-2" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
       <Field label="Name" name="name" required />
@@ -29,7 +40,7 @@ export function ApplyForm() {
 
 export function EnquiryForm() {
   const [sent, setSent] = useState(false);
-  if (sent) return <Done title="Online enquiries are not open yet." text="Your message has not been sent. We are setting up online submissions; please check back soon." />;
+  if (sent) return <Done title="Online enquiries are not open yet." text={NOT_CONNECTED} />;
   return (
     <form className="grid gap-5 md:grid-cols-2" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
       <Field label="Name" name="name" required />
@@ -38,6 +49,55 @@ export function EnquiryForm() {
       <Field label="I am interested in" name="topic" as="select" required options={["Program enquiry", "Community", "Partnership", "Expert or faculty", "General enquiry"]} />
       <div className="md:col-span-2"><Field label="Message" name="message" as="textarea" required /></div>
       <div className="md:col-span-2"><button className={buttonClass("primary", "w-full md:w-auto")}>Submit enquiry</button></div>
+    </form>
+  );
+}
+
+export const interestPrograms = [
+  "Entrepreneurship for School Students",
+  "Entrepreneurship for Undergraduate Students",
+  "AI & Future Skills",
+  "Experience to Enterprise",
+] as const;
+
+export function InterestForm({ program }: { program?: string }) {
+  const [sent, setSent] = useState(false);
+  if (sent) return <Done title="Interest registration is not connected yet." text={NOT_CONNECTED} />;
+  const options = program && (interestPrograms as readonly string[]).includes(program)
+    ? [program, ...interestPrograms.filter(p => p !== program)]
+    : [...interestPrograms];
+  return (
+    <form className="grid gap-5 md:grid-cols-2" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+      <Field label="Name" name="name" required />
+      <Field label="Email" name="email" type="email" required />
+      <Field label="Program of interest" name="program" as="select" required options={options} />
+      <Field label="Organisation or institution (optional)" name="org" />
+      <div className="md:col-span-2"><Field label="Anything you'd like us to know? (optional)" name="message" as="textarea" /></div>
+      <Consent label="I agree to be contacted by Kaushal Hub about this program." />
+      <div className="md:col-span-2">
+        <button className={buttonClass("primary", "w-full md:w-auto")}>Register Interest</button>
+        <p className="mt-4 text-small text-slate">We use your details only to contact you about the program you choose. Registering interest is not an application and does not reserve a seat.</p>
+      </div>
+    </form>
+  );
+}
+
+export const communityInterests = ["Learning", "Entrepreneurship", "AI & Future Skills", "Sharing Expertise", "Partnerships", "Other"] as const;
+
+export function CommunityForm() {
+  const [sent, setSent] = useState(false);
+  if (sent) return <Done title="Community sign-up is not connected yet." text={NOT_CONNECTED} />;
+  return (
+    <form className="grid gap-5 md:grid-cols-2" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+      <Field label="Name" name="name" required />
+      <Field label="Email" name="email" type="email" required />
+      <div className="md:col-span-2"><Field label="Primary interest" name="interest" as="select" required options={[...communityInterests]} /></div>
+      <div className="md:col-span-2"><Field label="A short introduction (optional)" name="intro" as="textarea" /></div>
+      <Consent label="I agree to receive relevant community communications from Kaushal Hub." />
+      <div className="md:col-span-2">
+        <button className={buttonClass("primary", "w-full md:w-auto")}>Submit Interest</button>
+        <p className="mt-4 text-small text-slate">This form records an expression of interest. It does not make you a member of a live community; we will contact you as community activities open.</p>
+      </div>
     </form>
   );
 }
