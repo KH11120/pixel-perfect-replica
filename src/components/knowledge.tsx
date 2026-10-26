@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ButtonLink, Section, SectionHeader } from "@/components/site";
 import { getPublishedResources, resourceCategories, type Resource } from "@/lib/resources";
 
@@ -29,14 +29,25 @@ export function ResourceCard({ resource, presentation = "default", categoryLabel
 }
 
 export function KnowledgePreview() {
-  const published = getPublishedResources().slice(0, 6);
+  const previewSlugs = [
+    "is-a-business-idea-worth-pursuing",
+    "interview-potential-customers",
+    "test-whether-customers-will-pay",
+  ];
+  const categoryLabels: Record<string, string> = {
+    "is-a-business-idea-worth-pursuing": "IDEA VALIDATION",
+    "interview-potential-customers": "CUSTOMER RESEARCH",
+    "test-whether-customers-will-pay": "DEMAND VALIDATION",
+  };
+  const published = getPublishedResources().filter(resource => previewSlugs.includes(resource.slug));
   return <Section white>
-    <div className="flex flex-col items-start justify-between gap-8 lg:flex-row">
-      <SectionHeader eyebrow="The Kaushal Hub Knowledge Library" title="Good questions deserve useful answers." sub="Explore practical guides, articles and resources that help you understand a problem, test an idea and make better decisions." />
-      <BookOpen className="h-12 w-12 shrink-0 text-navy" strokeWidth={1} aria-hidden="true" />
+    <div className="max-w-none">
+      <p className="eyebrow mb-4">THE KAUSHAL HUB KNOWLEDGE LIBRARY</p>
+      <h2 className="h2">Knowledge You Can Put to Work.</h2>
+      <p className="mt-4 max-w-none text-slate">Explore practical guides to validating ideas, understanding customers and making better business decisions.</p>
     </div>
-    {published.length > 0 ? <div className="mt-10 grid gap-x-10 md:grid-cols-2 lg:grid-cols-3">{published.map(resource => <ResourceCard key={resource.slug} resource={resource} />)}</div> : <p className="mt-8 text-small text-slate">The first resources are being prepared.</p>}
-    <div className="mt-8"><ButtonLink to="/resources" variant="text">Explore the Library</ButtonLink></div>
+    {published.length > 0 ? <div className="mt-10 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">{published.map(resource => <ResourceCard key={resource.slug} resource={resource} presentation="library" categoryLabel={categoryLabels[resource.slug]} />)}</div> : <p className="mt-8 text-small text-slate">The first resources are being prepared.</p>}
+    <div className="mt-8"><ButtonLink to="/resources" variant="text">Explore the Knowledge Library</ButtonLink></div>
   </Section>;
 }
 
