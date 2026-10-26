@@ -8,9 +8,10 @@ import { cn } from "@/lib/utils";
 type Tab = "apply" | "interest" | "enquiry";
 
 export const Route = createFileRoute("/contact")({
-  validateSearch: (search: Record<string, unknown>): { interest?: string } => ({
-    interest: typeof search.interest === "string" ? search.interest : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { interest?: string } => {
+    const interest = search["interest"];
+    return typeof interest === "string" ? { interest } : {};
+  },
   head: () => ({
     meta: [
       { title: "Contact and apply — Kaushal Hub" },

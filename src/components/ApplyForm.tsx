@@ -60,7 +60,7 @@ export const interestPrograms = [
   "Experience to Enterprise",
 ] as const;
 
-export function InterestForm({ program }: { program?: string }) {
+export function InterestForm({ program }: { program?: string | undefined }) {
   const [sent, setSent] = useState(false);
   if (sent) return <Done title="Interest registration is not connected yet." text={NOT_CONNECTED} />;
   const options = program && (interestPrograms as readonly string[]).includes(program)
