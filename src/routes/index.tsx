@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Handshake } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { BrochureLink, ButtonLink, Card, Section, SectionHeader, SiteCta, VisionMission } from "@/components/site";
+import { BrochureLink, ButtonLink, Card, Section, SectionHeader, SiteCta } from "@/components/site";
 import { KnowledgePreview } from "@/components/knowledge";
 import { canonicalLinks } from "@/lib/resources";
 
@@ -48,6 +48,28 @@ const additionalPrograms = [
     interest: "genai",
   },
 ] as const;
+
+function HomeVisionMission() {
+  return (
+    <Section white>
+      <div className="mx-auto max-w-6xl text-center">
+        <p className="eyebrow">OUR VISION &amp; MISSION</p>
+        <div className="mt-8">
+          <p className="eyebrow !text-navy">VISION</p>
+          <h2 className="mx-auto mt-3 max-w-4xl font-serif text-[32px] leading-10 text-navy md:text-[40px] md:leading-[48px]">
+            A world where useful knowledge leads to meaningful action.
+          </h2>
+        </div>
+        <div className="mx-auto mt-10 max-w-5xl">
+          <p className="eyebrow !text-navy">MISSION</p>
+          <p className="mt-3 text-[18px] leading-7 text-slate">
+            To make practical knowledge accessible, connect learning with real-world application, and create pathways for people to develop their capabilities and act on new opportunities.
+          </p>
+        </div>
+      </div>
+    </Section>
+  );
+}
 
 function Home() {
   return (
@@ -155,32 +177,23 @@ function Home() {
         </div>
       </Section>
 
-      <Section>
-        <SectionHeader eyebrow="From learning to application" title="Knowledge should help you take the next step." sub="We bring practical learning and relevant expertise closer to the decisions, challenges and opportunities people face in the real world." />
-        <ol className="mt-12 grid gap-8 border-t pt-10 md:grid-cols-3">
-          {[["Learn", "Access useful knowledge and practical learning."], ["Apply", "Use what you learn to work through real questions and challenges."], ["Move Forward", "Make more informed decisions and pursue meaningful opportunities."]].map(([t, d], i) => (
-            <li key={t}>
-              <p className="font-serif text-small text-slate">0{i + 1}</p>
-              <p className="h4 mt-2 font-serif text-navy">{t}</p>
-              <p className="mt-2 text-slate">{d}</p>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
       <KnowledgePreview />
 
       <section className="section-pad bg-navy">
-        <div className="container-site max-w-3xl">
-          <SectionHeader light eyebrow="The Kaushal Hub Community" title="Learning gets stronger when knowledge is shared." sub="Connect with people who are learning, building, sharing expertise and exploring new opportunities. Join the Kaushal Hub community to hear about resources, learning initiatives and ways to participate." />
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+        <div className="container-site">
+          <div className="max-w-none">
+            <p className="eyebrow !text-saffron">The Kaushal Hub Community</p>
+            <h2 className="h2 mt-4 !text-primary-foreground">Learning gets stronger when knowledge is shared.</h2>
+            <p className="mt-4 max-w-none text-primary-foreground/75">Connect with people who are learning, building, sharing expertise and exploring new opportunities. Join the Kaushal Hub community to hear about resources, learning initiatives and ways to participate.</p>
+          </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink to="/contact" search={{ interest: "community" }}>Join the Community</ButtonLink>
             <ButtonLink to="/resources" variant="inverse">Explore the Knowledge Library</ButtonLink>
           </div>
         </div>
       </section>
 
-      <VisionMission />
+      <HomeVisionMission />
 
       <SiteCta />
 
