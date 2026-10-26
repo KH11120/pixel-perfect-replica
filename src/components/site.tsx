@@ -17,9 +17,9 @@ export function buttonClass(v: Variant = "primary", extra?: string) {
 export function SiteButton({ className, variant = "primary", ...props }: ComponentProps<"button"> & { variant?: Variant }) {
   return <button {...props} className={buttonClass(variant, className)} />;
 }
-export function ButtonLink({ to, hash, variant = "primary", children, className }: { to: string; hash?: string; variant?: Variant; children: ReactNode; className?: string }) {
+export function ButtonLink({ to, hash, search, variant = "primary", children, className }: { to: string; hash?: string; search?: Record<string, unknown>; variant?: Variant; children: ReactNode; className?: string }) {
   return (
-    <Link to={to} {...(hash ? { hash } : {})} className={buttonClass(variant, className)}>
+    <Link to={to} {...(hash ? { hash } : {})} {...(search ? { search } : {})} className={buttonClass(variant, className)}>
       {children}{variant === "text" && <ArrowRight className="h-4 w-4" />}
     </Link>
   );
