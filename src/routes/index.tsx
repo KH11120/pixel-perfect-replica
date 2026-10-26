@@ -40,7 +40,10 @@ function Home() {
             <Card>
               <div className="flex items-center justify-between gap-4">
                 <p className="eyebrow">Featured program</p>
-                <Tag>Featured program</Tag>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-small font-medium text-green-700">
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-600" aria-hidden="true" />
+                  ENROLLING NOW
+                </span>
               </div>
               <h2 className="h3 mt-6">Experience to Enterprise</h2>
               <p className="h4 mt-2 font-serif text-navy">Test the leap before you take it.</p>
