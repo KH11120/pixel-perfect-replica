@@ -359,6 +359,7 @@ export const interestPrograms = [
   "Entrepreneurship for School Students",
   "Entrepreneurship for Undergraduate Students",
   "AI & Future Skills",
+  "Generative AI in Action with Microsoft Intelligent Tools",
   "Experience to Enterprise",
 ] as const;
 

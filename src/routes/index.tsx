@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Handshake } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { BrochureLink, ButtonLink, Card, DevPrograms, Section, SectionHeader, SiteCta, Tag, VisionMission } from "@/components/site";
+import { BrochureLink, ButtonLink, Card, Section, SectionHeader, SiteCta, VisionMission } from "@/components/site";
 import { KnowledgePreview } from "@/components/knowledge";
 import { canonicalLinks } from "@/lib/resources";
 
@@ -21,6 +21,33 @@ export const Route = createFileRoute("/")({
 });
 
 const facts = ["12 weeks", "~10 hours per week", "Online + campus immersion", "Co-branded certificate"];
+
+const additionalPrograms = [
+  {
+    status: "Upcoming",
+    title: "Entrepreneurship for School Students",
+    metadata: [{ label: "Eligibility", value: "Class 12 students" }],
+    description: "An introduction to identifying problems, developing ideas and understanding how ventures are built.",
+    interest: "school",
+  },
+  {
+    status: "Upcoming",
+    title: "Entrepreneurship for Undergraduate Students",
+    metadata: [{ label: "Eligibility", value: "Undergraduate students" }],
+    description: "A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture.",
+    interest: "undergraduate",
+  },
+  {
+    status: "Program information",
+    title: "Generative AI in Action with Microsoft Intelligent Tools",
+    metadata: [
+      { label: "Format", value: "One-day, hands-on program" },
+      { label: "Location", value: "IIT Delhi" },
+    ],
+    description: "Learn from Microsoft experts to understand, build and responsibly use Generative AI with real-world tools.",
+    interest: "genai",
+  },
+] as const;
 
 function Home() {
   return (
@@ -76,10 +103,21 @@ function Home() {
       </Section>
 
       <Section tint>
+        <div className="mb-10 md:mb-12">
+          <p className="eyebrow">Explore our offerings</p>
+          <h2 className="h2 mt-4">Find the right program for your next step.</h2>
+          <p className="mt-4 max-w-none text-slate">From entrepreneurship to applied AI, explore practical programs designed for different stages of learning and building.</p>
+        </div>
         <div className="grid overflow-hidden rounded-xl border bg-card lg:grid-cols-2">
           <img src={workshop} alt="Professionals working through a problem together" width={1280} height={960} loading="lazy" className="h-64 w-full object-cover lg:h-full" />
           <div className="p-6 md:p-12">
-            <p className="eyebrow">Featured program</p>
+            <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1 min-[360px]:flex-nowrap">
+              <p className="eyebrow whitespace-nowrap !text-[11px] !tracking-[0.1em] sm:!text-[13px] sm:!tracking-[0.14em]">Featured program</p>
+              <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-green-200 bg-green-50 px-2 py-1 text-[11px] leading-4 font-medium text-green-700 sm:px-3 sm:py-1.5 sm:text-small sm:leading-5">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-600" aria-hidden="true" />
+                ENROLLING NOW
+              </span>
+            </div>
             <h2 className="h2 mt-4">Experience to Enterprise</h2>
             <p className="h4 mt-2 font-serif text-navy">Test the leap before you take it.</p>
             <p className="mt-4 text-slate">A 12-week venture-building program for experienced professionals who want to test a business opportunity, engage real customers and build a credible plan before making their next move.</p>
@@ -93,12 +131,28 @@ function Home() {
             </div>
           </div>
         </div>
-      </Section>
-
-      <Section>
-        <SectionHeader title="Programs & Learning Initiatives" sub="Explore practical learning programs and initiatives designed for different stages of learning, capability-building and professional growth." />
-        <div className="mt-10 grid gap-6 md:grid-cols-3"><DevPrograms /></div>
-        <div className="mt-8"><ButtonLink to="/programs" variant="text">Explore All Programs</ButtonLink></div>
+        <div className="mt-16">
+          <h3 className="h3">MORE PROGRAMS &amp; OPPORTUNITIES</h3>
+          <p className="mt-3 max-w-2xl text-slate">Explore upcoming programs and hands-on learning experiences.</p>
+          <div className="mt-8 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {additionalPrograms.map((program) => (
+              <article key={program.title} className="flex h-full min-w-0 flex-col rounded-lg border bg-card p-6">
+                <span className="inline-flex w-fit rounded-sm bg-tint px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-navy">{program.status}</span>
+                <h4 className="h4 mt-4 break-words font-serif text-navy">{program.title}</h4>
+                <div className="mt-4 space-y-1 text-small text-slate">
+                  {program.metadata.map((item) => (
+                    <p key={item.label}><span className="font-semibold text-ink">{item.label}:</span> {item.value}</p>
+                  ))}
+                </div>
+                <p className="mt-4 flex-1 text-[15px] leading-6 text-slate">{program.description}</p>
+                <div className="mt-6">
+                  <ButtonLink to="/contact" search={{ interest: program.interest }} variant="text">Register Interest</ButtonLink>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8"><ButtonLink to="/programs" variant="text">Explore All Programs</ButtonLink></div>
+        </div>
       </Section>
 
       <Section>

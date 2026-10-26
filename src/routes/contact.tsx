@@ -30,6 +30,7 @@ const interestLabels: Record<string, string> = {
   school: "Entrepreneurship for School Students",
   undergraduate: "Entrepreneurship for Undergraduate Students",
   ai: "AI & Future Skills",
+  genai: "Generative AI in Action with Microsoft Intelligent Tools",
 };
 
 function Contact() {
@@ -37,6 +38,7 @@ function Contact() {
   const initial: Tab = interest === "community" || interestLabels[interest ?? ""] ? "interest" : "apply";
   const [tab, setTab] = useState<Tab>(initial);
   const isCommunity = interest === "community";
+  const isProgramInformation = interest === "genai";
   return (
     <section className="section-pad">
       <div className="container-site">
@@ -53,7 +55,7 @@ function Contact() {
               {tab === "interest" && (isCommunity ? (
                 <><h2 className="h3">Join the Kaushal Hub Community</h2><p className="mt-3 text-slate">Tell us a little about your interests. We'll use this information to understand how you would like to participate and share relevant opportunities.</p><div className="mt-6"><CommunityForm /></div></>
               ) : (
-                <><h2 className="h3">Register your interest.</h2><p className="mt-3 text-slate">Planned programs are not open for admission yet. Register your interest and we'll contact you when details are confirmed.</p><div className="mt-6"><InterestForm program={interestLabels[interest ?? ""]} /></div></>
+                <><h2 className="h3">Register your interest.</h2><p className="mt-3 text-slate">{isProgramInformation ? "This program is listed for information. Dates and registration details have not been confirmed. Online submissions are not connected yet, so your details will not be sent or stored." : "Planned programs are not open for admission yet. Online interest submissions are not connected yet, so your details will not be sent or stored."}</p><div className="mt-6"><InterestForm program={interestLabels[interest ?? ""]} /></div></>
               ))}
               {tab === "enquiry" && (<><h2 className="h3">Send us an enquiry.</h2><div className="mt-6"><EnquiryForm /></div></>)}
             </div>
