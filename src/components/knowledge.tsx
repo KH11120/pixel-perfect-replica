@@ -6,10 +6,10 @@ import { getPublishedResources, resourceCategories, type Resource } from "@/lib/
 export function ResourceCard({ resource }: { resource: Resource }) {
   const category = resourceCategories.find(item => item.id === resource.category);
   return <article className="flex flex-col border-t py-6">
-    <p className="eyebrow">{category?.title} · {resource.type}</p>
+    <p className="eyebrow">{category?.title} · {resource.readingTime}</p>
     <h3 className="h4 mt-4"><Link to="/resources/$slug" params={{ slug: resource.slug }}>{resource.title}</Link></h3>
     <p className="mt-3 flex-1 text-slate">{resource.summary}</p>
-    <Link to="/resources/$slug" params={{ slug: resource.slug }} className="mt-5 inline-flex items-center gap-2 text-small font-semibold text-navy">Read resource <ArrowRight className="h-4 w-4" /></Link>
+    <Link to="/resources/$slug" params={{ slug: resource.slug }} className="mt-5 inline-flex items-center gap-2 text-small font-semibold text-navy">Read Article <ArrowRight className="h-4 w-4" /></Link>
   </article>;
 }
 
