@@ -321,11 +321,14 @@ export function ProgramCard({ status, audience, title, text, link, footnote }: {
   );
 }
 export function DevPrograms() {
+  const interest = (key: string) => (
+    <Link to="/contact" search={{ interest: key }} className={buttonClass("text")}>Register Interest <ArrowRight className="h-4 w-4" /></Link>
+  );
   return (
     <>
-      <ProgramCard status="Planned Program" audience="Class 12 students" title="Entrepreneurship for School Students" text="An introduction to identifying problems, developing ideas and understanding how ventures are built." />
-      <ProgramCard status="Planned Program" audience="Undergraduates" title="Entrepreneurship for Undergraduate Students" text="A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture." />
-      <ProgramCard status="Planned Program" audience="AI learning" title="AI & Future Skills" text="Practical learning initiatives focused on applying AI and emerging technologies to real-world tasks and challenges." />
+      <ProgramCard status="Planned Program" audience="Class 12 students" title="Entrepreneurship for School Students" text="An introduction to identifying problems, developing ideas and understanding how ventures are built." link={interest("school")} />
+      <ProgramCard status="Planned Program" audience="Undergraduates" title="Entrepreneurship for Undergraduate Students" text="A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture." link={interest("undergraduate")} />
+      <ProgramCard status="Planned Program" audience="AI learning" title="AI & Future Skills" text="Practical learning initiatives focused on applying AI and emerging technologies to real-world tasks and challenges." link={interest("ai")} />
     </>
   );
 }

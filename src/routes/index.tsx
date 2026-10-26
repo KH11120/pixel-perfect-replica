@@ -115,7 +115,11 @@ function Home() {
 
       <section className="section-pad bg-navy">
         <div className="container-site max-w-3xl">
-          <SectionHeader light eyebrow="Community" title="People, expertise and opportunity, connected." sub="Kaushal Hub is building a community where learners, practitioners and experts can share knowledge and learn from one another." />
+          <SectionHeader light eyebrow="The Kaushal Hub Community" title="Learning gets stronger when knowledge is shared." sub="Connect with people who are learning, building, sharing expertise and exploring new opportunities. Join the Kaushal Hub community to hear about resources, learning initiatives and ways to participate." />
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink to="/contact" search={{ interest: "community" }}>Join the Community</ButtonLink>
+            <ButtonLink to="/resources" variant="inverse">Explore the Knowledge Library</ButtonLink>
+          </div>
         </div>
       </section>
 
