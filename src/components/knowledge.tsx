@@ -3,8 +3,23 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { ButtonLink, Section, SectionHeader } from "@/components/site";
 import { getPublishedResources, resourceCategories, type Resource } from "@/lib/resources";
 
-export function ResourceCard({ resource }: { resource: Resource }) {
+export function ResourceCard({ resource, presentation = "default", categoryLabel }: { resource: Resource; presentation?: "default" | "library"; categoryLabel?: string }) {
   const category = resourceCategories.find(item => item.id === resource.category);
+  if (presentation === "library") {
+    return <article className="group flex h-full min-w-0 flex-col rounded-lg border bg-card p-6 transition-colors duration-200 hover:border-navy/35 motion-reduce:transition-none">
+      <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+        <span className="min-w-0 text-[11px] font-semibold leading-4 tracking-[0.08em] text-slate">{categoryLabel ?? category?.title}</span>
+        <span className="shrink-0 whitespace-nowrap text-[11px] font-medium leading-4 tracking-[0.06em] text-slate">{resource.readingTime.toUpperCase()}</span>
+      </div>
+      <h3 className="h4 mt-4 font-serif text-navy">
+        <Link to="/resources/$slug" params={{ slug: resource.slug }} className="rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">{resource.title}</Link>
+      </h3>
+      <p className="mt-3 flex-1 text-[15px] leading-6 text-slate">{resource.summary}</p>
+      <Link to="/resources/$slug" params={{ slug: resource.slug }} className="mt-6 inline-flex min-h-11 items-center gap-2 text-small font-semibold text-navy outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
+        Read Article <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none" />
+      </Link>
+    </article>;
+  }
   return <article className="flex flex-col border-t py-6">
     <p className="eyebrow">{category?.title} · {resource.readingTime}</p>
     <h3 className="h4 mt-4"><Link to="/resources/$slug" params={{ slug: resource.slug }}>{resource.title}</Link></h3>

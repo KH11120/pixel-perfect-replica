@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/resources/")({
   head: () => ({ meta: [
     { title: "Knowledge Library | Practical Business Resources — Kaushal Hub" },
-    { name: "description", content: "Practical guides, clear explanations and useful frameworks to help you understand entrepreneurship, test ideas and make better business decisions." },
+    { name: "description", content: "Explore practical guides to validating ideas, understanding customers and making better business decisions." },
     { property: "og:title", content: "The Kaushal Hub Knowledge Library" },
-    { property: "og:description", content: "Good questions deserve useful answers. Explore practical business knowledge from Kaushal Hub." },
+    { property: "og:description", content: "Explore practical guides to validating ideas, understanding customers and making better business decisions." },
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
   ], links: canonicalLinks("/resources") }),
   component: KnowledgeLibrary,
@@ -20,14 +20,21 @@ function KnowledgeLibrary() {
   const published = getPublishedResources();
   const [filter, setFilter] = useState<ResourceCategory | "all">("all");
   const visible = filter === "all" ? published : published.filter(resource => resource.category === filter);
+  const categoryLabels: Record<string, string> = {
+    "is-a-business-idea-worth-pursuing": "IDEA VALIDATION",
+    "interview-potential-customers": "CUSTOMER RESEARCH",
+    "test-whether-customers-will-pay": "DEMAND VALIDATION",
+    "mvp-prototype-or-pilot": "MVP & PROTOTYPING",
+    "calculate-business-break-even": "BUSINESS FINANCE",
+    "build-a-business-alongside-employment": "BUILDING ALONGSIDE EMPLOYMENT",
+  };
   return <>
-    <Section>
+    <Section className="!pb-8 md:!pb-10">
       <p className="eyebrow">The Kaushal Hub Knowledge Library</p>
-      <h1 className="h1 mt-5 max-w-3xl">Good questions deserve useful answers.</h1>
-      <p className="mt-6 max-w-3xl text-slate">Practical guides, clear explanations and useful frameworks to help you understand entrepreneurship, test ideas and make better business decisions.</p>
-      <p className="mt-6 inline-flex items-center gap-2 rounded-full border bg-card px-4 py-2 text-small font-medium text-navy">Free to explore. Built to be useful.</p>
+      <h1 className="h1 mt-5 max-w-none">Knowledge You Can Put to Work.</h1>
+      <p className="mt-4 max-w-none text-slate">Explore practical guides to validating ideas, understanding customers and making better business decisions.</p>
     </Section>
-    <Section white>
+    <Section white className="!pt-8 md:!pt-10">
       <div role="group" aria-label="Filter by topic" className="flex flex-wrap gap-2">
         <button onClick={() => setFilter("all")} aria-pressed={filter === "all"} className={cn("rounded-full border px-4 py-2 text-small font-medium transition-colors", filter === "all" ? "bg-navy text-primary-foreground" : "bg-card text-navy hover:bg-tint")}>All topics</button>
         {resourceCategories.map(category => (
@@ -35,7 +42,7 @@ function KnowledgeLibrary() {
         ))}
       </div>
       {visible.length > 0 ? (
-        <div className="mt-10 grid gap-x-10 md:grid-cols-2 lg:grid-cols-3">{visible.map(resource => <ResourceCard key={resource.slug} resource={resource} />)}</div>
+        <div className="mt-10 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">{visible.map(resource => <ResourceCard key={resource.slug} resource={resource} presentation="library" categoryLabel={categoryLabels[resource.slug]} />)}</div>
       ) : (
         <p className="mt-10 border-t pt-8 text-slate">No resources in this topic yet. New articles and guides are added as they are ready.</p>
       )}
