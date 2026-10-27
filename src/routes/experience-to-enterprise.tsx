@@ -90,7 +90,14 @@ function Program() {
               {["12 weeks", "~10 hours per week", "Online + campus immersion", "Co-branded certificate"].map((f) => <li key={f}>{f}</li>)}
             </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink to="/experience-to-enterprise" hash="approach">Explore the Program</ButtonLink>
+              <ButtonLink to="/contact">Apply Now</ButtonLink>
+              <ButtonLink
+                to="/experience-to-enterprise"
+                hash="approach"
+                variant="secondary"
+              >
+                View Program
+              </ButtonLink>
               <BrochureLink />
             </div>
           </div>
@@ -327,7 +334,12 @@ function Program() {
         </div>
       </Section>
 
-      <CtaBand title="Ready to explore your next move?" text="Review the program details and decide whether Experience to Enterprise is the right next step for you." primary={["Apply Now", "/contact"]} brochure />
+      <CtaBand
+        title="Ready to explore your next move?"
+        text="Review the program details and decide whether Experience to Enterprise is the right next step for you."
+        primary={["Apply Now", "/contact"]}
+        secondary={["View Program", "/experience-to-enterprise"]}
+      />
 
       <Section id="apply" white>
         <SectionHeader title="Take the next step." sub="Apply to Experience to Enterprise. We'll follow up with a counselling call." />

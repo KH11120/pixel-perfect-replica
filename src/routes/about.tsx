@@ -71,7 +71,12 @@ function About() {
             <Tag>Featured program</Tag>
             <h3 className="h4 mt-5 font-serif">Experience to Enterprise</h3>
             <p className="mt-2 flex-1 text-[16px] leading-6 text-slate">A Kaushal Hub program, in association with FITT, IIT Delhi.</p>
-            <div className="mt-5"><ButtonLink to="/experience-to-enterprise" variant="text">View program</ButtonLink></div>
+            <div className="mt-5 flex flex-col gap-3">
+              <ButtonLink to="/contact">Apply Now</ButtonLink>
+              <ButtonLink to="/experience-to-enterprise" variant="text">
+                View Program
+              </ButtonLink>
+            </div>
           </div>
           <DevPrograms />
         </div>

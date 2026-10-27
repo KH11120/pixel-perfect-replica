@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Handshake } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { BrochureLink, ButtonLink, Card, Section, SectionHeader, SiteCta } from "@/components/site";
+import { ButtonLink, Card, Section, SectionHeader, SiteCta } from "@/components/site";
 import { KnowledgePreview } from "@/components/knowledge";
 import { canonicalLinks } from "@/lib/resources";
 
@@ -24,21 +24,21 @@ const facts = ["12 weeks", "~10 hours per week", "Online + campus immersion", "C
 
 const additionalPrograms = [
   {
-    status: "Upcoming",
+    status: "Upcoming program",
     title: "Entrepreneurship for School Students",
     metadata: [{ label: "Eligibility", value: "Class 12 students" }],
     description: "An introduction to identifying problems, developing ideas and understanding how ventures are built.",
     interest: "school",
   },
   {
-    status: "Upcoming",
+    status: "Upcoming program",
     title: "Entrepreneurship for Undergraduate Students",
     metadata: [{ label: "Eligibility", value: "Undergraduate students" }],
     description: "A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture.",
     interest: "undergraduate",
   },
   {
-    status: "Program information",
+    status: "Upcoming program",
     title: "Generative AI in Action with Microsoft Intelligent Tools",
     metadata: [
       { label: "Format", value: "One-day, hands-on program" },
@@ -101,7 +101,12 @@ function Home() {
                 <span className="text-small text-slate">In association with FITT, IIT Delhi</span>
               </div>
               <p className="mt-4 text-small font-medium text-navy">12 weeks · Online + campus immersion</p>
-              <div className="mt-6"><ButtonLink to="/experience-to-enterprise" variant="text">View Program</ButtonLink></div>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink to="/contact">Apply Now</ButtonLink>
+                <ButtonLink to="/experience-to-enterprise" variant="secondary">
+                  View Program
+                </ButtonLink>
+              </div>
             </Card>
           </div>
         </div>
@@ -148,14 +153,18 @@ function Home() {
               {facts.map((f) => <li key={f} className="bg-card p-4 text-small font-medium text-navy">{f}</li>)}
             </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink to="/experience-to-enterprise">Explore the Program</ButtonLink>
-              <BrochureLink />
+              <ButtonLink to="/contact">Apply Now</ButtonLink>
+              <ButtonLink to="/experience-to-enterprise" variant="secondary">
+                View Program
+              </ButtonLink>
             </div>
           </div>
         </div>
         <div className="mt-16">
-          <h3 className="h3">MORE PROGRAMS &amp; OPPORTUNITIES</h3>
-          <p className="mt-3 max-w-2xl text-slate">Explore upcoming programs and hands-on learning experiences.</p>
+          <h3 className="h3">More Ways to Learn and Build</h3>
+          <p className="mt-3 max-w-2xl text-slate">
+            Explore upcoming programs designed for different stages of learning and professional growth.
+          </p>
           <div className="mt-8 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
             {additionalPrograms.map((program) => (
               <article key={program.title} className="flex h-full min-w-0 flex-col rounded-lg border bg-card p-6">

@@ -86,7 +86,12 @@ function Programs() {
             <p className="text-small font-medium text-navy">Online + campus immersion</p>
           </div>
           <div className="mt-8">
-            <ButtonLink to="/experience-to-enterprise">Explore the Program</ButtonLink>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ButtonLink to="/contact">Apply Now</ButtonLink>
+              <ButtonLink to="/experience-to-enterprise" variant="secondary">
+                View Program
+              </ButtonLink>
+            </div>
           </div>
         </Card>
         <p className="eyebrow mb-4 mt-12">UPCOMING PROGRAMS</p>
