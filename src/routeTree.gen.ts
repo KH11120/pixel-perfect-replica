@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ExperienceToEnterpriseRouteImport } from './routes/experience-to-enterprise'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as ProgramsProgramSlugRouteImport } from './routes/programs.$programSlug'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 
@@ -48,6 +49,11 @@ const ResourcesRoute = ResourcesRouteImport.update({
   path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgramsProgramSlugRoute = ProgramsProgramSlugRouteImport.update({
+  id: '/$programSlug',
+  path: '/$programSlug',
+  getParentRoute: () => ProgramsRoute,
+} as any)
 const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -64,8 +70,9 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/experience-to-enterprise': typeof ExperienceToEnterpriseRoute
-  '/programs': typeof ProgramsRoute
+  '/programs': typeof ProgramsRouteWithChildren
   '/resources': typeof ResourcesRouteWithChildren
+  '/programs/$programSlug': typeof ProgramsProgramSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/': typeof ResourcesIndexRoute
 }
@@ -74,7 +81,8 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/experience-to-enterprise': typeof ExperienceToEnterpriseRoute
-  '/programs': typeof ProgramsRoute
+  '/programs': typeof ProgramsRouteWithChildren
+  '/programs/$programSlug': typeof ProgramsProgramSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources': typeof ResourcesIndexRoute
 }
@@ -84,8 +92,9 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/experience-to-enterprise': typeof ExperienceToEnterpriseRoute
-  '/programs': typeof ProgramsRoute
+  '/programs': typeof ProgramsRouteWithChildren
   '/resources': typeof ResourcesRouteWithChildren
+  '/programs/$programSlug': typeof ProgramsProgramSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/': typeof ResourcesIndexRoute
 }
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/experience-to-enterprise'
     | '/programs'
     | '/resources'
+    | '/programs/$programSlug'
     | '/resources/$slug'
     | '/resources/'
   fileRoutesByTo: FileRoutesByTo
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience-to-enterprise'
     | '/programs'
+    | '/programs/$programSlug'
     | '/resources/$slug'
     | '/resources'
   id:
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/experience-to-enterprise'
     | '/programs'
     | '/resources'
+    | '/programs/$programSlug'
     | '/resources/$slug'
     | '/resources/'
   fileRoutesById: FileRoutesById
@@ -126,7 +138,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   ExperienceToEnterpriseRoute: typeof ExperienceToEnterpriseRoute
-  ProgramsRoute: typeof ProgramsRoute
+  ProgramsRoute: typeof ProgramsRouteWithChildren
   ResourcesRoute: typeof ResourcesRouteWithChildren
 }
 
@@ -174,6 +186,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programs/$programSlug': {
+      id: '/programs/$programSlug'
+      path: '/$programSlug'
+      fullPath: '/programs/$programSlug'
+      preLoaderRoute: typeof ProgramsProgramSlugRouteImport
+      parentRoute: typeof ProgramsRoute
+    }
     '/resources/': {
       id: '/resources/'
       path: '/'
@@ -190,6 +209,18 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface ProgramsRouteChildren {
+  ProgramsProgramSlugRoute: typeof ProgramsProgramSlugRoute
+}
+
+const ProgramsRouteChildren: ProgramsRouteChildren = {
+  ProgramsProgramSlugRoute: ProgramsProgramSlugRoute,
+}
+
+const ProgramsRouteWithChildren = ProgramsRoute._addFileChildren(
+  ProgramsRouteChildren,
+)
 
 interface ResourcesRouteChildren {
   ResourcesSlugRoute: typeof ResourcesSlugRoute
@@ -210,7 +241,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   ExperienceToEnterpriseRoute: ExperienceToEnterpriseRoute,
-  ProgramsRoute: ProgramsRoute,
+  ProgramsRoute: ProgramsRouteWithChildren,
   ResourcesRoute: ResourcesRouteWithChildren,
 }
 export const routeTree = rootRouteImport

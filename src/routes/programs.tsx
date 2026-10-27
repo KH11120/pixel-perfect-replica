@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Outlet, useRouterState } from "@tanstack/react-router";
 import { ButtonLink, Card, Section, UpcomingProgramCard } from "@/components/site";
 import { canonicalLinks } from "@/lib/resources";
+import { upcomingPrograms } from "@/lib/upcoming-programs";
 
 export const Route = createFileRoute("/programs")({
-  head: () => ({
+  head: ({ matches }) => ({
     meta: [
       { title: "Programs — Kaushal Hub" },
       {
@@ -20,43 +21,19 @@ export const Route = createFileRoute("/programs")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: canonicalLinks("/programs"),
+    links: matches.some((match) => String(match.routeId) === "/programs/$programSlug")
+      ? []
+      : canonicalLinks("/programs"),
   }),
   component: Programs,
 });
 
-const upcomingPrograms = [
-  {
-    status: "Upcoming program",
-    interest: "school",
-    metadata: [{ label: "Eligibility", value: "Class 12 students" }],
-    title: "Entrepreneurship for School Students",
-    description:
-      "An introduction to identifying problems, developing ideas and understanding how ventures are built.",
-  },
-  {
-    status: "Upcoming program",
-    interest: "undergraduate",
-    metadata: [{ label: "Eligibility", value: "Undergraduate students" }],
-    title: "Entrepreneurship for Undergraduate Students",
-    description:
-      "A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture.",
-  },
-  {
-    status: "Upcoming program",
-    interest: "genai",
-    metadata: [
-      { label: "Eligibility", value: "People interested in practical Generative AI learning" },
-      { label: "Format", value: "One-day, hands-on program" },
-      { label: "Location", value: "IIT Delhi" },
-    ],
-    title: "Generative AI in Action with Microsoft Intelligent Tools",
-    description:
-      "A one-day, hands-on program at IIT Delhi. Learn from Microsoft experts to understand, build and responsibly use Generative AI with real-world tools.",
-  },
-] as const;
-
 function Programs() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  if (pathname !== "/programs" && pathname !== "/programs/") {
+    return <Outlet />;
+  }
+
   return (
     <>
       <section className="section-pad !py-8 md:!py-12">

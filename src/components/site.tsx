@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode, type ComponentProps } from "react";
 import { ChevronDown, Menu, X, Check, ArrowRight, ArrowUpRight, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { upcomingPrograms, type UpcomingProgram } from "@/lib/upcoming-programs";
 
 /* ---------- Button ---------- */
 type Variant = "primary" | "secondary" | "inverse" | "text";
@@ -378,7 +379,7 @@ export function ProgramCard({ status, audience, title, text, link, footnote }: {
     </div>
   );
 }
-export function UpcomingProgramCard({ program }: { program: { status: string; interest: string; metadata: readonly { label: string; value: string }[]; title: string; description: string } }) {
+export function UpcomingProgramCard({ program }: { program: Pick<UpcomingProgram, "status" | "path" | "metadata" | "title" | "description"> }) {
   return (
     <article className="flex h-full min-w-0 flex-col rounded-lg border bg-card p-6">
       <span className="inline-flex w-fit rounded-sm bg-tint px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-navy">{program.status}</span>
@@ -390,22 +391,19 @@ export function UpcomingProgramCard({ program }: { program: { status: string; in
       </div>
       <p className="mt-4 flex-1 text-[15px] leading-6 text-slate">{program.description}</p>
       <div className="mt-6">
-        <ButtonLink to="/contact" search={{ interest: program.interest }} variant="text">
-          Register Interest
+        <ButtonLink to={program.path} variant="text">
+          View Program
         </ButtonLink>
       </div>
     </article>
   );
 }
 export function DevPrograms() {
-  const interest = (key: string) => (
-    <Link to="/contact" search={{ interest: key }} className={buttonClass("text")}>Register Interest <ArrowRight className="h-4 w-4" /></Link>
-  );
   return (
     <>
-      <ProgramCard status="Planned Program" audience="Class 12 students" title="Entrepreneurship for School Students" text="An introduction to identifying problems, developing ideas and understanding how ventures are built." link={interest("school")} />
-      <ProgramCard status="Planned Program" audience="Undergraduates" title="Entrepreneurship for Undergraduate Students" text="A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture." link={interest("undergraduate")} />
-      <ProgramCard status="Planned Program" audience="AI learning" title="AI & Future Skills" text="Practical learning initiatives focused on applying AI and emerging technologies to real-world tasks and challenges." link={interest("ai")} />
+      {upcomingPrograms.map((program) => (
+        <UpcomingProgramCard key={program.slug} program={program} />
+      ))}
     </>
   );
 }

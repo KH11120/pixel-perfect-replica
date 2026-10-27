@@ -4,6 +4,7 @@ import workshop from "@/assets/workshop.jpg";
 import { ButtonLink, Card, Section, SectionHeader, SiteCta } from "@/components/site";
 import { KnowledgePreview } from "@/components/knowledge";
 import { canonicalLinks } from "@/lib/resources";
+import { upcomingPrograms } from "@/lib/upcoming-programs";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -91,33 +92,6 @@ function InstitutionalLogoStrip() {
     </section>
   );
 }
-
-const additionalPrograms = [
-  {
-    status: "Upcoming program",
-    title: "Entrepreneurship for School Students",
-    metadata: [{ label: "Eligibility", value: "Class 12 students" }],
-    description: "An introduction to identifying problems, developing ideas and understanding how ventures are built.",
-    interest: "school",
-  },
-  {
-    status: "Upcoming program",
-    title: "Entrepreneurship for Undergraduate Students",
-    metadata: [{ label: "Eligibility", value: "Undergraduate students" }],
-    description: "A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture.",
-    interest: "undergraduate",
-  },
-  {
-    status: "Upcoming program",
-    title: "Generative AI in Action with Microsoft Intelligent Tools",
-    metadata: [
-      { label: "Format", value: "One-day, hands-on program" },
-      { label: "Location", value: "IIT Delhi" },
-    ],
-    description: "Learn from Microsoft experts to understand, build and responsibly use Generative AI with real-world tools.",
-    interest: "genai",
-  },
-] as const;
 
 function HomeVisionMission() {
   return (
@@ -233,11 +207,11 @@ function Home() {
         </div>
         <div className="mt-16">
           <h3 className="h3">More Ways to Learn and Build</h3>
-          <p className="mt-3 max-w-2xl text-slate">
-            Explore upcoming programs designed for different stages of learning and professional growth.
+          <p className="mt-3 max-w-none text-slate">
+            Explore upcoming programs for different stages of learning and professional growth.
           </p>
           <div className="mt-8 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {additionalPrograms.map((program) => (
+            {upcomingPrograms.map((program) => (
               <article key={program.title} className="flex h-full min-w-0 flex-col rounded-lg border bg-card p-6">
                 <span className="inline-flex w-fit rounded-sm bg-tint px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-navy">{program.status}</span>
                 <h4 className="h4 mt-4 break-words font-serif text-navy">{program.title}</h4>
@@ -248,7 +222,7 @@ function Home() {
                 </div>
                 <p className="mt-4 flex-1 text-[15px] leading-6 text-slate">{program.description}</p>
                 <div className="mt-6">
-                  <ButtonLink to="/contact" search={{ interest: program.interest }} variant="text">Register Interest</ButtonLink>
+                  <ButtonLink to={program.path} variant="text">View Program</ButtonLink>
                 </div>
               </article>
             ))}
