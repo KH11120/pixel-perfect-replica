@@ -79,21 +79,23 @@ export function ExperienceApplicationForm() {
       </div>
 
       <div className="md:col-span-2">
+        <p className="mb-4 text-small text-slate">
+          An application fee of ₹99 is payable to submit your application.
+        </p>
         <button type="submit" className={buttonClass("primary", "w-full md:w-auto")}>
-          Submit Application
+          Submit Application &amp; Pay Fee
         </button>
         {attempted && (
           <p
             role="alert"
             className="mt-4 rounded-md border border-saffron/40 bg-saffron/10 p-4 text-small text-navy"
           >
-            Your application has not been submitted. Online application processing is not connected,
-            so this form cannot send or save your details yet.
+            Your application has not been submitted. Online application processing and the payment
+            flow are not connected, so no details were sent or saved and no payment was taken.
           </p>
         )}
         <p className="mt-4 text-small text-slate">
-          This application form does not take payment. Any subsequent program-registration and
-          payment steps are separate.
+          Preview only: this form cannot submit your application or process payment yet.
         </p>
       </div>
     </form>
