@@ -378,6 +378,25 @@ export function ProgramCard({ status, audience, title, text, link, footnote }: {
     </div>
   );
 }
+export function UpcomingProgramCard({ program }: { program: { status: string; interest: string; metadata: readonly { label: string; value: string }[]; title: string; description: string } }) {
+  return (
+    <article className="flex h-full min-w-0 flex-col rounded-lg border bg-card p-6">
+      <span className="inline-flex w-fit rounded-sm bg-tint px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-navy">{program.status}</span>
+      <h4 className="h4 mt-4 break-words font-serif text-navy">{program.title}</h4>
+      <div className="mt-4 space-y-1 text-small text-slate">
+        {program.metadata.map((item) => (
+          <p key={item.label}><span className="font-semibold text-ink">{item.label}:</span> {item.value}</p>
+        ))}
+      </div>
+      <p className="mt-4 flex-1 text-[15px] leading-6 text-slate">{program.description}</p>
+      <div className="mt-6">
+        <ButtonLink to="/contact" search={{ interest: program.interest }} variant="text">
+          Register Interest
+        </ButtonLink>
+      </div>
+    </article>
+  );
+}
 export function DevPrograms() {
   const interest = (key: string) => (
     <Link to="/contact" search={{ interest: key }} className={buttonClass("text")}>Register Interest <ArrowRight className="h-4 w-4" /></Link>

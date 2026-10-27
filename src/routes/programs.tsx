@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ButtonLink, Card, Section, SiteCta } from "@/components/site";
+import { ButtonLink, Card, Section, UpcomingProgramCard } from "@/components/site";
 import { canonicalLinks } from "@/lib/resources";
 
 export const Route = createFileRoute("/programs")({
@@ -27,22 +27,29 @@ export const Route = createFileRoute("/programs")({
 
 const upcomingPrograms = [
   {
+    status: "Upcoming program",
     interest: "school",
-    eligibility: "Class 12 students",
+    metadata: [{ label: "Eligibility", value: "Class 12 students" }],
     title: "Entrepreneurship for School Students",
     description:
       "An introduction to identifying problems, developing ideas and understanding how ventures are built.",
   },
   {
+    status: "Upcoming program",
     interest: "undergraduate",
-    eligibility: "Undergraduate students",
+    metadata: [{ label: "Eligibility", value: "Undergraduate students" }],
     title: "Entrepreneurship for Undergraduate Students",
     description:
       "A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture.",
   },
   {
+    status: "Upcoming program",
     interest: "genai",
-    eligibility: "People interested in practical Generative AI learning",
+    metadata: [
+      { label: "Eligibility", value: "People interested in practical Generative AI learning" },
+      { label: "Format", value: "One-day, hands-on program" },
+      { label: "Location", value: "IIT Delhi" },
+    ],
     title: "Generative AI in Action with Microsoft Intelligent Tools",
     description:
       "A one-day, hands-on program at IIT Delhi. Learn from Microsoft experts to understand, build and responsibly use Generative AI with real-world tools.",
@@ -97,28 +104,12 @@ function Programs() {
           </div>
         </Card>
         <p className="eyebrow mb-4 mt-12">UPCOMING PROGRAMS</p>
-        <div className="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
           {upcomingPrograms.map((program) => (
-            <article
-              key={program.title}
-              className="flex h-full min-w-0 flex-col rounded-lg border bg-card p-6"
-            >
-              <p className="text-[11px] font-semibold tracking-[0.12em] text-slate">
-                UPCOMING PROGRAM
-              </p>
-              <p className="mt-3 text-small text-slate">FOR {program.eligibility.toUpperCase()}</p>
-              <h3 className="h4 mt-4 break-words font-serif text-navy">{program.title}</h3>
-              <p className="mt-3 flex-1 text-[15px] leading-6 text-slate">{program.description}</p>
-              <div className="mt-5">
-                <ButtonLink to="/contact" search={{ interest: program.interest }} variant="text">
-                  Register Interest
-                </ButtonLink>
-              </div>
-            </article>
+            <UpcomingProgramCard key={program.title} program={program} />
           ))}
         </div>
       </Section>
-      <SiteCta />
     </>
   );
 }
