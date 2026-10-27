@@ -6,7 +6,7 @@ import { upcomingPrograms, type UpcomingProgram } from "@/lib/upcoming-programs"
 
 /* ---------- Button ---------- */
 type Variant = "primary" | "secondary" | "inverse" | "text";
-export const FITT_LOGO_URL = "https://www.fitt-iitd.com/fittnewweb/logo-with-name.png";
+const FITT_LOGO_SRC = "/images/organisations/fitt-iit-delhi.png";
 const btn: Record<Variant, string> = {
   primary: "h-12 px-6 rounded-md bg-saffron text-navy font-semibold hover:brightness-95",
   secondary: "h-12 px-6 rounded-md border border-navy text-navy font-semibold hover:bg-navy hover:text-primary-foreground",
@@ -30,12 +30,14 @@ export function ButtonLink({ to, hash, search, variant = "primary", children, cl
 /* ---------- Logos ---------- */
 export function Logo({ light }: { light?: boolean }) {
   return (
-    <Link to="/" className="flex items-center gap-2">
-      <span className={cn("grid h-8 w-8 place-items-center rounded-md font-serif text-[18px]", light ? "bg-primary-foreground text-navy" : "bg-navy text-primary-foreground")}>K</span>
-      <span className="flex flex-col leading-none">
-        <span className={cn("font-serif text-[20px] font-medium", light ? "text-primary-foreground" : "text-navy")}>Kaushal Hub</span>
-        <span className={cn("mt-1 text-[11px] tracking-wide", light ? "text-primary-foreground/65" : "text-slate")}>From Knowledge to Creation</span>
-      </span>
+    <Link to="/" className="inline-flex shrink-0 items-center">
+      <img
+        src="/images/brand/kaushal-hub-logo.png"
+        alt="Kaushal Hub — Elevate Your Potential"
+        width={1896}
+        height={512}
+        className={light ? "h-11 w-auto max-w-[164px] object-contain" : "h-9 w-auto max-w-[134px] object-contain sm:h-10 sm:max-w-[150px]"}
+      />
     </Link>
   );
 }
@@ -50,12 +52,12 @@ export function FittPill({ label = "In association with FITT, IIT Delhi" }: { la
   return (
     <div className="inline-flex max-w-full flex-wrap items-center gap-x-3 gap-y-2">
       <img
-        src={FITT_LOGO_URL}
-        alt="Foundation for Innovation and Technology Transfer, IIT Delhi"
-        width={150}
-        height={42}
+        src={FITT_LOGO_SRC}
+        alt="FITT, IIT Delhi"
+        width={80}
+        height={40}
         loading="lazy"
-        className="h-8 w-auto max-w-[150px] object-contain"
+        className="h-8 w-auto max-w-[80px] object-contain"
       />
       <span className="text-small font-medium text-navy">{label}</span>
     </div>
@@ -367,12 +369,12 @@ export function AssociationsStrip({ note = "Experience to Enterprise is a Kausha
     <div className="border-y bg-card py-5">
       <div className="container-site flex flex-wrap items-center gap-x-4 gap-y-3">
         <img
-          src={FITT_LOGO_URL}
-          alt="Foundation for Innovation and Technology Transfer, IIT Delhi"
-          width={150}
-          height={42}
+          src={FITT_LOGO_SRC}
+          alt="FITT, IIT Delhi"
+          width={80}
+          height={40}
           loading="lazy"
-          className="h-8 w-auto max-w-[150px] object-contain"
+          className="h-8 w-auto max-w-[80px] object-contain"
         />
         <p className="text-small text-slate">{note}</p>
       </div>

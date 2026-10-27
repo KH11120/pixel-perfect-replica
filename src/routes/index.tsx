@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Handshake } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
 import { Accordion, ButtonLink, Card, FittPill, Section, SectionHeader, SiteCta } from "@/components/site";
@@ -164,11 +165,46 @@ function HomeVisionMission() {
 }
 
 function Home() {
+  const [playHeroVideo, setPlayHeroVideo] = useState(false);
+
+  useEffect(() => {
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setPlayHeroVideo(!motionPreference.matches);
+
+    updatePreference();
+    motionPreference.addEventListener("change", updatePreference);
+    return () => motionPreference.removeEventListener("change", updatePreference);
+  }, []);
+
   return (
     <>
       <InstitutionalLogoStrip />
-      <section className="section-pad">
-        <div className="container-site grid items-center gap-12 lg:grid-cols-12">
+      <section className="section-pad relative isolate overflow-hidden">
+        <img
+          src={workshop}
+          alt=""
+          aria-hidden="true"
+          width={1280}
+          height={960}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {playHeroVideo && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster={workshop}
+            aria-hidden="true"
+            tabIndex={-1}
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          >
+            <source src="/videos/kaushal-hub-hero.mp4" type="video/mp4" />
+          </video>
+        )}
+        <div aria-hidden="true" className="absolute inset-0 bg-background/80" />
+        <div className="container-site relative z-10 grid items-center gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <p className="eyebrow">Practical learning. Real-world application.</p>
             <h1 className="h1 mt-5">Practical learning for people ready to build what's next.</h1>
