@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar, Footer, StickyApply } from "../components/site";
+import { WhatsAppContact } from "../components/whatsapp-contact";
 
 function NotFoundComponent() {
   return (
@@ -128,6 +129,7 @@ function RootComponent() {
       </main>
       <Footer />
       <StickyApply {...programCta} />
+      <WhatsAppContact />
     </QueryClientProvider>
   );
 }

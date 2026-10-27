@@ -129,3 +129,17 @@
     scrollbar-width: thin;
   }
 }
+
+.floating-whatsapp {
+  position: fixed;
+  z-index: 50;
+  right: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 767px) {
+  .floating-whatsapp {
+    right: 17px;
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
+}
