@@ -88,3 +88,44 @@
 @utility eyebrow { font-size: 13px; line-height: 16px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; color: var(--color-slate); }
 @utility container-site { width: 100%; max-width: 1248px; margin-inline: auto; padding-inline: 20px; @media (min-width: 768px) { padding-inline: 24px; } }
 @utility section-pad { padding-block: 64px; @media (min-width: 768px) { padding-block: 96px; } }
+
+@keyframes institutional-logo-scroll {
+  to { transform: translateX(-50%); }
+}
+
+.institutional-logo-marquee {
+  overflow: hidden;
+}
+
+.institutional-logo-track {
+  display: flex;
+  width: max-content;
+  animation: institutional-logo-scroll 100s linear infinite;
+  will-change: transform;
+}
+
+.institutional-logo-sequence {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .institutional-logo-track {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .institutional-logo-sequence[aria-hidden="true"] {
+    display: none;
+  }
+
+  .institutional-logo-marquee {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+}

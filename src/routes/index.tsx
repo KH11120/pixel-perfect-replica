@@ -22,6 +22,76 @@ export const Route = createFileRoute("/")({
 
 const facts = ["12 weeks", "~10 hours per week", "Online + campus immersion", "Co-branded certificate"];
 
+const institutionalOrganizations: { name: string; logo: string | null }[] = [
+  { name: "FITT, IIT Delhi", logo: null },
+  { name: "Microsoft", logo: null },
+  { name: "IIM Lucknow EIC", logo: null },
+  { name: "IIT Ropar", logo: null },
+  { name: "Kotak BizLabs", logo: null },
+  { name: "DST", logo: null },
+  { name: "EXIM Bank", logo: null },
+  { name: "Cyran AI Solutions", logo: null },
+  { name: "SIDBI", logo: null },
+  { name: "NSDC", logo: null },
+  { name: "AICTE", logo: null },
+  { name: "Startup Punjab", logo: null },
+];
+
+function InstitutionalLogoSequence({ decorative = false }: { decorative?: boolean }) {
+  return (
+    <ul
+      className="institutional-logo-sequence"
+      aria-hidden={decorative ? true : undefined}
+    >
+      {institutionalOrganizations.map(({ name, logo }) => (
+        <li key={name} className="flex shrink-0 items-center gap-3">
+          {logo ? (
+            <img
+              src={logo}
+              alt=""
+              width={56}
+              height={40}
+              loading="lazy"
+              className="h-10 w-14 shrink-0 object-contain"
+            />
+          ) : (
+            <span
+              aria-hidden="true"
+              className="h-10 w-14 shrink-0 rounded-sm border bg-card"
+            />
+          )}
+          <span className="whitespace-nowrap text-small font-medium text-navy">
+            {name}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function InstitutionalLogoStrip() {
+  return (
+    <section
+      aria-labelledby="institutional-logo-heading"
+      className="border-b bg-background py-3 md:py-4"
+    >
+      <div className="container-site">
+        <h2 id="institutional-logo-heading" className="text-small font-semibold text-navy">
+          Backed &amp; Supported By
+        </h2>
+      </div>
+      <div className="container-site mt-2">
+        <div className="institutional-logo-marquee">
+          <div className="institutional-logo-track">
+            <InstitutionalLogoSequence />
+            <InstitutionalLogoSequence decorative />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const additionalPrograms = [
   {
     status: "Upcoming program",
@@ -74,6 +144,7 @@ function HomeVisionMission() {
 function Home() {
   return (
     <>
+      <InstitutionalLogoStrip />
       <section className="section-pad">
         <div className="container-site grid items-center gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
