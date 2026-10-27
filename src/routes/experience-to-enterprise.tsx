@@ -165,7 +165,7 @@ const expertPerspectives = [
 function Program() {
   return (
     <>
-      <section className="section-pad">
+      <section className="section-pad !pb-10 md:!pb-12">
         <div className="container-site grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <img
             src={workshop}
@@ -219,7 +219,7 @@ function Program() {
         </div>
       </section>
 
-      <Section>
+      <Section className="!pt-10 md:!pt-12">
         <SectionHeader title="What makes this program different" />
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           <Card>
@@ -235,27 +235,30 @@ function Program() {
             </p>
           </Card>
           <Card>
-            <h3 className="h3 font-serif text-navy">A Shared Commitment to Promising Ideas</h3>
+            <h3 className="h3 font-serif text-navy">The Batch Invests in Itself</h3>
             <p className="mt-4 leading-7 text-slate">
-              The program is designed to encourage participants to invest in the learning journey
-              and recognise promising venture ideas. As part of the program experience, outstanding
-              ideas may be considered for additional support through a cohort-based initiative,
-              subject to the final program terms.
+              Every participant contributes to a shared investment pool as part of the program fee.
+              At Demo Day, a panel of judges evaluates the ventures, and the cohort votes on which
+              promising venture or ventures should receive the pool’s support. This creates an
+              opportunity for participants to back promising ideas emerging from their own batch.
             </p>
             <p className="mt-4 border-t pt-4 text-small text-slate">
-              Details of eligibility and any associated benefits will be communicated before
-              enrolment.
+              Eligibility, selection criteria and the final allocation process will be communicated
+              as part of the program terms.
             </p>
           </Card>
         </div>
       </Section>
 
       <Section white>
-        <SectionHeader
-          eyebrow="Expert perspectives"
-          title="What Experts Say About the Program"
-          sub="Perspectives from practitioners and experts on building ventures, testing ideas and turning experience into action."
-        />
+        <div className="max-w-none">
+          <p className="eyebrow mb-4">Expert perspectives</p>
+          <h2 className="h2">What Experts Say About the Program</h2>
+          <p className="mt-4 text-slate lg:whitespace-nowrap">
+            Perspectives from practitioners and experts on building ventures, testing ideas and
+            turning experience into action.
+          </p>
+        </div>
         <p className="mt-6 rounded-md border border-saffron/50 bg-saffron/10 p-4 text-small leading-6 text-navy" role="note">
           Preview content: these are placeholders, not real expert quotations or endorsements. Replace them with approved perspectives and attributions before public launch.
         </p>

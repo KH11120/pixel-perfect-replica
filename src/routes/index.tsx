@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Handshake } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { ButtonLink, Card, FittPill, Section, SectionHeader, SiteCta } from "@/components/site";
+import { Accordion, ButtonLink, Card, FittPill, Section, SectionHeader, SiteCta } from "@/components/site";
 import { KnowledgePreview } from "@/components/knowledge";
 import { canonicalLinks } from "@/lib/resources";
 import { upcomingPrograms } from "@/lib/upcoming-programs";
@@ -22,6 +22,75 @@ export const Route = createFileRoute("/")({
 });
 
 const facts = ["12 weeks", "~10 hours per week", "Online + campus immersion at IIT Delhi", "Co-branded certificate"];
+const faqLinkClass = "font-medium text-navy underline decoration-navy/40 underline-offset-4 hover:decoration-navy";
+
+const homepageFaqs = [
+  {
+    q: "What is Kaushal Hub?",
+    a: "Kaushal Hub is a learning and knowledge platform by SNN Eduworld Pvt. Ltd. It brings together structured programs, practical resources and opportunities for people at different stages of learning and professional development.",
+  },
+  {
+    q: "Who can participate in Kaushal Hub programs?",
+    a: "Our programs are designed for different audiences, depending on the subject and learning objectives. These may include students, undergraduate learners, working professionals and people interested in emerging technologies. Each program page specifies its intended audience and eligibility.",
+  },
+  {
+    q: "What programs does Kaushal Hub offer?",
+    a: (
+      <>
+        Kaushal Hub features programs across areas such as entrepreneurship, practical learning and
+        emerging technologies. Some programs are currently available, while others are in
+        development. Visit the <Link to="/programs" className={faqLinkClass}>Programs page</Link> for
+        current offerings and upcoming initiatives.
+      </>
+    ),
+  },
+  {
+    q: "What is the difference between a program and the Knowledge Library?",
+    a: (
+      <>
+        Programs provide structured learning experiences with defined topics, formats and
+        durations. The <Link to="/resources" className={faqLinkClass}>Knowledge Library</Link> offers
+        articles and practical resources that people can explore independently to learn about
+        problems, opportunities and relevant concepts.
+      </>
+    ),
+  },
+  {
+    q: "Do I need to register to access the Knowledge Library?",
+    a: "The Knowledge Library is intended to provide accessible learning resources. Visitors can explore the available articles and guides through the website without enrolling in a program.",
+  },
+  {
+    q: "How can I join the Kaushal Hub community?",
+    a: (
+      <>
+        Visit the <Link to="/community" className={faqLinkClass}>Community page</Link> and complete
+        the joining form. You can indicate your interests and how you would like to participate. Any
+        community updates will be subject to the preferences you provide.
+      </>
+    ),
+  },
+  {
+    q: "Can I collaborate with Kaushal Hub or contribute my expertise?",
+    a: (
+      <>
+        Yes. If you have relevant expertise, knowledge resources, learning opportunities or a
+        collaboration idea, use the <Link to="/contact" className={faqLinkClass}>Partner with Us</Link>{" "}
+        option or <Link to="/contact" className={faqLinkClass}>contact us</Link> to discuss it.
+        Potential collaborations will be considered based on their relevance and feasibility.
+      </>
+    ),
+  },
+  {
+    q: "How can I find out about upcoming programs?",
+    a: (
+      <>
+        Visit the <Link to="/programs" className={faqLinkClass}>Programs page</Link> to review current
+        and upcoming initiatives. Where a program is still being prepared, its dates and registration
+        details will be published when confirmed.
+      </>
+    ),
+  },
+];
 
 const institutionalOrganizations: { name: string; logo: string | null }[] = [
   { name: "FITT, IIT Delhi", logo: null },
@@ -261,6 +330,17 @@ function Home() {
             </div>
           </div>
           <ButtonLink to="/contact" variant="text">Partner with Us</ButtonLink>
+        </div>
+      </Section>
+
+      <Section white className="!py-10 md:!py-14">
+        <SectionHeader
+          eyebrow="FREQUENTLY ASKED QUESTIONS"
+          title="Questions About Kaushal Hub"
+          sub="Learn more about Kaushal Hub, our programs, resources and ways to get involved."
+        />
+        <div className="mt-7">
+          <Accordion items={homepageFaqs.map(({ q, a }) => ({ q, a, key: q }))} />
         </div>
       </Section>
     </>
