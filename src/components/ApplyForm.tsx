@@ -454,25 +454,16 @@ export function InterestForm({
 ------------------------------------------------------- */
 
 export const communityInterests = [
-  "Learning",
-  "Entrepreneurship",
-  "AI & Future Skills",
-  "Sharing Expertise",
-  "Partnerships",
+  "Entrepreneurship and startups",
+  "AI and emerging technologies",
+  "Professional learning",
+  "Knowledge sharing and mentoring",
+  "Collaboration and partnerships",
   "Other",
 ] as const;
 
 export function CommunityForm() {
-  const [sent, setSent] = useState(false);
-
-  if (sent) {
-    return (
-      <Done
-        title="Community sign-up is not connected yet."
-        text={NOT_CONNECTED}
-      />
-    );
-  }
+  const [submissionAttempted, setSubmissionAttempted] = useState(false);
 
   return (
     <form
@@ -482,51 +473,61 @@ export function CommunityForm() {
 
         if (!e.currentTarget.reportValidity()) return;
 
-        setSent(true);
+        setSubmissionAttempted(true);
       }}
     >
-      <Field label="Name" name="name" required />
+      <Field label="Full name" name="name" required />
 
       <Field
-        label="Email"
+        label="Email address"
         name="email"
         type="email"
         required
       />
 
-      <div className="md:col-span-2">
-        <Field
-          label="Primary Interest"
-          name="interest"
-          as="select"
-          required
-          options={[...communityInterests]}
-        />
-      </div>
+      <Field
+        label="Primary area of interest"
+        name="interest"
+        as="select"
+        required
+        options={[...communityInterests]}
+      />
+
+      <Field label="Current role or background (optional)" name="background" />
+
+      <Field label="Organisation (optional)" name="organisation" />
+
+      <Field label="LinkedIn profile (optional)" name="linkedin" type="url" />
 
       <div className="md:col-span-2">
         <Field
-          label="A short introduction (optional)"
-          name="intro"
+          label="What would you like to contribute or gain from the community? (optional)"
+          name="contributionOrGain"
           as="textarea"
         />
       </div>
 
-      <Consent label="I agree to receive relevant community communications from Kaushal Hub." />
+      <Consent label="I agree to receive community-related updates from Kaushal Hub." />
 
       <div className="md:col-span-2">
         <button
           type="submit"
           className={buttonClass("primary", "w-full md:w-auto")}
         >
-          Submit Interest
+          Join the Community
         </button>
 
-        <p className="mt-4 text-small text-slate">
-          This form records an expression of interest. It does not make
-          you a member of a live community; we will contact you as
-          community activities open.
+        <p className="mt-4 text-small leading-6 text-slate">
+          If a submission service is connected, your details will be used for community
+          participation follow-up. Community updates will only be sent if you consent. This page
+          does not transmit or store your details yet.
         </p>
+        {submissionAttempted && (
+          <p className="mt-4 text-small leading-6 text-slate" role="alert">
+            We could not submit your details because this form is not connected to a registration
+            service yet. Your information remains in the form and has not been sent or saved.
+          </p>
+        )}
       </div>
     </form>
   );

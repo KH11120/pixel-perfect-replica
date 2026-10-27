@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Handshake } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { ButtonLink, Card, Section, SectionHeader, SiteCta } from "@/components/site";
+import { ButtonLink, Card, FittPill, Section, SectionHeader, SiteCta } from "@/components/site";
 import { KnowledgePreview } from "@/components/knowledge";
 import { canonicalLinks } from "@/lib/resources";
 import { upcomingPrograms } from "@/lib/upcoming-programs";
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const facts = ["12 weeks", "~10 hours per week", "Online + campus immersion", "Co-branded certificate"];
+const facts = ["12 weeks", "~10 hours per week", "Online + campus immersion at IIT Delhi", "Co-branded certificate"];
 
 const institutionalOrganizations: { name: string; logo: string | null }[] = [
   { name: "FITT, IIT Delhi", logo: null },
@@ -142,10 +142,10 @@ function Home() {
               <h2 className="h3 mt-6">Experience to Enterprise</h2>
               <p className="h4 mt-2 font-serif text-navy">Test the leap before you take it.</p>
               <p className="mt-3 text-[16px] leading-6 text-slate">A 12-week venture-building program for experienced professionals exploring entrepreneurship.</p>
-              <div className="mt-6 flex flex-wrap items-center gap-2 border-t pt-6">
-                <span className="text-small text-slate">In association with FITT, IIT Delhi</span>
+              <div className="mt-6 border-t pt-6">
+                <FittPill />
               </div>
-              <p className="mt-4 text-small font-medium text-navy">12 weeks · Online + campus immersion</p>
+              <p className="mt-4 text-small font-medium text-navy">12 weeks · Online + campus immersion at IIT Delhi</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink to="/experience-to-enterprise" hash="application">Apply Now</ButtonLink>
                 <ButtonLink to="/experience-to-enterprise" variant="secondary">
@@ -193,7 +193,7 @@ function Home() {
             <h2 className="h2 mt-4">Experience to Enterprise</h2>
             <p className="h4 mt-2 font-serif text-navy">Test the leap before you take it.</p>
             <p className="mt-4 text-slate">A 12-week venture-building program for experienced professionals who want to test a business opportunity, engage real customers and build a credible plan before making their next move.</p>
-            <p className="mt-6 text-small font-medium text-navy">In association with FITT, IIT Delhi</p>
+            <div className="mt-6"><FittPill /></div>
             <ul className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-md border bg-border">
               {facts.map((f) => <li key={f} className="bg-card p-4 text-small font-medium text-navy">{f}</li>)}
             </ul>
@@ -241,8 +241,7 @@ function Home() {
             <p className="mt-4 max-w-none text-primary-foreground/75">Connect with people who are learning, building, sharing expertise and exploring new opportunities. Join the Kaushal Hub community to hear about resources, learning initiatives and ways to participate.</p>
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink to="/contact" search={{ interest: "community" }}>Join the Community</ButtonLink>
-            <ButtonLink to="/resources" variant="inverse">Explore the Knowledge Library</ButtonLink>
+            <ButtonLink to="/community">Join the Community</ButtonLink>
           </div>
         </div>
       </section>
@@ -256,9 +255,9 @@ function Home() {
           <div className="flex gap-5">
             <Handshake className="h-7 w-7 shrink-0 text-navy" strokeWidth={1.5} />
             <div>
-              <p className="eyebrow">Partner with Kaushal Hub</p>
-              <h2 className="h4 mt-2 font-serif text-navy">Have expertise or an opportunity to share?</h2>
-              <p className="mt-2 max-w-2xl text-slate">Connect with us to explore relevant learning, knowledge-sharing and collaboration opportunities.</p>
+              <p className="eyebrow">PARTNER WITH KAUSHAL HUB</p>
+              <h2 className="h4 mt-2 font-serif text-navy">Bring your expertise. Create something useful together.</h2>
+              <p className="mt-2 max-w-2xl text-slate">Whether you bring industry expertise, learning opportunities, practical insights or an idea for collaboration, let’s explore how we can turn it into something valuable for our community.</p>
             </div>
           </div>
           <ButtonLink to="/contact" variant="text">Partner with Us</ButtonLink>

@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet, useRouterState } from "@tanstack/react-router";
-import { ButtonLink, Card, Section, UpcomingProgramCard } from "@/components/site";
+import { ButtonLink, Card, FittPill, Section, UpcomingProgramCard } from "@/components/site";
 import { canonicalLinks } from "@/lib/resources";
 import { upcomingPrograms } from "@/lib/upcoming-programs";
 
@@ -63,11 +63,11 @@ function Programs() {
             A 12-week venture-building program for experienced professionals exploring
             entrepreneurship.
           </p>
-          <p className="mt-5 text-small text-navy">In association with FITT, IIT Delhi</p>
+          <div className="mt-5"><FittPill /></div>
           <div className="mt-5 grid gap-3 border-t pt-5 sm:grid-cols-3">
             <p className="text-small font-medium text-navy">12 weeks</p>
             <p className="text-small font-medium text-navy">~10 hours per week</p>
-            <p className="text-small font-medium text-navy">Online + campus immersion</p>
+            <p className="text-small font-medium text-navy">Online + campus immersion at IIT Delhi</p>
           </div>
           <div className="mt-8">
             <div className="flex flex-col gap-3 sm:flex-row">

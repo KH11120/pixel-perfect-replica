@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import discussion from "@/assets/discussion.jpg";
-import { ButtonLink, Section, SectionHeader, WhatWeDo } from "@/components/site";
+import { ButtonLink, FITT_LOGO_URL, Section, SectionHeader, WhatWeDo } from "@/components/site";
 import { canonicalLinks } from "@/lib/resources";
 
 const ecosystemNames = [
@@ -66,19 +66,30 @@ function About() {
 
       <Section white className="!py-10 md:!py-12">
         <SectionHeader title="Backed & Supported By" />
-        <div className="mt-7 grid grid-cols-2 items-stretch gap-x-4 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-7 grid grid-cols-2 items-stretch gap-4 md:grid-cols-3 lg:grid-cols-4">
           {ecosystemNames.map((name) => (
             <div
               key={name}
-              className="flex min-h-16 items-center justify-center border-b px-3 py-4 text-center font-semibold text-navy"
+              className="flex min-h-24 flex-col items-center justify-center gap-1 rounded-md border bg-background px-3 py-4 text-center"
             >
-              {name}
+              {name === "FITT, IIT Delhi" ? (
+                <img
+                  src={FITT_LOGO_URL}
+                  alt="FITT, IIT Delhi"
+                  width={190}
+                  height={52}
+                  loading="lazy"
+                  className="max-h-12 max-w-full object-contain"
+                />
+              ) : (
+                <div role="img" aria-label={`${name} logo placeholder`}>
+                  <span className="font-semibold text-navy">{name}</span>
+                  <span className="mt-1 block text-[11px] leading-4 text-slate">Official logo pending</span>
+                </div>
+              )}
             </div>
           ))}
         </div>
-        <p className="mt-4 text-small text-slate">
-          Names are presented as text references and do not imply endorsement or funding.
-        </p>
       </Section>
 
       <Section className="!py-12 md:!py-16">
@@ -116,12 +127,17 @@ function About() {
         </div>
       </Section>
 
-      <Section white className="!pt-12 !pb-8 md:!pt-16 md:!pb-12">
-        <SectionHeader
-          eyebrow="Our ecosystem & community"
-          title="A connected ecosystem for learning and opportunity."
-          sub="Kaushal Hub brings together structured programs, practical resources and people with different kinds of experience. Whether someone is exploring a new subject, developing a capability or investigating an opportunity, the aim is to make relevant knowledge and connections easier to access."
-        />
+      <Section tint className="!py-12 md:!py-16">
+        <div className="max-w-none">
+          <p className="eyebrow mb-4">Our ecosystem &amp; community</p>
+          <h2 className="h2 max-w-none">A connected ecosystem for learning and opportunity.</h2>
+          <p className="mt-4 max-w-5xl text-slate">
+            Kaushal Hub brings together structured programs, practical resources and people with
+            different kinds of experience. Whether someone is exploring a new subject, developing
+            a capability or investigating an opportunity, the aim is to make relevant knowledge and
+            connections easier to access.
+          </p>
+        </div>
         <div className="mt-8 grid gap-8 border-t pt-8 md:grid-cols-3 md:gap-6">
           <article className="flex min-w-0 flex-col">
             <h3 className="h4 font-serif text-navy">Programs</h3>
@@ -148,12 +164,7 @@ function About() {
               A space to connect with people who are learning, building, sharing expertise and
               exploring opportunities.
             </p>
-            <ButtonLink
-              to="/contact"
-              search={{ interest: "community" }}
-              variant="text"
-              className="mt-4 w-fit"
-            >
+            <ButtonLink to="/community" variant="text" className="mt-4 w-fit">
               Join the Community
             </ButtonLink>
           </article>

@@ -127,7 +127,7 @@ const faqs: [string, string][] = [
   ],
   [
     "What is the duration and format?",
-    "The program runs for 12 weeks, with approximately six hours of live sessions and four hours of self-paced learning and venture work per week. It combines online learning with a 2–3 day campus immersion at FITT, IIT Delhi.",
+    "The program runs for 12 weeks, with approximately six hours of live sessions and four hours of self-paced learning and venture work per week. It combines online learning with a 2–3 day campus immersion at IIT Delhi.",
   ],
   [
     "What is the fee structure?",
@@ -137,6 +137,29 @@ const faqs: [string, string][] = [
     "Does the program guarantee incubation or funding?",
     "No. Selected ventures may be considered for incubation, investor connections or funding and grant support, subject to evaluation, availability and the applicable selection process.",
   ],
+];
+
+const expertPerspectives = [
+  {
+    category: "Entrepreneurship",
+    quote: "[Expert perspective on identifying meaningful problems and validating a business opportunity.]",
+    role: "Entrepreneurship Expert",
+  },
+  {
+    category: "Venture Building",
+    quote: "[Expert perspective on turning an early idea into a testable product or service.]",
+    role: "Venture-Building Practitioner",
+  },
+  {
+    category: "Business and Markets",
+    quote: "[Expert perspective on understanding customers, building a business model and reaching the market.]",
+    role: "Business and Market Expert",
+  },
+  {
+    category: "Innovation and Technology",
+    quote: "[Expert perspective on using technology and practical experimentation to build a venture.]",
+    role: "Innovation and Technology Expert",
+  },
 ];
 
 function Program() {
@@ -152,11 +175,8 @@ function Program() {
             className="aspect-[4/3] w-full rounded-xl object-cover lg:col-span-5"
           />
           <div className="lg:col-span-7">
-            <p className="eyebrow">A Kaushal Hub program</p>
+            <p className="eyebrow">A Kaushal Hub + FITT, IIT Delhi program</p>
             <h1 className="h1 mt-5">Experience to Enterprise</h1>
-            <p className="h4 mt-3 font-serif text-navy">
-              Certificate Program in Entrepreneurship for Experienced Professionals
-            </p>
             <p className="h3 mt-5 font-serif text-navy">Test the leap before you take it.</p>
             <p className="mt-5 max-w-2xl text-slate">
               A 12-week venture-building program for experienced professionals who want to explore
@@ -170,7 +190,7 @@ function Program() {
               {[
                 "12 weeks",
                 "About 10 hours per week",
-                "Online + campus immersion",
+                "Online + campus immersion at IIT Delhi",
                 "Co-branded certificate",
               ].map((item) => (
                 <li key={item}>{item}</li>
@@ -193,7 +213,7 @@ function Program() {
             value="~10 hours"
             note="6 live + 4 self-paced and venture work"
           />
-          <FactTile label="Format" value="Online + campus immersion" />
+          <FactTile label="Format" value="Online + campus immersion at IIT Delhi" />
           <FactTile label="Background" value="No technical background required" />
           <FactTile label="Participants" value="Experienced professionals" />
         </div>
@@ -205,28 +225,53 @@ function Program() {
           <Card>
             <h3 className="h3 font-serif text-navy">Your Brand, Your Idea, Your IP</h3>
             <p className="mt-4 leading-7 text-slate">
-              Participants with eligible patentable ideas may receive support through FITT’s
-              Intellectual Property Management Office, including invention disclosure and
-              patent-search support. A provisional patent filing during the program may be possible
-              where eligible.
+              Build with a clearer understanding of how intellectual property can support your
+              venture. Eligible participants may explore IP-related guidance, including invention
+              disclosure and patent-search support through FITT’s relevant processes.
             </p>
             <p className="mt-4 border-t pt-4 text-small text-slate">
-              Subject to eligibility and FITT’s process. Filing does not guarantee a patent grant.
+              Any IP support is subject to eligibility and applicable processes. Patent filing and
+              grant outcomes are not guaranteed.
             </p>
           </Card>
-          <Card className="border-navy">
-            <p className="eyebrow">Requires confirmation</p>
-            <h3 className="h3 mt-3 font-serif text-navy">The Batch Invests in Itself</h3>
+          <Card>
+            <h3 className="h3 font-serif text-navy">A Shared Commitment to Promising Ideas</h3>
             <p className="mt-4 leading-7 text-slate">
-              The original program material describes a participant contribution into a shared pool
-              and a Demo Day vote to award the pool to one or two ventures. The contribution, voting
-              process, and award terms need confirmation before this is presented as a program
-              commitment.
+              The program is designed to encourage participants to invest in the learning journey
+              and recognise promising venture ideas. As part of the program experience, outstanding
+              ideas may be considered for additional support through a cohort-based initiative,
+              subject to the final program terms.
             </p>
             <p className="mt-4 border-t pt-4 text-small text-slate">
-              Terms subject to final arrangements.
+              Details of eligibility and any associated benefits will be communicated before
+              enrolment.
             </p>
           </Card>
+        </div>
+      </Section>
+
+      <Section white>
+        <SectionHeader
+          eyebrow="Expert perspectives"
+          title="What Experts Say About the Program"
+          sub="Perspectives from practitioners and experts on building ventures, testing ideas and turning experience into action."
+        />
+        <p className="mt-6 rounded-md border border-saffron/50 bg-saffron/10 p-4 text-small leading-6 text-navy" role="note">
+          Preview content: these are placeholders, not real expert quotations or endorsements. Replace them with approved perspectives and attributions before public launch.
+        </p>
+        <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {expertPerspectives.map((perspective) => (
+            <article key={perspective.category} className="flex h-full min-w-0 flex-col rounded-lg border bg-card p-5">
+              <p className="eyebrow">{perspective.category}</p>
+              <blockquote className="mt-4 flex-1 font-serif text-[18px] leading-7 text-navy">
+                {perspective.quote}
+              </blockquote>
+              <div className="mt-6 border-t pt-4">
+                <p className="font-semibold text-navy">Expert Name</p>
+                <p className="mt-1 text-small text-slate">{perspective.role}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </Section>
 
@@ -244,14 +289,6 @@ function Program() {
             </Card>
           ))}
         </div>
-        <p className="mt-7 max-w-4xl text-slate">
-          You can explore a new venture, build within your existing organisation, buy into a
-          business, or develop a productised consulting offering. No coding background is required.
-        </p>
-        <p className="mt-3 text-small text-slate">
-          <span className="font-semibold text-navy">May not be a fit if:</span> you are looking for
-          a coding course or guaranteed funding.
-        </p>
       </Section>
 
       <Section white id="curriculum">

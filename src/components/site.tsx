@@ -6,6 +6,7 @@ import { upcomingPrograms, type UpcomingProgram } from "@/lib/upcoming-programs"
 
 /* ---------- Button ---------- */
 type Variant = "primary" | "secondary" | "inverse" | "text";
+export const FITT_LOGO_URL = "https://www.fitt-iitd.com/fittnewweb/logo-with-name.png";
 const btn: Record<Variant, string> = {
   primary: "h-12 px-6 rounded-md bg-saffron text-navy font-semibold hover:brightness-95",
   secondary: "h-12 px-6 rounded-md border border-navy text-navy font-semibold hover:bg-navy hover:text-primary-foreground",
@@ -47,8 +48,15 @@ export function LogoMark({ label, small }: { label: string; small?: boolean }) {
 }
 export function FittPill({ label = "In association with FITT, IIT Delhi" }: { label?: string }) {
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border bg-card py-1.5 pl-2 pr-4">
-      <LogoMark label="FITT" small /><LogoMark label="IIT Delhi" small />
+    <div className="inline-flex max-w-full flex-wrap items-center gap-x-3 gap-y-2">
+      <img
+        src={FITT_LOGO_URL}
+        alt="Foundation for Innovation and Technology Transfer, IIT Delhi"
+        width={150}
+        height={42}
+        loading="lazy"
+        className="h-8 w-auto max-w-[150px] object-contain"
+      />
       <span className="text-small font-medium text-navy">{label}</span>
     </div>
   );
@@ -137,36 +145,37 @@ export function Footer() {
   return (
     <footer className="bg-ink pb-24 pt-12 text-primary-foreground md:pb-8 md:pt-14">
       <div className="container-site">
-        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-12">
-          <div className="xl:col-span-3">
+        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="min-w-0">
             <Logo light />
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-primary-foreground/75">An initiative of SNN Eduworld Pvt. Ltd., connecting people with practical learning, useful knowledge and new opportunities.</p>
           </div>
-          <div className="xl:col-span-2">
+          <div className="min-w-0">
             {col("Explore", [
               { label: "Programs", to: "/programs" },
               { label: "Experience to Enterprise", to: "/experience-to-enterprise" },
               { label: "Knowledge Library", to: "/resources" },
             ])}
           </div>
-          <div className="xl:col-span-2">
+          <div className="min-w-0">
             {col("About", [
               { label: "About Kaushal Hub", to: "/about" },
-              { label: "Community", to: "/", hash: "community" },
+              { label: "Community", to: "/community" },
               { label: "Contact Us", to: "/contact" },
             ])}
           </div>
-          <div className="xl:col-span-5">
+          <div className="min-w-0">
             <p className="eyebrow !text-primary-foreground/60">Get in Touch</p>
             <address className="mt-4 not-italic text-[15px] leading-6 text-primary-foreground/85">
               <span className="block">APTCODER C/O BHARAT IMPACT</span>
               <span className="block">C-26, C Block, Sector 59</span>
               <span className="block">Noida, Uttar Pradesh 201309</span>
             </address>
+            <a href="mailto:hello@aptcoder.in" className="mt-2 block min-h-11 w-fit break-all text-[15px] text-primary-foreground/85 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-ink">hello@aptcoder.in</a>
+            <a href="tel:+919318497057" className="mt-2 block min-h-11 w-fit text-[15px] text-primary-foreground/85 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-ink">+91-9318497057</a>
             <a href="https://www.google.com/maps/dir/?api=1&destination=APTCODER%20C%2FO%20BHARAT%20IMPACT%2C%20C-26%2C%20C%20Block%2C%20Sector%2059%2C%20Noida%2C%20Uttar%20Pradesh%20201309" target="_blank" rel="noreferrer" className="mt-2 inline-flex min-h-11 items-center gap-1 text-small text-primary-foreground/75 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
               Get Directions <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
-            <a href="tel:+919318497057" className="mt-2 block min-h-11 w-fit text-[15px] text-primary-foreground/85 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-ink">+91-9318497057</a>
             <div className="mt-4">
               <p className="text-small font-medium text-primary-foreground/75">Social</p>
               <ul className="mt-2 flex items-center gap-4">
@@ -350,14 +359,21 @@ export function CtaBand({ title, text, primary, secondary, brochure }: { title: 
     </section>
   );
 }
-export const SiteCta = () => <CtaBand title="What will you build next?" text="Explore practical learning and opportunities that help you turn knowledge into action." primary={["Explore Programs", "/programs"]} secondary={["Get in Touch", "/contact"]} />;
+export const SiteCta = () => <CtaBand title="Let’s help you take your next step." text="Explore practical learning programs, discover useful knowledge or connect with us to discuss an idea, opportunity or collaboration." primary={["Explore Programs", "/programs"]} secondary={["Get in Touch", "/contact"]} />;
 
 /* ---------- Associations strip ---------- */
 export function AssociationsStrip({ note = "Experience to Enterprise is a Kaushal Hub program offered in association with FITT, IIT Delhi." }: { label?: string; note?: ReactNode }) {
   return (
     <div className="border-y bg-card py-5">
-      <div className="container-site flex flex-col gap-3 sm:flex-row sm:items-center">
-        <div className="flex gap-2"><LogoMark label="FITT" small /><LogoMark label="IIT Delhi" small /></div>
+      <div className="container-site flex flex-wrap items-center gap-x-4 gap-y-3">
+        <img
+          src={FITT_LOGO_URL}
+          alt="Foundation for Innovation and Technology Transfer, IIT Delhi"
+          width={150}
+          height={42}
+          loading="lazy"
+          className="h-8 w-auto max-w-[150px] object-contain"
+        />
         <p className="text-small text-slate">{note}</p>
       </div>
     </div>
