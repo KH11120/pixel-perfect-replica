@@ -60,7 +60,15 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
-export function Navbar() {
+export function Navbar({
+  ctaLabel = "Apply Now",
+  ctaTo = "/contact",
+  ctaHash,
+}: {
+  ctaLabel?: string;
+  ctaTo?: string;
+  ctaHash?: string;
+}) {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur">
@@ -71,7 +79,11 @@ export function Navbar() {
             <Link key={l.to} to={l.to} className="text-[15px] text-ink hover:text-navy" activeProps={{ className: "font-semibold text-navy" }}>{l.label}</Link>
           ))}
         </nav>
-        <div className="hidden md:block"><ButtonLink to="/contact">Apply Now</ButtonLink></div>
+        <div className="hidden md:block">
+          <ButtonLink to={ctaTo} hash={ctaHash}>
+            {ctaLabel}
+          </ButtonLink>
+        </div>
         <SiteButton variant="text" className="h-10 w-10 p-2 md:hidden" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</SiteButton>
       </div>
       {open && (
@@ -87,10 +99,20 @@ export function Navbar() {
   );
 }
 
-export function StickyApply() {
+export function StickyApply({
+  ctaLabel = "Apply Now",
+  ctaTo = "/contact",
+  ctaHash,
+}: {
+  ctaLabel?: string;
+  ctaTo?: string;
+  ctaHash?: string;
+}) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 p-3 backdrop-blur md:hidden">
-      <ButtonLink to="/contact" className="w-full">Apply Now</ButtonLink>
+      <ButtonLink to={ctaTo} hash={ctaHash} className="w-full">
+        {ctaLabel}
+      </ButtonLink>
     </div>
   );
 }

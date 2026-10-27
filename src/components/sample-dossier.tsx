@@ -12,8 +12,8 @@ const contents = [
   ["The Next Decision", "What has been validated, what remains uncertain and whether the venture should proceed, pivot or stop."],
 ];
 
-export function SampleDossier() {
-  return <Section tint id="sample-dossier">
+export function SampleDossier({ embedded = false }: { embedded?: boolean }) {
+  const content = <>
     <div className="flex items-start justify-between gap-6">
       <SectionHeader eyebrow="See the expected output" title="What does a finished venture project look like?" sub="Entrepreneurship is easier to evaluate when you can see the work behind the idea." />
       <FileText className="hidden h-12 w-12 shrink-0 text-navy sm:block" strokeWidth={1} aria-hidden="true" />
@@ -27,5 +27,7 @@ export function SampleDossier() {
       </li>)}
     </ol>
     {SAMPLE_DOSSIER_URL && <div className="mt-8"><a href={SAMPLE_DOSSIER_URL} target="_blank" rel="noopener noreferrer" className={buttonClass()}>View Sample Venture Project Dossier</a><p className="mt-4 text-small text-slate">{SAMPLE_DISCLOSURE}</p></div>}
-  </Section>;
+  </>;
+
+  return embedded ? <section id="sample-dossier" className="border-t pt-6">{content}</section> : <Section tint id="sample-dossier">{content}</Section>;
 }
