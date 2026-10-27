@@ -1,22 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import discussion from "@/assets/discussion.jpg";
-import { ButtonLink, FITT_LOGO_URL, Section, SectionHeader, WhatWeDo } from "@/components/site";
+import { ButtonLink, Section, SectionHeader, WhatWeDo } from "@/components/site";
 import { canonicalLinks } from "@/lib/resources";
-
-const ecosystemNames = [
-  "FITT, IIT Delhi",
-  "Microsoft",
-  "IIM Lucknow EIC",
-  "IIT Ropar",
-  "Kotak BizLab",
-  "DST",
-  "EXIM Bank",
-  "Cyran AI Solutions",
-  "SIDBI",
-  "NSDC",
-  "AICTE",
-  "Startup Punjab",
-];
+import { organisationLogos } from "@/lib/organisation-logos";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -67,26 +53,20 @@ function About() {
       <Section white className="!py-10 md:!py-12">
         <SectionHeader title="Backed & Supported By" />
         <div className="mt-7 grid grid-cols-2 items-stretch gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {ecosystemNames.map((name) => (
+          {organisationLogos.map(({ name, src }) => (
             <div
               key={name}
-              className="flex min-h-24 flex-col items-center justify-center gap-1 rounded-md border bg-background px-3 py-4 text-center"
+              className="flex min-h-28 min-w-0 flex-col items-center justify-center gap-3 rounded-md border bg-background px-3 py-4 text-center"
             >
-              {name === "FITT, IIT Delhi" ? (
-                <img
-                  src={FITT_LOGO_URL}
-                  alt="FITT, IIT Delhi"
-                  width={190}
-                  height={52}
-                  loading="lazy"
-                  className="max-h-12 max-w-full object-contain"
-                />
-              ) : (
-                <div role="img" aria-label={`${name} logo placeholder`}>
-                  <span className="font-semibold text-navy">{name}</span>
-                  <span className="mt-1 block text-[11px] leading-4 text-slate">Official logo pending</span>
-                </div>
-              )}
+              <img
+                src={src}
+                alt={name}
+                width={180}
+                height={60}
+                loading="lazy"
+                className="h-12 w-full max-w-[180px] object-contain"
+              />
+              <span className="text-small font-medium text-navy">{name}</span>
             </div>
           ))}
         </div>

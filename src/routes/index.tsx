@@ -4,6 +4,7 @@ import workshop from "@/assets/workshop.jpg";
 import { Accordion, ButtonLink, Card, FittPill, Section, SectionHeader, SiteCta } from "@/components/site";
 import { KnowledgePreview } from "@/components/knowledge";
 import { canonicalLinks } from "@/lib/resources";
+import { organisationLogos } from "@/lib/organisation-logos";
 import { upcomingPrograms } from "@/lib/upcoming-programs";
 
 export const Route = createFileRoute("/")({
@@ -92,44 +93,22 @@ const homepageFaqs = [
   },
 ];
 
-const institutionalOrganizations: { name: string; logo: string | null }[] = [
-  { name: "FITT, IIT Delhi", logo: null },
-  { name: "Microsoft", logo: null },
-  { name: "IIM Lucknow EIC", logo: null },
-  { name: "IIT Ropar", logo: null },
-  { name: "Kotak BizLabs", logo: null },
-  { name: "DST", logo: null },
-  { name: "EXIM Bank", logo: null },
-  { name: "Cyran AI Solutions", logo: null },
-  { name: "SIDBI", logo: null },
-  { name: "NSDC", logo: null },
-  { name: "AICTE", logo: null },
-  { name: "Startup Punjab", logo: null },
-];
-
 function InstitutionalLogoSequence({ decorative = false }: { decorative?: boolean }) {
   return (
     <ul
       className="institutional-logo-sequence"
       aria-hidden={decorative ? true : undefined}
     >
-      {institutionalOrganizations.map(({ name, logo }) => (
+      {organisationLogos.map(({ name, src }) => (
         <li key={name} className="flex shrink-0 items-center gap-3">
-          {logo ? (
-            <img
-              src={logo}
-              alt=""
-              width={56}
-              height={40}
-              loading="lazy"
-              className="h-10 w-14 shrink-0 object-contain"
-            />
-          ) : (
-            <span
-              aria-hidden="true"
-              className="h-10 w-14 shrink-0 rounded-sm border bg-card"
-            />
-          )}
+          <img
+            src={src}
+            alt=""
+            width={96}
+            height={48}
+            loading="lazy"
+            className="h-10 w-24 shrink-0 object-contain"
+          />
           <span className="whitespace-nowrap text-small font-medium text-navy">
             {name}
           </span>
