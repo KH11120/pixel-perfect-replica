@@ -87,7 +87,9 @@ function Programs() {
           </div>
           <div className="mt-8">
             <div className="flex flex-col gap-3 sm:flex-row">
-              <ButtonLink to="/contact">Apply Now</ButtonLink>
+              <ButtonLink to="/experience-to-enterprise" hash="application">
+                Apply Now
+              </ButtonLink>
               <ButtonLink to="/experience-to-enterprise" variant="secondary">
                 View Program
               </ButtonLink>

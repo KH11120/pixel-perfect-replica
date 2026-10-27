@@ -509,7 +509,7 @@ function Program() {
         </ol>
       </Section>
 
-      <Section tint id="application">
+      <Section tint id="application" className="scroll-mt-24 md:scroll-mt-28">
         <div className="mx-auto max-w-4xl">
           <SectionHeader
             title="Apply for Experience to Enterprise"

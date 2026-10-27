@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode, type ComponentProps } from "react";
-import { ChevronDown, Menu, X, Check, ArrowRight } from "lucide-react";
+import { ChevronDown, Menu, X, Check, ArrowRight, ArrowUpRight, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /* ---------- Button ---------- */
@@ -62,8 +62,8 @@ const links = [
 ];
 export function Navbar({
   ctaLabel = "Apply Now",
-  ctaTo = "/contact",
-  ctaHash,
+  ctaTo = "/experience-to-enterprise",
+  ctaHash = "application",
 }: {
   ctaLabel?: string;
   ctaTo?: string;
@@ -101,8 +101,8 @@ export function Navbar({
 
 export function StickyApply({
   ctaLabel = "Apply Now",
-  ctaTo = "/contact",
-  ctaHash,
+  ctaTo = "/experience-to-enterprise",
+  ctaHash = "application",
 }: {
   ctaLabel?: string;
   ctaTo?: string;
@@ -119,33 +119,69 @@ export function StickyApply({
 
 /* ---------- Footer ---------- */
 export function Footer() {
-  const col = (title: string, items: [string, string][]) => (
+  const col = (title: string, items: { label: string; to: string; hash?: string }[]) => (
     <div>
       <p className="eyebrow !text-primary-foreground/60">{title}</p>
       <ul className="mt-4 space-y-2 text-[15px]">
-        {items.map(([l, to]) => <li key={l}><Link to={to} className="text-primary-foreground/85 hover:text-primary-foreground">{l}</Link></li>)}
+        {items.map(({ label, to, hash }) => <li key={label}><Link to={to} {...(hash ? { hash } : {})} className="text-primary-foreground/85 hover:text-primary-foreground">{label}</Link></li>)}
       </ul>
     </div>
   );
+  const socialProfiles = [
+    { name: "Facebook", Icon: Facebook },
+    { name: "LinkedIn", Icon: Linkedin },
+    { name: "Instagram", Icon: Instagram },
+    { name: "YouTube", Icon: Youtube },
+  ];
   return (
-    <footer className="bg-ink pb-24 pt-16 text-primary-foreground md:pb-12">
+    <footer className="bg-ink pb-24 pt-12 text-primary-foreground md:pb-8 md:pt-14">
       <div className="container-site">
-        <div className="grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-5">
+        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-12">
+          <div className="xl:col-span-3">
             <Logo light />
-            <p className="mt-4 max-w-sm text-[15px] text-primary-foreground/75">Kaushal Hub is an initiative of SNN Eduworld Pvt. Ltd.</p>
+            <p className="mt-4 max-w-sm text-[15px] leading-6 text-primary-foreground/75">An initiative of SNN Eduworld Pvt. Ltd., connecting people with practical learning, useful knowledge and new opportunities.</p>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7">
-            {col("Programs", [["Experience to Enterprise", "/experience-to-enterprise"]])}
-            {col("About", [["About Kaushal Hub", "/about"], ["Knowledge Library", "/resources"]])}
-            {col("Contact", [["Contact", "/contact"], ["Partner With Us", "/contact"]])}
+          <div className="xl:col-span-2">
+            {col("Explore", [
+              { label: "Programs", to: "/programs" },
+              { label: "Experience to Enterprise", to: "/experience-to-enterprise" },
+              { label: "Knowledge Library", to: "/resources" },
+            ])}
+          </div>
+          <div className="xl:col-span-2">
+            {col("About", [
+              { label: "About Kaushal Hub", to: "/about" },
+              { label: "Community", to: "/", hash: "community" },
+              { label: "Contact Us", to: "/contact" },
+            ])}
+          </div>
+          <div className="xl:col-span-5">
+            <p className="eyebrow !text-primary-foreground/60">Get in Touch</p>
+            <address className="mt-4 not-italic text-[15px] leading-6 text-primary-foreground/85">
+              <span className="block">APTCODER C/O BHARAT IMPACT</span>
+              <span className="block">C-26, C Block, Sector 59</span>
+              <span className="block">Noida, Uttar Pradesh 201309</span>
+            </address>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=APTCODER%20C%2FO%20BHARAT%20IMPACT%2C%20C-26%2C%20C%20Block%2C%20Sector%2059%2C%20Noida%2C%20Uttar%20Pradesh%20201309" target="_blank" rel="noreferrer" className="mt-2 inline-flex min-h-11 items-center gap-1 text-small text-primary-foreground/75 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
+              Get Directions <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+            <a href="tel:+919318497057" className="mt-2 block min-h-11 w-fit text-[15px] text-primary-foreground/85 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-ink">+91-9318497057</a>
+            <div className="mt-4">
+              <p className="text-small font-medium text-primary-foreground/75">Social</p>
+              <ul className="mt-2 flex items-center gap-4">
+                {socialProfiles.map(({ name, Icon }) => (
+                  <li key={name}>
+                    <span role="img" aria-label={`${name}: no verified profile available`} className="inline-flex h-8 w-8 items-center justify-center text-primary-foreground/70">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="mt-12 space-y-4 border-t border-primary-foreground/15 pt-8 text-small text-primary-foreground/65">
-          <p className="max-w-4xl">Experience to Enterprise is a program launched by Kaushal Hub in association with FITT, IIT Delhi. Details and associated opportunities are subject to final terms. Incubation, investor connect, funding and patent support are only for ventures or participants selected after evaluation or found eligible, and are subject to availability. Nothing is guaranteed.</p>
-          <div className="flex flex-wrap gap-6">
-            <span>© {new Date().getFullYear()} SNN Eduworld Pvt. Ltd.</span>
-          </div>
+        <div className="mt-10 border-t border-primary-foreground/15 pt-5 text-small text-primary-foreground/65">
+          <span>© 2026 SNN Eduworld Pvt. Ltd.</span>
         </div>
       </div>
     </footer>

@@ -7,7 +7,6 @@ import {
   HeadContent,
   Scripts,
   type ErrorComponentProps,
-  useRouterState,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -115,15 +114,11 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const pathname = useRouterState({ select: (state) => state.location.pathname });
-  const programCta =
-    pathname === "/experience-to-enterprise"
-      ? {
-          ctaLabel: "Apply Now",
-          ctaTo: "/experience-to-enterprise",
-          ctaHash: "application",
-        }
-      : {};
+  const programCta = {
+    ctaLabel: "Apply Now",
+    ctaTo: "/experience-to-enterprise",
+    ctaHash: "application",
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
