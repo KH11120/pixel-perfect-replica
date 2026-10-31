@@ -6,10 +6,19 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Set by the GitHub Pages workflow (e.g. "/pixel-perfect-replica/"). Unset for Lovable builds.
+const pagesBase = process.env["GITHUB_PAGES_BASE"];
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    // GitHub Pages is static hosting: prerender every crawlable page and emit an SPA shell fallback.
+    ...(pagesBase && {
+      prerender: { enabled: true, crawlLinks: true, failOnError: true },
+      spa: { enabled: true },
+    }),
   },
+  ...(pagesBase && { nitro: false as const, vite: { base: pagesBase } }),
 });

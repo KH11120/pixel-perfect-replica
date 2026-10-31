@@ -7,6 +7,7 @@ import { KnowledgePreview } from "@/components/knowledge";
 import { canonicalLinks } from "@/lib/resources";
 import { organisationLogos } from "@/lib/organisation-logos";
 import { upcomingPrograms } from "@/lib/upcoming-programs";
+import { publicAsset } from "@/lib/public-asset";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -200,7 +201,7 @@ function Home() {
             tabIndex={-1}
             className="pointer-events-none absolute inset-0 h-full w-full object-cover"
           >
-            <source src="/videos/kaushal-hub-hero.mp4" type="video/mp4" />
+            <source src={publicAsset("/videos/kaushal-hub-hero.mp4")} type="video/mp4" />
           </video>
         )}
         <div aria-hidden="true" className="absolute inset-0 bg-background/80" />

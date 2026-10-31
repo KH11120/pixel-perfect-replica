@@ -2,11 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode, type ComponentProps } from "react";
 import { ChevronDown, Menu, X, Check, ArrowRight, ArrowUpRight, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { publicAsset } from "@/lib/public-asset";
 import { upcomingPrograms, type UpcomingProgram } from "@/lib/upcoming-programs";
 
 /* ---------- Button ---------- */
 type Variant = "primary" | "secondary" | "inverse" | "text";
-const FITT_LOGO_SRC = "/images/organisations/fitt-iit-delhi.png";
+const FITT_LOGO_SRC = publicAsset("/images/organisations/fitt-iit-delhi.png");
 const btn: Record<Variant, string> = {
   primary: "h-12 px-6 rounded-md bg-saffron text-navy font-semibold hover:brightness-95",
   secondary: "h-12 px-6 rounded-md border border-navy text-navy font-semibold hover:bg-navy hover:text-primary-foreground",
@@ -32,7 +33,7 @@ export function Logo({ light }: { light?: boolean }) {
   return (
     <Link to="/" className="inline-flex shrink-0 items-center">
       <img
-        src="/images/brand/kaushal-hub-logo.png"
+        src={publicAsset("/images/brand/kaushal-hub-logo.png")}
         alt="Kaushal Hub — Elevate Your Potential"
         width={1896}
         height={512}
