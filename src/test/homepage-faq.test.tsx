@@ -25,7 +25,7 @@ describe("homepage FAQ", () => {
       ],
       [
         "What programs does Kaushal Hub offer?",
-        "Some programs are currently available, while others are in development.",
+        "Visit the Programs page to explore current offerings.",
       ],
       [
         "What is the difference between a program and the Knowledge Library?",
@@ -44,8 +44,8 @@ describe("homepage FAQ", () => {
         "Potential collaborations will be considered based on their relevance and feasibility.",
       ],
       [
-        "How can I find out about upcoming programs?",
-        "its dates and registration details will be published when confirmed.",
+        "How can I find out more about Kaushal Hub programs?",
+        "For questions about dates or registration, contact us.",
       ],
     ];
 

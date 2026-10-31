@@ -18,7 +18,7 @@ const participationAreas = [
   },
   {
     title: "Explore Opportunities",
-    description: "Hear about upcoming programs, events and ways to participate.",
+    description: "Hear about new programs, events and ways to participate.",
   },
 ];
 

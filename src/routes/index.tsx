@@ -2,11 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Handshake } from "lucide-react";
 import workshop from "@/assets/workshop.jpg";
-import { Accordion, ButtonLink, Card, FittPill, Section, SectionHeader, SiteCta } from "@/components/site";
+import { Accordion, ButtonLink, Card, FittPill, ProgramCard, Section, SectionHeader, SiteCta } from "@/components/site";
 import { KnowledgePreview } from "@/components/knowledge";
 import { canonicalLinks } from "@/lib/resources";
 import { organisationLogos } from "@/lib/organisation-logos";
-import { upcomingPrograms } from "@/lib/upcoming-programs";
+import { programs } from "@/lib/programs";
 import { publicAsset } from "@/lib/public-asset";
 
 export const Route = createFileRoute("/")({
@@ -41,9 +41,8 @@ const homepageFaqs = [
     a: (
       <>
         Kaushal Hub features programs across areas such as entrepreneurship, practical learning and
-        emerging technologies. Some programs are currently available, while others are in
-        development. Visit the <Link to="/programs" className={faqLinkClass}>Programs page</Link> for
-        current offerings and upcoming initiatives.
+        emerging technologies. Visit the <Link to="/programs" className={faqLinkClass}>Programs page</Link>{" "}
+        to explore current offerings.
       </>
     ),
   },
@@ -84,12 +83,12 @@ const homepageFaqs = [
     ),
   },
   {
-    q: "How can I find out about upcoming programs?",
+    q: "How can I find out more about Kaushal Hub programs?",
     a: (
       <>
-        Visit the <Link to="/programs" className={faqLinkClass}>Programs page</Link> to review current
-        and upcoming initiatives. Where a program is still being prepared, its dates and registration
-        details will be published when confirmed.
+        Visit the <Link to="/programs" className={faqLinkClass}>Programs page</Link> to explore each
+        program’s audience, format and learning journey. For questions about dates or registration,{" "}
+        <Link to="/contact" className={faqLinkClass}>contact us</Link>.
       </>
     ),
   },
@@ -293,23 +292,11 @@ function Home() {
         <div className="mt-16">
           <h3 className="h3">More Ways to Learn and Build</h3>
           <p className="mt-3 max-w-none text-slate">
-            Explore upcoming programs for different stages of learning and professional growth.
+            Explore programs for different stages of learning and professional growth.
           </p>
           <div className="mt-8 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {upcomingPrograms.map((program) => (
-              <article key={program.title} className="flex h-full min-w-0 flex-col rounded-lg border bg-card p-6">
-                <span className="inline-flex w-fit rounded-sm bg-tint px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-navy">{program.status}</span>
-                <h4 className="h4 mt-4 break-words font-serif text-navy">{program.title}</h4>
-                <div className="mt-4 space-y-1 text-small text-slate">
-                  {program.metadata.map((item) => (
-                    <p key={item.label}><span className="font-semibold text-ink">{item.label}:</span> {item.value}</p>
-                  ))}
-                </div>
-                <p className="mt-4 flex-1 text-[15px] leading-6 text-slate">{program.description}</p>
-                <div className="mt-6">
-                  <ButtonLink to={program.path} variant="text">View Program</ButtonLink>
-                </div>
-              </article>
+            {programs.map((program) => (
+              <ProgramCard key={program.slug} program={program} />
             ))}
           </div>
           <div className="mt-8"><ButtonLink to="/programs" variant="text">Explore All Programs</ButtonLink></div>

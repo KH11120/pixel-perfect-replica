@@ -13,7 +13,12 @@ import {
 } from "@/components/site";
 import { ExperienceApplicationForm } from "@/components/experience-application-form";
 import { SampleDossier } from "@/components/sample-dossier";
+import { FacultySection } from "@/components/faculty-section";
+import { placeholderFaculty, type FacultyMember } from "@/lib/faculty";
 import { canonicalLinks } from "@/lib/resources";
+
+// Replace with this program's confirmed faculty when available.
+const faculty: FacultyMember[] = placeholderFaculty;
 
 export const Route = createFileRoute("/experience-to-enterprise")({
   head: () => ({
@@ -403,7 +408,6 @@ function Program() {
             <p className="eyebrow">Campus immersion</p>
             <h3 className="h3 mt-4">2–3 days at FITT, IIT Delhi</h3>
             <ul className="mt-5 space-y-3 text-slate">
-              <CheckItem>Dates to be announced.</CheckItem>
               <CheckItem>Meals included; travel and accommodation not included.</CheckItem>
               <CheckItem>Physical certificate handed over during the immersion.</CheckItem>
             </ul>
@@ -548,6 +552,8 @@ function Program() {
           </li>
         </ol>
       </Section>
+
+      <FacultySection faculty={faculty} />
 
       <Section tint id="application" className="scroll-mt-24 md:scroll-mt-28">
         <div className="mx-auto max-w-4xl">

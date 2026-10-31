@@ -1,3 +1,5 @@
+import { placeholderFaculty, type FacultyMember } from "@/lib/faculty";
+
 export type ProgramTopic = { title: string; description: string };
 export type ProgramJourneyStep = {
   period: string;
@@ -5,7 +7,7 @@ export type ProgramJourneyStep = {
   description: string;
 };
 
-export type UpcomingProgramSection =
+export type ProgramSection =
   | { kind: "learning"; title: string; columns: 2 | 3; items: ProgramTopic[] }
   | {
       kind: "journey";
@@ -19,10 +21,9 @@ export type UpcomingProgramSection =
   | { kind: "outcomes"; title: string; items: string[] }
   | { kind: "venue"; title: string; body: string; details: string[] };
 
-export type UpcomingProgram = {
+export type Program = {
   slug: string;
   path: string;
-  status: "Upcoming program";
   title: string;
   description: string;
   metadata: { label: string; value: string }[];
@@ -31,21 +32,22 @@ export type UpcomingProgram = {
   pageDescription: string;
   details: { label: string; value: string }[];
   heroNotice: string;
-  sections: UpcomingProgramSection[];
+  sections: ProgramSection[];
+  /** Faculty shown in the "Meet Your Faculty" section; leave empty to hide it. */
+  faculty: FacultyMember[];
   finalNotice: string;
 };
 
-export const upcomingPrograms: UpcomingProgram[] = [
+export const programs: Program[] = [
   {
     slug: "entrepreneurship-for-school-students",
     path: "/programs/entrepreneurship-for-school-students",
-    status: "Upcoming program",
     title: "Entrepreneurship for School Students",
     description:
       "An introduction to identifying problems, developing ideas and understanding how ventures are built.",
     metadata: [{ label: "Eligibility", value: "Class 12 students" }],
     seoDescription:
-      "An upcoming introductory entrepreneurship program for Class 12 students, with practical learning about problems, ideas and ventures.",
+      "An introductory entrepreneurship program for Class 12 students, with practical learning about problems, ideas and ventures.",
     subtitle:
       "Learn to identify problems, develop ideas and explore how ventures are built.",
     pageDescription:
@@ -57,7 +59,7 @@ export const upcomingPrograms: UpcomingProgram[] = [
       { label: "Format", value: "Online learning with campus immersion" },
       { label: "Campus immersion", value: "IIT Delhi" },
     ],
-    heroNotice: "Program details and registration dates will be announced soon.",
+    heroNotice: "Explore the program structure and learning experience.",
     sections: [
       {
         kind: "learning",
@@ -119,7 +121,7 @@ export const upcomingPrograms: UpcomingProgram[] = [
         kind: "campus",
         title: "Experience Learning at IIT Delhi",
         body:
-          "The planned program includes a campus immersion at IIT Delhi, connecting the learning experience with an in-person campus environment. The exact dates, duration and activities are not yet confirmed.",
+          "The program includes a campus immersion at IIT Delhi, connecting the learning experience with an in-person campus environment.",
       },
       {
         kind: "audience",
@@ -128,19 +130,19 @@ export const upcomingPrograms: UpcomingProgram[] = [
           "This program is intended for Class 12 students interested in entrepreneurship, problem-solving, innovation and understanding how businesses are created.",
       },
     ],
+    faculty: placeholderFaculty,
     finalNotice:
-      "This program is being prepared. Confirmed dates and registration information will be announced later.",
+      "To ask about dates, registration or anything else about this program, get in touch with the Kaushal Hub team.",
   },
   {
     slug: "entrepreneurship-for-undergraduates",
     path: "/programs/entrepreneurship-for-undergraduates",
-    status: "Upcoming program",
     title: "Entrepreneurship for Undergraduate Students",
     description:
       "A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture.",
     metadata: [{ label: "Eligibility", value: "Undergraduate students" }],
     seoDescription:
-      "An upcoming six-week entrepreneurship program for undergraduate students interested in testing ideas and exploring venture building.",
+      "A six-week entrepreneurship program for undergraduate students interested in testing ideas and exploring venture building.",
     subtitle: "Turn promising ideas into opportunities worth testing.",
     pageDescription:
       "A practical introduction to identifying opportunities, testing ideas and exploring the process of building a venture.",
@@ -151,7 +153,7 @@ export const upcomingPrograms: UpcomingProgram[] = [
       { label: "Format", value: "Online learning with campus immersion" },
       { label: "Campus immersion", value: "IIT Delhi" },
     ],
-    heroNotice: "Dates and registration details will be announced later.",
+    heroNotice: "Discover what you will learn in this program.",
     sections: [
       {
         kind: "learning",
@@ -234,7 +236,7 @@ export const upcomingPrograms: UpcomingProgram[] = [
         kind: "campus",
         title: "Take Your Learning to IIT Delhi",
         body:
-          "The program is planned to include a campus immersion at IIT Delhi. Dates, campus activities and other arrangements have not yet been confirmed.",
+          "The program includes a campus immersion at IIT Delhi, giving participants an in-person campus experience alongside their online learning.",
       },
       {
         kind: "audience",
@@ -243,13 +245,13 @@ export const upcomingPrograms: UpcomingProgram[] = [
           "The program is intended for undergraduate students interested in entrepreneurship, innovation, startups, product development or exploring a venture while studying.",
       },
     ],
+    faculty: placeholderFaculty,
     finalNotice:
-      "This upcoming program is in preparation. Confirmed dates and registration details will be announced later.",
+      "To ask about dates, registration or anything else about this program, get in touch with the Kaushal Hub team.",
   },
   {
     slug: "generative-ai-in-action",
     path: "/programs/generative-ai-in-action",
-    status: "Upcoming program",
     title: "Generative AI in Action with Microsoft Intelligent Tools",
     description:
       "Learn from Microsoft experts to understand, build and responsibly use Generative AI with real-world tools.",
@@ -262,7 +264,7 @@ export const upcomingPrograms: UpcomingProgram[] = [
       { label: "Location", value: "IIT Delhi" },
     ],
     seoDescription:
-      "An upcoming one-day, hands-on Generative AI program at IIT Delhi covering Microsoft tools, AI-assisted development and responsible AI use.",
+      "A one-day, hands-on Generative AI program at IIT Delhi covering Microsoft tools, AI-assisted development and responsible AI use.",
     subtitle:
       "Understand, build and responsibly use Generative AI with real-world tools.",
     pageDescription:
@@ -277,7 +279,7 @@ export const upcomingPrograms: UpcomingProgram[] = [
           "Generative AI, Microsoft AI tools, AI-assisted development and Responsible AI",
       },
     ],
-    heroNotice: "Dates and registration information will be announced later.",
+    heroNotice: "Explore the learning journey, program format and key outcomes.",
     sections: [
       {
         kind: "audience",
@@ -346,7 +348,7 @@ export const upcomingPrograms: UpcomingProgram[] = [
         kind: "venue",
         title: "One Day at IIT Delhi",
         body:
-          "The program is planned as an in-person, hands-on day at IIT Delhi. The exact date, schedule, fee and registration details have not been provided.",
+          "The program is an in-person, hands-on day at IIT Delhi.",
         details: [
           "One-day program",
           "In-person format",
@@ -355,11 +357,12 @@ export const upcomingPrograms: UpcomingProgram[] = [
         ],
       },
     ],
+    faculty: placeholderFaculty,
     finalNotice:
-      "This program is upcoming. Confirmed dates and registration information will be announced later.",
+      "To ask about dates, registration or anything else about this program, get in touch with the Kaushal Hub team.",
   },
 ];
 
-export function findUpcomingProgram(slug: string) {
-  return upcomingPrograms.find((program) => program.slug === slug);
+export function findProgram(slug: string) {
+  return programs.find((program) => program.slug === slug);
 }

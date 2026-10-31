@@ -1,7 +1,8 @@
 import { ButtonLink, Section, SectionHeader } from "@/components/site";
-import type { UpcomingProgram, UpcomingProgramSection } from "@/lib/upcoming-programs";
+import { FacultySection } from "@/components/faculty-section";
+import type { Program, ProgramSection } from "@/lib/programs";
 
-export function UpcomingProgramDetail({ program }: { program: UpcomingProgram }) {
+export function ProgramDetail({ program }: { program: Program }) {
   return (
     <>
       <Section tint className="!py-10 md:!py-14">
@@ -9,10 +10,7 @@ export function UpcomingProgramDetail({ program }: { program: UpcomingProgram })
           <ButtonLink to="/programs" variant="text">
             All Programs
           </ButtonLink>
-          <p className="eyebrow mt-8 inline-flex rounded-sm bg-card px-2 py-1 text-navy">
-            {program.status}
-          </p>
-          <h1 className="h1 mt-4">{program.title}</h1>
+          <h1 className="h1 mt-8">{program.title}</h1>
           <p className="h3 mt-5 font-serif text-navy">{program.subtitle}</p>
           <p className="mt-5 max-w-3xl text-slate">{program.pageDescription ?? program.description}</p>
           <dl className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -36,11 +34,16 @@ export function UpcomingProgramDetail({ program }: { program: UpcomingProgram })
         <ProgramContentSection key={`${section.kind}-${index}`} section={section} />
       ))}
 
+      <FacultySection faculty={program.faculty} tint />
+
       <Section white>
         <div className="max-w-3xl border-t pt-6">
-          <p className="eyebrow">UPCOMING PROGRAM</p>
+          <p className="eyebrow">HAVE A QUESTION?</p>
           <p className="mt-3 text-slate">{program.finalNotice}</p>
-          <div className="mt-5">
+          <div className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
+            <ButtonLink to="/contact" variant="text">
+              Get in Touch
+            </ButtonLink>
             <ButtonLink to="/programs" variant="text">
               Explore all programs
             </ButtonLink>
@@ -51,7 +54,7 @@ export function UpcomingProgramDetail({ program }: { program: UpcomingProgram })
   );
 }
 
-function ProgramContentSection({ section }: { section: UpcomingProgramSection }) {
+function ProgramContentSection({ section }: { section: ProgramSection }) {
   if (section.kind === "learning") {
     return (
       <Section white>

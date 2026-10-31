@@ -1,12 +1,12 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { UpcomingProgramDetail } from "@/components/upcoming-program-detail";
+import { ProgramDetail } from "@/components/program-detail";
 import { ButtonLink, Section } from "@/components/site";
 import { canonicalLinks } from "@/lib/resources";
-import { findUpcomingProgram } from "@/lib/upcoming-programs";
+import { findProgram } from "@/lib/programs";
 
 export const Route = createFileRoute("/programs/$programSlug")({
   loader: ({ params }) => {
-    const program = findUpcomingProgram(params.programSlug);
+    const program = findProgram(params.programSlug);
     if (!program) throw notFound();
     return program;
   },
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/programs/$programSlug")({
 });
 
 function ProgramPage() {
-  return <UpcomingProgramDetail program={Route.useLoaderData()} />;
+  return <ProgramDetail program={Route.useLoaderData()} />;
 }
 
 function UnavailableProgram() {

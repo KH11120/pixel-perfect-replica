@@ -3,7 +3,7 @@ import { useState, type ReactNode, type ComponentProps } from "react";
 import { ChevronDown, Menu, X, Check, ArrowRight, ArrowUpRight, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { publicAsset } from "@/lib/public-asset";
-import { upcomingPrograms, type UpcomingProgram } from "@/lib/upcoming-programs";
+import type { Program } from "@/lib/programs";
 
 /* ---------- Button ---------- */
 type Variant = "primary" | "secondary" | "inverse" | "text";
@@ -384,25 +384,10 @@ export function AssociationsStrip({ note = "Experience to Enterprise is a Kausha
 }
 
 /* ---------- Program card ---------- */
-export function ProgramCard({ status, audience, title, text, link, footnote }: { status: "Coming soon" | "Details soon" | "Planned Program"; audience: string; title: string; text: ReactNode; link?: ReactNode; footnote?: ReactNode }) {
-  return (
-    <div className="flex flex-col rounded-lg border bg-card p-6">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="rounded-full border px-3 py-1 text-small font-medium text-slate">{status}</span>
-        <Tag>{audience}</Tag>
-      </div>
-      <h3 className="h4 mt-5 font-serif">{title}</h3>
-      <p className="mt-2 flex-1 text-[16px] leading-6 text-slate">{text}</p>
-      {footnote && <p className="mt-3 text-small text-slate">{footnote}</p>}
-      {link && <div className="mt-5">{link}</div>}
-    </div>
-  );
-}
-export function UpcomingProgramCard({ program }: { program: Pick<UpcomingProgram, "status" | "path" | "metadata" | "title" | "description"> }) {
+export function ProgramCard({ program }: { program: Pick<Program, "path" | "metadata" | "title" | "description"> }) {
   return (
     <article className="flex h-full min-w-0 flex-col rounded-lg border bg-card p-6">
-      <span className="inline-flex w-fit rounded-sm bg-tint px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-navy">{program.status}</span>
-      <h4 className="h4 mt-4 break-words font-serif text-navy">{program.title}</h4>
+      <h4 className="h4 break-words font-serif text-navy">{program.title}</h4>
       <div className="mt-4 space-y-1 text-small text-slate">
         {program.metadata.map((item) => (
           <p key={item.label}><span className="font-semibold text-ink">{item.label}:</span> {item.value}</p>
@@ -415,15 +400,6 @@ export function UpcomingProgramCard({ program }: { program: Pick<UpcomingProgram
         </ButtonLink>
       </div>
     </article>
-  );
-}
-export function DevPrograms() {
-  return (
-    <>
-      {upcomingPrograms.map((program) => (
-        <UpcomingProgramCard key={program.slug} program={program} />
-      ))}
-    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet, useRouterState } from "@tanstack/react-router";
-import { ButtonLink, Card, FittPill, Section, UpcomingProgramCard } from "@/components/site";
+import { ButtonLink, Card, FittPill, ProgramCard, Section } from "@/components/site";
 import { canonicalLinks } from "@/lib/resources";
-import { upcomingPrograms } from "@/lib/upcoming-programs";
+import { programs } from "@/lib/programs";
 
 export const Route = createFileRoute("/programs")({
   head: ({ matches }) => ({
@@ -80,10 +80,10 @@ function Programs() {
             </div>
           </div>
         </Card>
-        <p className="eyebrow mb-4 mt-12">UPCOMING PROGRAMS</p>
+        <p className="eyebrow mb-4 mt-12">EXPLORE OUR PROGRAMS</p>
         <div className="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {upcomingPrograms.map((program) => (
-            <UpcomingProgramCard key={program.title} program={program} />
+          {programs.map((program) => (
+            <ProgramCard key={program.slug} program={program} />
           ))}
         </div>
       </Section>
