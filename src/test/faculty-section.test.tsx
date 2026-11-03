@@ -5,6 +5,7 @@ import { placeholderFaculty, type FacultyMember } from "@/lib/faculty";
 import { programs } from "@/lib/programs";
 
 const member: FacultyMember = {
+  category: "Category",
   name: "Test Expert",
   designation: "Designation",
   organisation: "Organisation",
@@ -18,10 +19,15 @@ describe("FacultySection", () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it("shows the LinkedIn icon as a non-clickable placeholder when no URL is set", () => {
+  it("shows four portrait cards with expert perspectives and placeholder LinkedIn icons", () => {
     render(<FacultySection faculty={placeholderFaculty} />);
     expect(screen.getByRole("heading", { name: "Meet Your Faculty" })).toBeInTheDocument();
-    expect(screen.getAllByRole("img", { name: "Faculty portrait placeholder" })).toHaveLength(3);
+    expect(screen.getAllByRole("img", { name: "Faculty portrait placeholder" })).toHaveLength(4);
+    for (const { category, designation, bio } of placeholderFaculty) {
+      expect(screen.getByText(category)).toBeInTheDocument();
+      expect(screen.getByText(designation)).toBeInTheDocument();
+      expect(screen.getByText(bio)).toBeInTheDocument();
+    }
     expect(screen.queryAllByRole("link")).toHaveLength(0);
   });
 

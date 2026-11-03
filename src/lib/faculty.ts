@@ -1,17 +1,16 @@
 export type FacultyMember = {
+  /** Subject area shown above the name, e.g. "Entrepreneurship". */
+  category: string;
   name: string;
   designation: string;
-  organisation: string;
-  /** Two to three lines introducing the faculty member. */
+  organisation?: string;
+  /** Two to three lines introducing the faculty member and their perspective. */
   bio: string;
   /** Path under `public/` (e.g. "/images/faculty/jane-doe.jpg"). Leave empty to show the neutral portrait placeholder. */
   photo?: string;
   /** Full LinkedIn profile URL. Leave empty to show the icon as a non-clickable placeholder. */
   linkedinUrl: string;
 };
-
-const PLACEHOLDER_BIO =
-  "Faculty biography will be added here. This section will introduce the expert’s professional experience, subject expertise, and relevant industry background.";
 
 /**
  * Placeholder profiles until real faculty details are confirmed. To set a program's
@@ -20,24 +19,31 @@ const PLACEHOLDER_BIO =
  */
 export const placeholderFaculty: FacultyMember[] = [
   {
-    name: "Faculty Name",
-    designation: "Designation",
-    organisation: "Organisation",
-    bio: PLACEHOLDER_BIO,
+    category: "Entrepreneurship",
+    name: "Expert Name",
+    designation: "Entrepreneurship Expert",
+    bio: "[Expert perspective on identifying meaningful problems and validating a business opportunity.]",
     linkedinUrl: "",
   },
   {
-    name: "Industry Expert",
-    designation: "Designation",
-    organisation: "Organisation",
-    bio: PLACEHOLDER_BIO,
+    category: "Venture Building",
+    name: "Expert Name",
+    designation: "Venture-Building Practitioner",
+    bio: "[Expert perspective on turning an early idea into a testable product or service.]",
     linkedinUrl: "",
   },
   {
-    name: "Academic Expert",
-    designation: "Designation",
-    organisation: "Organisation",
-    bio: PLACEHOLDER_BIO,
+    category: "Business and Markets",
+    name: "Expert Name",
+    designation: "Business and Market Expert",
+    bio: "[Expert perspective on understanding customers, building a business model and reaching the market.]",
+    linkedinUrl: "",
+  },
+  {
+    category: "Innovation and Technology",
+    name: "Expert Name",
+    designation: "Innovation and Technology Expert",
+    bio: "[Expert perspective on using technology and practical experimentation to build a venture.]",
     linkedinUrl: "",
   },
 ];

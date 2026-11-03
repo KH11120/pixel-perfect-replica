@@ -144,29 +144,6 @@ const faqs: [string, string][] = [
   ],
 ];
 
-const expertPerspectives = [
-  {
-    category: "Entrepreneurship",
-    quote: "[Expert perspective on identifying meaningful problems and validating a business opportunity.]",
-    role: "Entrepreneurship Expert",
-  },
-  {
-    category: "Venture Building",
-    quote: "[Expert perspective on turning an early idea into a testable product or service.]",
-    role: "Venture-Building Practitioner",
-  },
-  {
-    category: "Business and Markets",
-    quote: "[Expert perspective on understanding customers, building a business model and reaching the market.]",
-    role: "Business and Market Expert",
-  },
-  {
-    category: "Innovation and Technology",
-    quote: "[Expert perspective on using technology and practical experimentation to build a venture.]",
-    role: "Innovation and Technology Expert",
-  },
-];
-
 function Program() {
   return (
     <>
@@ -255,34 +232,6 @@ function Program() {
         </div>
       </Section>
 
-      <Section white>
-        <div className="max-w-none">
-          <p className="eyebrow mb-4">Expert perspectives</p>
-          <h2 className="h2">What Experts Say About the Program</h2>
-          <p className="mt-4 text-slate lg:whitespace-nowrap">
-            Perspectives from practitioners and experts on building ventures, testing ideas and
-            turning experience into action.
-          </p>
-        </div>
-        <p className="mt-6 rounded-md border border-saffron/50 bg-saffron/10 p-4 text-small leading-6 text-navy" role="note">
-          Preview content: these are placeholders, not real expert quotations or endorsements. Replace them with approved perspectives and attributions before public launch.
-        </p>
-        <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {expertPerspectives.map((perspective) => (
-            <article key={perspective.category} className="flex h-full min-w-0 flex-col rounded-lg border bg-card p-5">
-              <p className="eyebrow">{perspective.category}</p>
-              <blockquote className="mt-4 flex-1 font-serif text-[18px] leading-7 text-navy">
-                {perspective.quote}
-              </blockquote>
-              <div className="mt-6 border-t pt-4">
-                <p className="font-semibold text-navy">Expert Name</p>
-                <p className="mt-1 text-small text-slate">{perspective.role}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </Section>
-
       <Section tint>
         <SectionHeader
           eyebrow="Who it’s for"
@@ -298,6 +247,8 @@ function Program() {
           ))}
         </div>
       </Section>
+
+      <FacultySection faculty={faculty} />
 
       <Section white id="curriculum">
         <SectionHeader
@@ -552,8 +503,6 @@ function Program() {
           </li>
         </ol>
       </Section>
-
-      <FacultySection faculty={faculty} />
 
       <Section tint id="application" className="scroll-mt-24 md:scroll-mt-28">
         <div className="mx-auto max-w-4xl">

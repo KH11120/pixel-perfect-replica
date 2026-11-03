@@ -2,7 +2,23 @@ import { ButtonLink, Section, SectionHeader } from "@/components/site";
 import { FacultySection } from "@/components/faculty-section";
 import type { Program, ProgramSection } from "@/lib/programs";
 
+/** Background used by each content section, so the faculty section can avoid matching its neighbour. */
+const sectionTone: Record<ProgramSection["kind"], "tint" | "white" | "default"> = {
+  learning: "white",
+  journey: "tint",
+  campus: "white",
+  audience: "default",
+  structure: "tint",
+  outcomes: "white",
+  venue: "default",
+};
+
 export function ProgramDetail({ program }: { program: Program }) {
+  // Faculty follows the "Who is this program for" section, or closes the content if there is none.
+  const audienceIndex = program.sections.findIndex((section) => section.kind === "audience");
+  const facultyIndex = audienceIndex === -1 ? program.sections.length : audienceIndex + 1;
+  const nextSection = program.sections[facultyIndex];
+
   return (
     <>
       <Section tint className="!py-10 md:!py-14">
@@ -30,11 +46,19 @@ export function ProgramDetail({ program }: { program: Program }) {
         </div>
       </Section>
 
-      {program.sections.map((section, index) => (
+      {program.sections.slice(0, facultyIndex).map((section, index) => (
         <ProgramContentSection key={`${section.kind}-${index}`} section={section} />
       ))}
 
-      <FacultySection faculty={program.faculty} tint />
+      {nextSection && sectionTone[nextSection.kind] === "tint" ? (
+        <FacultySection faculty={program.faculty} white />
+      ) : (
+        <FacultySection faculty={program.faculty} tint />
+      )}
+
+      {program.sections.slice(facultyIndex).map((section, index) => (
+        <ProgramContentSection key={`${section.kind}-${facultyIndex + index}`} section={section} />
+      ))}
 
       <Section white>
         <div className="max-w-3xl border-t pt-6">

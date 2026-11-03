@@ -9,6 +9,7 @@ const gridByCount: Record<number, string> = {
   1: "max-w-xs",
   2: "max-w-3xl min-[480px]:grid-cols-2",
   3: "sm:grid-cols-2 lg:grid-cols-3",
+  4: "sm:grid-cols-2 lg:grid-cols-4",
 };
 
 export function FacultySection({
@@ -72,6 +73,8 @@ function FacultyCard({ member }: { member: FacultyMember }) {
         <LinkedInBadge name={member.name} url={member.linkedinUrl} />
       </div>
       <div className="flex flex-1 flex-col p-5">
+        {/* Reserve two lines on desktop so names align when a category wraps. */}
+        {member.category && <p className="eyebrow mb-2 lg:min-h-[2lh]">{member.category}</p>}
         <h3 className="h4 font-serif text-navy">{member.name}</h3>
         {role && <p className="mt-1 text-small font-medium text-slate">{role}</p>}
         <p className="mt-3 text-[15px] leading-6 text-slate">{member.bio}</p>
