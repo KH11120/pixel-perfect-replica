@@ -3,6 +3,7 @@ import { useState, type ReactNode, type ComponentProps } from "react";
 import { ChevronDown, Menu, X, Check, ArrowRight, ArrowUpRight, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { publicAsset } from "@/lib/public-asset";
+import { brandLogos } from "@/lib/brand";
 import type { Program } from "@/lib/programs";
 
 /* ---------- Button ---------- */
@@ -29,15 +30,17 @@ export function ButtonLink({ to, hash, search, variant = "primary", children, cl
 }
 
 /* ---------- Logos ---------- */
+/** `light` renders the reversed logo for the dark footer; otherwise the primary logo. */
 export function Logo({ light }: { light?: boolean }) {
+  const logo = light ? brandLogos.reversed : brandLogos.primary;
   return (
     <Link to="/" className="inline-flex shrink-0 items-center">
       <img
-        src={publicAsset("/images/brand/kaushal-hub-logo.png")}
+        src={logo.src}
         alt="Kaushal Hub — Elevate Your Potential"
-        width={1896}
-        height={512}
-        className={light ? "h-11 w-auto max-w-[164px] object-contain" : "h-9 w-auto max-w-[134px] object-contain sm:h-10 sm:max-w-[150px]"}
+        width={logo.width}
+        height={logo.height}
+        className={light ? "h-12 w-auto max-w-[180px] object-contain" : "h-9 w-auto max-w-[134px] object-contain sm:h-10 sm:max-w-[150px]"}
       />
     </Link>
   );
@@ -146,7 +149,7 @@ export function Footer() {
     { name: "YouTube", Icon: Youtube },
   ];
   return (
-    <footer className="bg-ink pb-24 pt-12 text-primary-foreground md:pb-8 md:pt-14">
+    <footer className="bg-brand-deep pb-24 pt-12 text-primary-foreground md:pb-8 md:pt-14">
       <div className="container-site">
         <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
           <div className="min-w-0">
@@ -174,9 +177,9 @@ export function Footer() {
               <span className="block">C-26, C Block, Sector 59</span>
               <span className="block">Noida, Uttar Pradesh 201309</span>
             </address>
-            <a href="mailto:hello@aptcoder.in" className="mt-2 block min-h-11 w-fit break-all text-[15px] text-primary-foreground/85 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-ink">hello@aptcoder.in</a>
-            <a href="tel:+919318497057" className="mt-2 block min-h-11 w-fit text-[15px] text-primary-foreground/85 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-ink">+91-9318497057</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=APTCODER%20C%2FO%20BHARAT%20IMPACT%2C%20C-26%2C%20C%20Block%2C%20Sector%2059%2C%20Noida%2C%20Uttar%20Pradesh%20201309" target="_blank" rel="noreferrer" className="mt-2 inline-flex min-h-11 items-center gap-1 text-small text-primary-foreground/75 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
+            <a href="mailto:hello@aptcoder.in" className="mt-2 block min-h-11 w-fit break-all text-[15px] text-primary-foreground/85 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-brand-deep">hello@aptcoder.in</a>
+            <a href="tel:+919318497057" className="mt-2 block min-h-11 w-fit text-[15px] text-primary-foreground/85 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-brand-deep">+91-9318497057</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=APTCODER%20C%2FO%20BHARAT%20IMPACT%2C%20C-26%2C%20C%20Block%2C%20Sector%2059%2C%20Noida%2C%20Uttar%20Pradesh%20201309" target="_blank" rel="noreferrer" className="mt-2 inline-flex min-h-11 items-center gap-1 text-small text-primary-foreground/75 underline-offset-4 hover:text-primary-foreground hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-brand-deep">
               Get Directions <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
             <div className="mt-4">

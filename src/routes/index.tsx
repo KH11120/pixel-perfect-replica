@@ -100,19 +100,15 @@ function InstitutionalLogoSequence({ decorative = false }: { decorative?: boolea
       className="institutional-logo-sequence"
       aria-hidden={decorative ? true : undefined}
     >
-      {organisationLogos.map(({ name, src }) => (
-        <li key={name} className="flex shrink-0 items-center gap-3">
+      {organisationLogos.map(({ name, src, width, height }) => (
+        <li key={name} className="flex shrink-0 items-center">
           <img
             src={src}
-            alt=""
-            width={96}
-            height={48}
-            loading="lazy"
-            className="h-10 w-24 shrink-0 object-contain"
+            alt={decorative ? "" : name}
+            width={width}
+            height={height}
+            className="h-7 w-auto max-w-[96px] object-contain md:h-9 md:max-w-[128px]"
           />
-          <span className="whitespace-nowrap text-small font-medium text-navy">
-            {name}
-          </span>
         </li>
       ))}
     </ul>
@@ -123,15 +119,17 @@ function InstitutionalLogoStrip() {
   return (
     <section
       aria-labelledby="institutional-logo-heading"
-      className="border-b bg-background py-3 md:py-4"
+      className="border-b bg-background py-2.5"
     >
-      <div className="container-site">
-        <h2 id="institutional-logo-heading" className="text-small font-semibold text-navy">
-          Backed &amp; Supported By
+      <div className="container-site flex items-center gap-3 md:gap-6">
+        <h2
+          id="institutional-logo-heading"
+          className="max-w-[6.75rem] shrink-0 text-[13px] font-semibold leading-tight text-navy sm:max-w-none sm:whitespace-nowrap sm:text-small"
+        >
+          Our Ecosystem Partners
         </h2>
-      </div>
-      <div className="container-site mt-2">
-        <div className="institutional-logo-marquee">
+        <span className="h-8 w-px shrink-0 bg-border" aria-hidden="true" />
+        <div className="institutional-logo-marquee min-w-0 flex-1">
           <div className="institutional-logo-track">
             <InstitutionalLogoSequence />
             <InstitutionalLogoSequence decorative />

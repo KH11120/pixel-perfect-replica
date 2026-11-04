@@ -33,6 +33,7 @@
   --color-navy: var(--navy);
   --color-saffron: var(--saffron);
   --color-ink: var(--ink);
+  --color-brand-deep: var(--brand-deep);
   --color-slate: var(--slate);
   --color-tint: var(--tint);
   --shadow-soft: 0 1px 2px oklch(0.2 0.05 260 / 4%), 0 4px 16px oklch(0.2 0.05 260 / 5%);
@@ -42,6 +43,8 @@
   --navy: oklch(0.27 0.07 257);        /* #0F2747 */
   --saffron: oklch(0.72 0.15 62);      /* #E8912D */
   --ink: oklch(0.18 0.03 262);         /* #0B1220 */
+  /* Sampled from the background of kaushalhub-logo-reversed.png; keep in sync with that file. */
+  --brand-deep: #1e2a78;
   --slate: oklch(0.5 0.03 262);        /* #5B6678 */
   --tint: oklch(0.94 0.015 262);       /* #E8EDF5 */
   --background: oklch(0.97 0.007 85);  /* #F7F5F0 */
@@ -95,6 +98,8 @@
 
 .institutional-logo-marquee {
   overflow: hidden;
+  /* Soften logos as they scroll in and out beside the heading. */
+  mask-image: linear-gradient(to right, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
 }
 
 .institutional-logo-track {
@@ -108,8 +113,15 @@
   display: flex;
   flex: none;
   align-items: center;
-  gap: 2.5rem;
-  padding-right: 2.5rem;
+  gap: 1.75rem;
+  padding-right: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .institutional-logo-sequence {
+    gap: 2.75rem;
+    padding-right: 2.75rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
