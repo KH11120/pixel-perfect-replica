@@ -1,4 +1,4 @@
-import { placeholderFaculty, type FacultyMember } from "@/lib/faculty";
+import { facultyMembers, type FacultyMember } from "@/lib/faculty";
 
 export type ProgramTopic = { title: string; description: string };
 export type ProgramJourneyStep = {
@@ -130,7 +130,7 @@ export const programs: Program[] = [
           "This program is intended for Class 12 students interested in entrepreneurship, problem-solving, innovation and understanding how businesses are created.",
       },
     ],
-    faculty: placeholderFaculty,
+    faculty: facultyMembers,
     finalNotice:
       "To ask about dates, registration or anything else about this program, get in touch with the Kaushal Hub team.",
   },
@@ -245,7 +245,7 @@ export const programs: Program[] = [
           "The program is intended for undergraduate students interested in entrepreneurship, innovation, startups, product development or exploring a venture while studying.",
       },
     ],
-    faculty: placeholderFaculty,
+    faculty: facultyMembers,
     finalNotice:
       "To ask about dates, registration or anything else about this program, get in touch with the Kaushal Hub team.",
   },
@@ -357,7 +357,7 @@ export const programs: Program[] = [
         ],
       },
     ],
-    faculty: placeholderFaculty,
+    faculty: facultyMembers,
     finalNotice:
       "To ask about dates, registration or anything else about this program, get in touch with the Kaushal Hub team.",
   },

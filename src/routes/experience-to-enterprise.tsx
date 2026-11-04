@@ -14,11 +14,8 @@ import {
 import { ExperienceApplicationForm } from "@/components/experience-application-form";
 import { SampleDossier } from "@/components/sample-dossier";
 import { FacultySection } from "@/components/faculty-section";
-import { placeholderFaculty, type FacultyMember } from "@/lib/faculty";
+import { facultyMembers } from "@/lib/faculty";
 import { canonicalLinks } from "@/lib/resources";
-
-// Replace with this program's confirmed faculty when available.
-const faculty: FacultyMember[] = placeholderFaculty;
 
 export const Route = createFileRoute("/experience-to-enterprise")({
   head: () => ({
@@ -248,7 +245,7 @@ function Program() {
         </div>
       </Section>
 
-      <FacultySection faculty={faculty} />
+      <FacultySection faculty={facultyMembers} />
 
       <Section white id="curriculum">
         <SectionHeader
