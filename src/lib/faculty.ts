@@ -4,7 +4,7 @@ export type FacultyMember = {
   designation: string;
   /** Path under `public/` (e.g. "/faculty/jane-doe.jpg"). A neutral placeholder shows if it is missing or fails to load. */
   photo: string;
-  /** Full LinkedIn profile URL, used on the card and in the Read More popup. */
+  /** Full LinkedIn profile URL, used on the card and in the Read More popup. Leave empty until a verified URL exists. */
   linkedinUrl: string;
   /** Two to three lines shown on the faculty card. */
   shortBio: string;
@@ -55,6 +55,35 @@ export const facultyMembers: FacultyMember[] = [
       "Her professional journey includes strategic consulting, corporate planning and research, product management, business leadership in AI/ML, innovation coaching and entrepreneurship.",
       "She brings experience across Indian and international markets, having led strategic initiatives involving the USA, Japan, Singapore, Saudi Arabia, Sri Lanka, Bangladesh and multiple Indian cities.",
       "Her cross-industry experience spans more than seven sectors, bringing together perspectives from FMCG and consumer research, AI-powered healthcare, smart city solutions and other technology-driven business applications.",
+    ],
+  },
+  {
+    name: "Neelabh Pathak",
+    designation: "Impact & Partnerships, FITT, IIT Delhi",
+    photo: "/faculty/neelabh-pathak.png",
+    linkedinUrl: "",
+    shortBio:
+      "Neelabh Pathak works at the intersection of startup incubation, corporate partnerships and innovation. He brings experience from IIT Kanpur’s startup ecosystem and C3i Hub, with a focus on programme management, corporate sustainability and supporting innovation initiatives.",
+    fullBio: [
+      "Neelabh Pathak is an innovation and startup ecosystem professional with experience across incubation, programme management, corporate sustainability and partnerships. He is associated with the Foundation for Innovation and Technology Transfer (FITT), IIT Delhi, where his work includes impact and partnerships.",
+      "Previously, he worked with C3i Hub, contributing to initiatives in the cybersecurity and startup ecosystem. Before that, he spent over three years at the Startup Incubation and Innovation Centre (SIIC), IIT Kanpur, managing programmes and supporting startup development.",
+      "His professional experience also includes roles in corporate social responsibility and sustainability at FITT, along with earlier experience in sales, marketing and business operations.",
+    ],
+  },
+  {
+    name: "Prasanjeet Sinha",
+    designation: "Investment & Acceleration, FITT, IIT Delhi",
+    photo: "/faculty/prasanjeet-sinha.png",
+    linkedinUrl: "",
+    shortBio:
+      "Prasanjeet Sinha is a startup ecosystem professional with experience across venture capital, startup incubation, investment and public-sector innovation. He has worked with organisations including SIDBI Venture Capital, RBI Innovation Hub, C3iHub IIT Kanpur and EdCIL.",
+    fullBio: [
+      "Prasanjeet Sinha is an experienced professional working across India’s startup and innovation ecosystem, with a background in venture capital, investment, incubation, entrepreneurship support and public-sector innovation.",
+      "He is currently associated with the Foundation for Innovation and Technology Transfer (FITT), IIT Delhi, in Investment and Acceleration. Previously, he worked as a Consultant with EdCIL (India) Limited, contributing to national-level innovation, incubation and startup engagement initiatives.",
+      "He has also worked with C3iHub, IIT Kanpur, supporting startup incubation, accelerator and seed programmes, ecosystem partnerships and programme execution across deep-tech and emerging technology domains.",
+      "Earlier, he was a Senior Investment Associate at SIDBI Venture Capital, where he contributed to deal sourcing, due diligence, investment execution and portfolio management, particularly in the context of startup ecosystems in Assam and Tripura.",
+      "His experience also includes working with the Reserve Bank Innovation Hub (RBIH), where he gained exposure to fintech innovation and digital public infrastructure, and the Startup Incubation and Innovation Centre (SIIC), IIT Kanpur, where he supported early-stage startups through incubation, founder mentoring and investor readiness.",
+      "Across these roles, he has collaborated with entrepreneurs, investors, academic institutions, corporates and government stakeholders, developing a broad understanding of investment opportunities, startup growth and ecosystem development.",
     ],
   },
 ];
