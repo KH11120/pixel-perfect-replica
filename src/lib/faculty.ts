@@ -61,7 +61,7 @@ export const facultyMembers: FacultyMember[] = [
     name: "Neelabh Pathak",
     designation: "Impact & Partnerships, FITT, IIT Delhi",
     photo: "/faculty/neelabh-pathak.png",
-    linkedinUrl: "",
+    linkedinUrl: "https://www.linkedin.com/in/neelabh-pathak-035674b7/",
     shortBio:
       "Neelabh Pathak works at the intersection of startup incubation, corporate partnerships and innovation. He brings experience from IIT Kanpur’s startup ecosystem and C3i Hub, with a focus on programme management, corporate sustainability and supporting innovation initiatives.",
     fullBio: [
@@ -74,7 +74,7 @@ export const facultyMembers: FacultyMember[] = [
     name: "Prasanjeet Sinha",
     designation: "Investment & Acceleration, FITT, IIT Delhi",
     photo: "/faculty/prasanjeet-sinha.png",
-    linkedinUrl: "",
+    linkedinUrl: "https://www.linkedin.com/in/prasanjeet-sinha-117214b8/",
     shortBio:
       "Prasanjeet Sinha is a startup ecosystem professional with experience across venture capital, startup incubation, investment and public-sector innovation. He has worked with organisations including SIDBI Venture Capital, RBI Innovation Hub, C3iHub IIT Kanpur and EdCIL.",
     fullBio: [

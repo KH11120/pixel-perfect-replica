@@ -46,8 +46,8 @@ describe("FacultySection", () => {
       "Ankit Saxena": "https://www.linkedin.com/in/ankitsaxena771/",
       "Ashutosh Pastor": "https://www.linkedin.com/in/ashutoshpastor/",
       "Rashmi Jain": "https://www.linkedin.com/in/rashmi-jain-305a8417/",
-      "Neelabh Pathak": "",
-      "Prasanjeet Sinha": "",
+      "Neelabh Pathak": "https://www.linkedin.com/in/neelabh-pathak-035674b7/",
+      "Prasanjeet Sinha": "https://www.linkedin.com/in/prasanjeet-sinha-117214b8/",
     });
   });
 
